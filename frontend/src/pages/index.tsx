@@ -5,7 +5,7 @@ import { Login } from './Login';
 const Home: React.FC = () => (
   <>
     <Head>
-      <title>SuportApp</title>
+      <title>SupportApp</title>
     </Head>
     {/* <Layout title="Title" description="Description">
       Content
