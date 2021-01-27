@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "d1-components": "^1.0.150",
     "next": "10.0.3",
     "next-images": "^1.6.2",
     "query-string": "^6.13.7",

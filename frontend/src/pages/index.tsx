@@ -1,14 +1,16 @@
 import Head from 'next/head';
 import { Layout } from '../components';
+import { Login } from './Login';
 
 const Home: React.FC = () => (
   <>
     <Head>
-      <title>Robson App</title>
+      <title>SuportApp</title>
     </Head>
-    <Layout title="Title" description="Description">
+    {/* <Layout title="Title" description="Description">
       Content
-    </Layout>
+    </Layout> */}
+    <Login />
   </>
 );
 

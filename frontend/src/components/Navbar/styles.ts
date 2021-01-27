@@ -4,7 +4,7 @@ import { FaMagento } from 'react-icons/fa';
 import { Container } from '../../styles/global';
 
 export const Nav = styled.nav`
-  background: #101522;
+  background: #000;
   height: 80px;
   display: flex;
   justify-content: center;
