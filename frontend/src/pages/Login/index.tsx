@@ -1,4 +1,4 @@
-import { Container, Logo } from './style';
+import { Container, Logo, Form } from './style';
 import { Input, PrimaryButton, LinkButton, OutlineButton } from 'd1-components';
 import { useState } from 'react';
 
@@ -14,18 +14,23 @@ export const Login = (): JSX.Element => {
   const [password, setPassword] = useState('');
   return (
     <Container>
-      <Logo src="http://design.d1.cx/img/logotipo.png" />
-      <Input
-        placeholder="email@email.com"
-        value={email}
-        handleChange={() => {}}
-      />
-      <Input
-        placeholder="Digite sua senha"
-        value={password}
-        handleChange={() => {}}
-      />
-      <PrimaryButton handleClick={() => {}}>Entrar</PrimaryButton>
+      <Form action="">
+        <Logo src="http://design.d1.cx/img/logotipo.png" />
+        <Input
+          placeholder="email@email.com"
+          value={email}
+          handleChange={() => {}}
+        />
+        <Input
+          placeholder="Digite sua senha"
+          value={password}
+          handleChange={() => {}}
+        />
+        <PrimaryButton handleClick={() => {}}>Entrar</PrimaryButton>
+        <LinkButton secondary handleClick={() => {}}>
+          Esqueceu sua senha?
+        </LinkButton>
+      </Form>
     </Container>
   );
 };
