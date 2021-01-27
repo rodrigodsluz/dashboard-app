@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Container, Logo, Form } from './style';
 import { Input, PrimaryButton, LinkButton, OutlineButton } from 'd1-components';
 import { useState } from 'react';
@@ -9,7 +10,7 @@ import { useState } from 'react';
  * @description
  * Tela para o usuário poder logar com o acesso da d1
  */
-export const Login = (): JSX.Element => {
+export default function login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
@@ -26,11 +27,17 @@ export const Login = (): JSX.Element => {
           value={password}
           handleChange={() => {}}
         />
-        <PrimaryButton handleClick={() => {}}>Entrar</PrimaryButton>
+        <Link href="/jvb">
+          <PrimaryButton handleClick={() => {}}>Entrar</PrimaryButton>
+        </Link>
         <LinkButton secondary handleClick={() => {}}>
           Esqueceu sua senha?
         </LinkButton>
       </Form>
     </Container>
   );
+}
+
+const getInitialProps = async ctx => {
+  return {};
 };
