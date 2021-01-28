@@ -1,4 +1,3 @@
-import { Container, TableContainer, CardContainer } from './style';
 import {
   Table,
   THead,
@@ -14,9 +13,16 @@ import {
   Typography,
   Spacing,
 } from 'd1-components';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import {
+  Container,
+  TableContainer,
+  CardContainer,
+  GraphicContainer,
+} from './style';
 
 import StickyHeadTable from '../../components/Table/index';
-import { Alert, AlertTitle } from '@material-ui/lab';
+import Graphic from '../../components/PieChart';
 /**
  * @export
  * @component
@@ -26,7 +32,7 @@ import { Alert, AlertTitle } from '@material-ui/lab';
  * Linha degrade exibida no começo de toda página
  */
 export default function jvb() {
-  let array = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  const array = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
   return (
     <Container>
@@ -69,10 +75,11 @@ export default function jvb() {
           </Card>
         </CardContainer>
       </TableContainer>
+      <GraphicContainer>
+        <Graphic />
+      </GraphicContainer>
     </Container>
   );
 }
 
-const getInitialProps = async ctx => {
-  return {};
-};
+const getInitialProps = async (ctx) => ({});
