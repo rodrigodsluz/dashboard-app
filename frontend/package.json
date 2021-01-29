@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "axios": "^0.21.1",
     "d1-components": "^1.0.150",
     "next": "10.0.3",
@@ -16,6 +18,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-icons": "^4.1.0",
+    "recharts": "^2.0.4",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {

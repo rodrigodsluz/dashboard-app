@@ -1,15 +1,14 @@
 import Head from 'next/head';
-import { Layout } from '../components';
-import { Login } from './Login';
+import { LineHeader } from '../components/LineHeader';
+import Login from './login';
 
 const Home: React.FC = () => (
   <>
     <Head>
       <title>SupportApp</title>
     </Head>
-    {/* <Layout title="Title" description="Description">
-      Content
-    </Layout> */}
+
+    {/*  <LineHeader /> */}
     <Login />
   </>
 );
