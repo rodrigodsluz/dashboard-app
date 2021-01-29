@@ -14,9 +14,11 @@ import {
   CardContainer,
   GraphicContainer,
   TableContent,
+  PanelCard,
 } from './style';
 import StickyHeadTable from '../../components/Table/index';
 import Graphic from '../../components/PieChart';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 /**
  * @export
@@ -28,30 +30,31 @@ import Graphic from '../../components/PieChart';
  */
 
 export default function Sumario() {
-  const array = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  const { height, width } = useWindowDimensions();
 
+  console.log(width);
   return (
     <Container>
-      <Menu
-        configuration={[
-          {
-            active: true,
-            link: '#',
-            redirect: () => {
-              console.log(1);
+      {width > 500 ? (
+        <Menu
+          configuration={[
+            {
+              active: true,
+              link: '#',
+              redirect: () => {},
             },
-          },
-          { active: false, link: '#', redirect: null },
+            { active: false, link: '#', redirect: null },
 
-          { active: false, link: '#', redirect: null },
-          { active: false, link: '#', redirect: null },
-          { active: false, link: '#', redirect: null },
-          { active: false, link: '#', redirect: null },
-          { active: false, link: '#', redirect: null },
-        ]}
-        // srcImg="http://admin.dev.d1.cx/images/logotipo-branco.png"
-        srcImg="https://github.com/rodrigodsluz/d1-test/raw/master/logotipo.jpeg"
-      />
+            { active: false, link: '#', redirect: null },
+            { active: false, link: '#', redirect: null },
+            { active: false, link: '#', redirect: null },
+            { active: false, link: '#', redirect: null },
+            { active: false, link: '#', redirect: null },
+          ]}
+          srcImg="https://github.com/rodrigodsluz/d1-test/raw/master/logotipo.jpeg"
+        />
+      ) : null}
+
       <TableContainer>
         <TableContent>
           <Typography htmlTag="strong" fontSize="32px">
@@ -61,40 +64,44 @@ export default function Sumario() {
           <StickyHeadTable />
           <Alert severity="warning">
             <AlertTitle>Atenção</AlertTitle>
-            Existem <strong>56 processos executando!</strong> a mais de 24
-            horas.
+            Existem <strong>56 processos executando</strong> a mais de 24 horas.
           </Alert>
-          <CardContainer>
-            <Card>
-              <CardHeader>
-                <h2>Finalizado(s)</h2>
-              </CardHeader>
-              <CardBody>
-                <h2>2</h2>
-              </CardBody>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <h2>Executando</h2>
-              </CardHeader>
-              <CardBody>
-                <h2>2</h2>
-              </CardBody>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <h2>Erro(s)</h2>
-              </CardHeader>
-              <CardBody>
-                <h2>2</h2>
-              </CardBody>
-            </Card>
-          </CardContainer>
         </TableContent>
         <GraphicContainer>
           <Graphic />
+
+          <CardContainer>
+            <PanelCard>
+              <Card>
+                <CardHeader>
+                  <h2>Executando</h2>
+                </CardHeader>
+                <CardBody>
+                  <h2>2</h2>
+                </CardBody>
+              </Card>
+            </PanelCard>
+            <PanelCard>
+              <Card>
+                <CardHeader>
+                  <h2>Erros</h2>
+                </CardHeader>
+                <CardBody>
+                  <h2>2</h2>
+                </CardBody>
+              </Card>
+            </PanelCard>{' '}
+            <PanelCard>
+              <Card>
+                <CardHeader>
+                  <h2>Finalizados</h2>
+                </CardHeader>
+                <CardBody>
+                  <h2>2</h2>
+                </CardBody>
+              </Card>
+            </PanelCard>
+          </CardContainer>
         </GraphicContainer>
       </TableContainer>
     </Container>

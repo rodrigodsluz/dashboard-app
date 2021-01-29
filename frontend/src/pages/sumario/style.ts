@@ -5,7 +5,9 @@ export const Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: row;
-  overflow: hidden;
+  overflow-x: hidden;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const TableContainer = styled.div`
@@ -17,29 +19,39 @@ export const TableContainer = styled.div`
   border-radius: 4px;
   margin: 0px;
   display: flex;
-  justify-content: space-evenly;
-  flex-direction: row;
-
-  @media screen and (max-width: 1260px) {
+  @media screen and (max-width: 1300px) {
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
   }
 `;
 
 export const TableContent = styled.div`
   width: 80%;
+  height: 90vh;
+
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const CardContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
   padding: 20px 0;
   flex-wrap: wrap;
 `;
 
+export const PanelCard = styled.div`
+  padding: 10px 0px;
+  align-items: center;
+`;
+
 export const GraphicContainer = styled.div`
-  @media screen and (max-width: 1260px) {
-    display: flex;
-    justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 10px;
+  @media screen and (max-width: 1000px) {
+    margin-top: 100px;
   }
 `;
