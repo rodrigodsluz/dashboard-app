@@ -19,6 +19,7 @@ export const TableContainer = styled.div`
   border-radius: 4px;
   margin: 0px;
   display: flex;
+  justify-content: space-between;
   @media screen and (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
@@ -50,6 +51,7 @@ export const PanelCard = styled.div`
 export const GraphicContainer = styled.div`
   flex-direction: column;
   align-items: center;
+
   padding: 0px 10px;
   @media screen and (max-width: 1000px) {
     margin-top: 100px;
