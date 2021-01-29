@@ -73,6 +73,30 @@ const rows = [
   createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
   createData('SOROCRED', 'DE', 83019200, 357578),
   createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
+  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('SOROCRED', 'DE', 83019200, 357578),
+  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
+  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('SOROCRED', 'DE', 83019200, 357578),
+  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
+  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('SOROCRED', 'DE', 83019200, 357578),
+  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
+  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('SOROCRED', 'DE', 83019200, 357578),
+  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
+  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('SOROCRED', 'DE', 83019200, 357578),
+  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
+  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('SOROCRED', 'DE', 83019200, 357578),
+  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
+  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('SOROCRED', 'DE', 83019200, 357578),
+  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
+  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('SOROCRED', 'DE', 83019200, 357578),
+  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
   createData('QUALICORP', 'MX', 126577691, 1972550),
 ];
 
@@ -81,14 +105,14 @@ const useStyles = makeStyles({
     width: '100%',
   },
   container: {
-    maxHeight: 440,
+    height: "70vh",
   },
 });
 
 export default function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(20);
   const [open, setOpen] = React.useState(false);
   const [index, setIndex] = React.useState(0);
 
