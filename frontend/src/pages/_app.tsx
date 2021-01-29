@@ -5,7 +5,7 @@ import { LineHeader } from '../components/LineHeader/index';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => (
   <>
-    <LineHeader />
+    {/* <LineHeader /> */}
     <Component {...pageProps} />
     <GlobalStyle />
   </>

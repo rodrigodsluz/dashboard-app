@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Line = styled.div`
-  padding: 3px;
+  padding: 2px;
   width: 100vw;
   background: linear-gradient(
     90deg,

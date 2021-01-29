@@ -8,7 +8,7 @@ const Home: React.FC = () => (
       <title>SupportApp</title>
     </Head>
 
-    <LineHeader />
+    {/*  <LineHeader /> */}
     <Login />
   </>
 );

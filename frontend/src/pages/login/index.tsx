@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { Container, Logo, Form } from './style';
-import { Input, PrimaryButton, LinkButton, OutlineButton } from 'd1-components';
+import { Input, PrimaryButton, LinkButton } from 'd1-components';
 import { useState } from 'react';
+import { Container, Logo, Form } from './style';
 
 /**
  * @component
@@ -27,7 +27,7 @@ export default function login() {
           value={password}
           handleChange={() => {}}
         />
-        <Link href="/jvb">
+        <Link href="/sumario">
           <PrimaryButton handleClick={() => {}}>Entrar</PrimaryButton>
         </Link>
         <LinkButton secondary handleClick={() => {}}>
@@ -38,6 +38,4 @@ export default function login() {
   );
 }
 
-const getInitialProps = async ctx => {
-  return {};
-};
+const getInitialProps = async (ctx) => ({});
