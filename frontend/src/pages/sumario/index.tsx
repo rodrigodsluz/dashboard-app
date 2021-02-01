@@ -31,13 +31,13 @@ import useWindowDimensions from '../../hooks/useWindowDimensions';
  */
 
 export default function Sumario() {
-  const { height, width } = useWindowDimensions();
+  /*  const { height, width } = useWindowDimensions();
 
-  console.log(width);
+  console.log(width); */
   return (
     <Container>
-      {width > 500 ? <Sidebar /> : null}
-      {/* <Sidebar /> */}
+      {/* {width > 500 ? <Sidebar /> : null} */}
+      <Sidebar />
 
       <TableContainer>
         <TableContent>
@@ -50,9 +50,6 @@ export default function Sumario() {
             <AlertTitle>Atenção</AlertTitle>
             Existem <strong>56 processos executando</strong> a mais de 24 horas.
           </Alert>
-        </TableContent>
-        <GraphicContainer>
-          <Graphic />
 
           <CardContainer>
             <PanelCard>
@@ -86,6 +83,9 @@ export default function Sumario() {
               </Card>
             </PanelCard>
           </CardContainer>
+        </TableContent>
+        <GraphicContainer>
+          <Graphic />
         </GraphicContainer>
       </TableContainer>
     </Container>

@@ -8,6 +8,10 @@ export const Container = styled.div`
   overflow-x: hidden;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 export const TableContainer = styled.div`
@@ -20,6 +24,7 @@ export const TableContainer = styled.div`
   margin: 0 0 0 50px;
   display: flex;
   justify-content: space-between;
+
   @media screen and (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
@@ -41,7 +46,7 @@ export const TableContent = styled.div`
 
 export const CardContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   padding: 20px 0;
   flex-wrap: wrap;
@@ -53,11 +58,11 @@ export const PanelCard = styled.div`
 `;
 
 export const GraphicContainer = styled.div`
-  flex-direction: column;
-  align-items: center;
-
-  padding: 0px 10px;
-  @media screen and (max-width: 1000px) {
-    margin-top: 100px;
+  padding: 0px 20px;
+  @media screen and (max-width: 1300px) {
+    margin-top: 1260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;

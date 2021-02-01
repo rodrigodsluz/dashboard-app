@@ -1,7 +1,14 @@
 import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Theme, withStyles } from '@material-ui/core';
-import { Nav, Border, ContainerIcons, Logo, IconWrapper } from './style';
+import {
+  Border,
+  SidebarContainer,
+  ContainerIcons,
+  Logo,
+  IconSize,
+  ContainerLogo,
+} from './style';
 
 import d1Logo from '../../assets/d1-logo.png';
 import { ReactComponent as ChartPieIcon } from '../../assets/SidebarIcons/chart-pie.svg';
@@ -28,68 +35,67 @@ const TooltipArrow = withStyles((theme: Theme) => ({
   },
 }))(Tooltip);
 
-function Sidebar() {
-  return (
-    <>
-      <Border position="top" />
-      <Nav>
-        <ContainerIcons>
-          <Logo alt="logo" src={d1Logo} />
-        </ContainerIcons>
-        <ContainerIcons>
-          <TooltipArrow title="Análises" placement="left" arrow>
-            <IconWrapper>
-              <ChartPieIcon />
-            </IconWrapper>
-          </TooltipArrow>
-          <TooltipArrow title="Jornadas" placement="left" arrow>
-            <IconWrapper>
-              <RocketIcon />
-            </IconWrapper>
-          </TooltipArrow>
-          <TooltipArrow title="Clientes" placement="left" arrow>
-            <IconWrapper>
-              <UsersIcon />
-            </IconWrapper>
-          </TooltipArrow>
-          <TooltipArrow title="CCM Clound" placement="left" arrow>
-            <IconWrapper>
-              <CloudIcon />
-            </IconWrapper>
-          </TooltipArrow>
-          <TooltipArrow title="Versão 01" placement="left" arrow>
-            <IconWrapper>
-              <ExternalLinkIcon />
-            </IconWrapper>
-          </TooltipArrow>
-        </ContainerIcons>
-        <ContainerIcons />
-        <ContainerIcons>
-          <TooltipArrow title="Administração" placement="left" arrow>
-            <IconWrapper>
-              <DiamondIcon />
-            </IconWrapper>
-          </TooltipArrow>
-          <TooltipArrow title="Help Desk" placement="left" arrow>
-            <IconWrapper>
-              <ToolsIcon />
-            </IconWrapper>
-          </TooltipArrow>
-          <TooltipArrow title="Trocar Conta" placement="left" arrow>
-            <IconWrapper>
-              <ArrowsIcon />
-            </IconWrapper>
-          </TooltipArrow>
-          <TooltipArrow title="Sair" placement="left" arrow>
-            <IconWrapper>
-              <SignOutIcon />
-            </IconWrapper>
-          </TooltipArrow>
-        </ContainerIcons>
-      </Nav>
-      <Border position="bottom" />
-    </>
-  );
-}
+const Sidebar = () => (
+  <>
+    <Border position="top" />
+    <SidebarContainer>
+      <ContainerLogo>
+        <Logo alt="logo" src={d1Logo} />
+      </ContainerLogo>
+      <ContainerIcons>
+        <TooltipArrow title="Análises" placement="left" arrow>
+          <IconSize>
+            <ChartPieIcon />
+          </IconSize>
+        </TooltipArrow>
+        <TooltipArrow title="Jornadas" placement="left" arrow>
+          <IconSize>
+            <RocketIcon />
+          </IconSize>
+        </TooltipArrow>
+        <TooltipArrow title="Clientes" placement="left" arrow>
+          <IconSize>
+            <UsersIcon />
+          </IconSize>
+        </TooltipArrow>
+        <TooltipArrow title="CCM Clound" placement="left" arrow>
+          <IconSize>
+            <CloudIcon />
+          </IconSize>
+        </TooltipArrow>
+        <TooltipArrow title="Versão 01" placement="left" arrow>
+          <IconSize>
+            <ExternalLinkIcon />
+          </IconSize>
+        </TooltipArrow>
+      </ContainerIcons>
+      <ContainerIcons />
+
+      <ContainerIcons>
+        <TooltipArrow title="Administração" placement="left" arrow>
+          <IconSize>
+            <DiamondIcon />
+          </IconSize>
+        </TooltipArrow>
+        <TooltipArrow title="Help Desk" placement="left" arrow>
+          <IconSize>
+            <ToolsIcon />
+          </IconSize>
+        </TooltipArrow>
+        <TooltipArrow title="Trocar Conta" placement="left" arrow>
+          <IconSize>
+            <ArrowsIcon />
+          </IconSize>
+        </TooltipArrow>
+        <TooltipArrow title="Sair" placement="left" arrow>
+          <IconSize>
+            <SignOutIcon />
+          </IconSize>
+        </TooltipArrow>
+      </ContainerIcons>
+    </SidebarContainer>
+    <Border position="bottom" />
+  </>
+);
 
 export default Sidebar;
