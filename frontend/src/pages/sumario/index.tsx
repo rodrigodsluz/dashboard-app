@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Typography,
-  Spacing,
-  Menu,
-} from 'd1-components';
+import { Card, CardHeader, CardBody, Typography, Spacing } from 'd1-components';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import React from 'react';
 import {
@@ -16,7 +9,7 @@ import {
   TableContent,
   PanelCard,
 } from './style';
-import StickyHeadTable from '../../components/Table/index';
+import StickyHeadTable from '../../components/SumarioTable/index';
 import Graphic from '../../components/PieChart';
 import Sidebar from '../../components/Sidebar';
 import useWindowDimensions from '../../hooks/useWindowDimensions';

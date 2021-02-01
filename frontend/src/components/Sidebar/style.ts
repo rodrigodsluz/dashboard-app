@@ -11,18 +11,16 @@ export const Border = styled.div<Props>`
   width: 70px;
   height: 3px;
   z-index: 1;
-  ${(props) =>
-    props.position === 'top' &&
-    css`
+  ${props => props.position === 'top'
+    && css`
       top: 0px;
       @media screen and (max-width: 500px) {
         width: 100%;
         height: 3px;
       }
     `}
-  ${(props) =>
-    props.position === 'bottom' &&
-    css`
+  ${props => props.position === 'bottom'
+    && css`
       bottom: 0px;
       @media screen and (max-width: 500px) {
         width: 100%;
@@ -52,7 +50,7 @@ export const SidebarContainer = styled.nav`
 
 export const ContainerLogo = styled.div`
   margin: auto;
-
+  cursor: pointer;
   @media screen and (max-width: 500px) {
     margin: 17px 0 0 10px;
   }
@@ -89,12 +87,13 @@ export const Logo = styled.img`
   }
 `;
 
-export const IconSize = styled.div`
+export const IconWrapper = styled.div`
   width: 20px;
   height: 20px;
   margin: 10px;
   &:hover {
     fill: #117eff;
+    cursor: pointer;
   }
 
   @media screen and (max-width: 500px) {

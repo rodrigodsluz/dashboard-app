@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'next/link';
+
 import Tooltip from '@material-ui/core/Tooltip';
 import { Theme, withStyles } from '@material-ui/core';
 import {
@@ -6,7 +8,7 @@ import {
   SidebarContainer,
   ContainerIcons,
   Logo,
-  IconSize,
+  IconWrapper,
   ContainerLogo,
 } from './style';
 
@@ -39,59 +41,67 @@ const Sidebar = () => (
   <>
     <Border position="top" />
     <SidebarContainer>
-      <ContainerLogo>
-        <Logo alt="logo" src={d1Logo} />
-      </ContainerLogo>
+      <Link href="/sumario">
+        <ContainerLogo>
+          <Logo alt="logo" src={d1Logo} />
+        </ContainerLogo>
+      </Link>
+
       <ContainerIcons>
-        <TooltipArrow title="Análises" placement="left" arrow>
-          <IconSize>
-            <ChartPieIcon />
-          </IconSize>
-        </TooltipArrow>
+        <Link href="/sending">
+          <TooltipArrow title="Análises" placement="left" arrow>
+            <IconWrapper>
+              <ChartPieIcon />
+            </IconWrapper>
+          </TooltipArrow>
+        </Link>
+
         <TooltipArrow title="Jornadas" placement="left" arrow>
-          <IconSize>
+          <IconWrapper>
             <RocketIcon />
-          </IconSize>
+          </IconWrapper>
         </TooltipArrow>
         <TooltipArrow title="Clientes" placement="left" arrow>
-          <IconSize>
+          <IconWrapper>
             <UsersIcon />
-          </IconSize>
+          </IconWrapper>
         </TooltipArrow>
         <TooltipArrow title="CCM Clound" placement="left" arrow>
-          <IconSize>
+          <IconWrapper>
             <CloudIcon />
-          </IconSize>
+          </IconWrapper>
         </TooltipArrow>
         <TooltipArrow title="Versão 01" placement="left" arrow>
-          <IconSize>
+          <IconWrapper>
             <ExternalLinkIcon />
-          </IconSize>
+          </IconWrapper>
         </TooltipArrow>
       </ContainerIcons>
       <ContainerIcons />
 
       <ContainerIcons>
         <TooltipArrow title="Administração" placement="left" arrow>
-          <IconSize>
+          <IconWrapper>
             <DiamondIcon />
-          </IconSize>
+          </IconWrapper>
         </TooltipArrow>
         <TooltipArrow title="Help Desk" placement="left" arrow>
-          <IconSize>
+          <IconWrapper>
             <ToolsIcon />
-          </IconSize>
+          </IconWrapper>
         </TooltipArrow>
         <TooltipArrow title="Trocar Conta" placement="left" arrow>
-          <IconSize>
+          <IconWrapper>
             <ArrowsIcon />
-          </IconSize>
+          </IconWrapper>
         </TooltipArrow>
-        <TooltipArrow title="Sair" placement="left" arrow>
-          <IconSize>
-            <SignOutIcon />
-          </IconSize>
-        </TooltipArrow>
+        <Link href="/login">
+          <TooltipArrow title="Sair" placement="left" arrow>
+            <IconWrapper>
+              <SignOutIcon />
+            </IconWrapper>
+          </TooltipArrow>
+        </Link>
       </ContainerIcons>
     </SidebarContainer>
     <Border position="bottom" />
