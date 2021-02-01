@@ -18,6 +18,7 @@ import {
 } from './style';
 import StickyHeadTable from '../../components/Table/index';
 import Graphic from '../../components/PieChart';
+import Sidebar from '../../components/Sidebar';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 /**
@@ -35,25 +36,8 @@ export default function Sumario() {
   console.log(width);
   return (
     <Container>
-      {width > 500 ? (
-        <Menu
-          configuration={[
-            {
-              active: true,
-              link: '#',
-              redirect: () => {},
-            },
-            { active: false, link: '#', redirect: null },
-
-            { active: false, link: '#', redirect: null },
-            { active: false, link: '#', redirect: null },
-            { active: false, link: '#', redirect: null },
-            { active: false, link: '#', redirect: null },
-            { active: false, link: '#', redirect: null },
-          ]}
-          srcImg="https://github.com/rodrigodsluz/d1-test/raw/master/logotipo.jpeg"
-        />
-      ) : null}
+      {width > 500 ? <Sidebar /> : null}
+      {/* <Sidebar /> */}
 
       <TableContainer>
         <TableContent>

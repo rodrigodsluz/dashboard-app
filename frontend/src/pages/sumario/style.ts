@@ -17,12 +17,16 @@ export const TableContainer = styled.div`
   padding: 40px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 4px;
-  margin: 0px;
+  margin: 0 0 0 50px;
   display: flex;
   justify-content: space-between;
   @media screen and (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
+  }
+
+  @media screen and (max-width: 500px) {
+    margin: 0;
   }
 `;
 
