@@ -1,8 +1,6 @@
 import { Typography, Spacing } from 'd1-components';
 import React from 'react';
-import {
- Container, TableContainer, TableContent, SubTitle
-} from './style';
+import { Container, TableContainer, TableContent, SubTitle } from './style';
 import StickyHeadTable from '../../components/SendingTable/index';
 import Sidebar from '../../components/Sidebar';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
@@ -27,7 +25,7 @@ export default function Sending() {
 
       <TableContainer>
         <TableContent>
-          <Typography htmlTag="strong" fontSize="32px" >
+          <Typography htmlTag="strong" fontSize="32px">
             Sending Events
             <SubTitle>
               The .table-bordered class adds borders to a table:

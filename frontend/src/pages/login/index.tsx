@@ -27,7 +27,7 @@ export default function login() {
           value={password}
           handleChange={() => {}}
         />
-        <Link href="/sumario">
+        <Link href="/home">
           <PrimaryButton handleClick={() => {}}>Entrar</PrimaryButton>
         </Link>
         <LinkButton secondary handleClick={() => {}}>
@@ -38,4 +38,4 @@ export default function login() {
   );
 }
 
-const getInitialProps = async (ctx) => ({});
+const getInitialProps = async ctx => ({});

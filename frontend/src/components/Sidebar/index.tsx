@@ -41,60 +41,77 @@ const Sidebar = () => (
   <>
     <Border position="top" />
     <SidebarContainer>
-      <Link href="/sumario">
+      <Link href="/home">
         <ContainerLogo>
           <Logo alt="logo" src={d1Logo} />
         </ContainerLogo>
       </Link>
 
       <ContainerIcons>
-        <Link href="/sending">
-          <TooltipArrow title="Análises" placement="left" arrow>
+        <Link href="/worker">
+          <TooltipArrow title="Worker" placement="left" arrow>
             <IconWrapper>
               <ChartPieIcon />
             </IconWrapper>
           </TooltipArrow>
         </Link>
 
-        <TooltipArrow title="Jornadas" placement="left" arrow>
-          <IconWrapper>
-            <RocketIcon />
-          </IconWrapper>
-        </TooltipArrow>
-        <TooltipArrow title="Clientes" placement="left" arrow>
-          <IconWrapper>
-            <UsersIcon />
-          </IconWrapper>
-        </TooltipArrow>
-        <TooltipArrow title="CCM Clound" placement="left" arrow>
-          <IconWrapper>
-            <CloudIcon />
-          </IconWrapper>
-        </TooltipArrow>
-        <TooltipArrow title="Versão 01" placement="left" arrow>
-          <IconWrapper>
-            <ExternalLinkIcon />
-          </IconWrapper>
-        </TooltipArrow>
+        <Link href="/sending">
+          <TooltipArrow title="Sending Events" placement="left" arrow>
+            <IconWrapper>
+              <RocketIcon />
+            </IconWrapper>
+          </TooltipArrow>
+        </Link>
+
+        <Link href="/home">
+          <TooltipArrow title="Clientes" placement="left" arrow>
+            <IconWrapper>
+              <UsersIcon />
+            </IconWrapper>
+          </TooltipArrow>
+        </Link>
+        <Link href="/home">
+          <TooltipArrow title="CCM Clound" placement="left" arrow>
+            <IconWrapper>
+              <CloudIcon />
+            </IconWrapper>
+          </TooltipArrow>
+        </Link>
+        <Link href="/home">
+          <TooltipArrow title="Versão 01" placement="left" arrow>
+            <IconWrapper>
+              <ExternalLinkIcon />
+            </IconWrapper>
+          </TooltipArrow>
+        </Link>
       </ContainerIcons>
       <ContainerIcons />
 
       <ContainerIcons>
-        <TooltipArrow title="Administração" placement="left" arrow>
-          <IconWrapper>
-            <DiamondIcon />
-          </IconWrapper>
-        </TooltipArrow>
-        <TooltipArrow title="Help Desk" placement="left" arrow>
-          <IconWrapper>
-            <ToolsIcon />
-          </IconWrapper>
-        </TooltipArrow>
-        <TooltipArrow title="Trocar Conta" placement="left" arrow>
-          <IconWrapper>
-            <ArrowsIcon />
-          </IconWrapper>
-        </TooltipArrow>
+        <Link href="/home">
+          <TooltipArrow title="Administração" placement="left" arrow>
+            <IconWrapper>
+              <DiamondIcon />
+            </IconWrapper>
+          </TooltipArrow>
+        </Link>
+        <Link href="/home">
+          <TooltipArrow title="Help Desk" placement="left" arrow>
+            <IconWrapper>
+              <ToolsIcon />
+            </IconWrapper>
+          </TooltipArrow>
+        </Link>
+
+        <Link href="/home">
+          <TooltipArrow title="Trocar Conta" placement="left" arrow>
+            <IconWrapper>
+              <ArrowsIcon />
+            </IconWrapper>
+          </TooltipArrow>
+        </Link>
+
         <Link href="/login">
           <TooltipArrow title="Sair" placement="left" arrow>
             <IconWrapper>

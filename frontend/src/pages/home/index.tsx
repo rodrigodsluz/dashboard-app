@@ -1,4 +1,6 @@
-import { Card, CardHeader, CardBody, Typography, Spacing } from 'd1-components';
+import {
+ Card, CardHeader, CardBody, Typography, Spacing
+} from 'd1-components';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import React from 'react';
 import {
@@ -9,7 +11,7 @@ import {
   TableContent,
   PanelCard,
 } from './style';
-import StickyHeadTable from '../../components/SumarioTable/index';
+import StickyHeadTable from '../../components/HomeTable';
 import Graphic from '../../components/PieChart';
 import Sidebar from '../../components/Sidebar';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
@@ -17,13 +19,13 @@ import useWindowDimensions from '../../hooks/useWindowDimensions';
 /**
  * @export
  * @component
- * @name Sumario
+ * @name Home
  *
  * @description
  * Página do sumário com a tabela principal e o gráfico
  */
 
-export default function Sumario() {
+export default function Home() {
   /*  const { height, width } = useWindowDimensions();
 
   console.log(width); */

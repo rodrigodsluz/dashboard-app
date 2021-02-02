@@ -10,7 +10,7 @@ export const Border = styled.div<Props>`
   left: 0px;
   width: 70px;
   height: 3px;
-  z-index: 1;
+  z-index: 2;
   ${props => props.position === 'top'
     && css`
       top: 0px;
@@ -39,6 +39,7 @@ export const SidebarContainer = styled.nav`
   width: 70px;
   display: grid;
   grid-template-rows: 100px 3fr 1fr 2fr;
+  z-index: 1;
 
   @media screen and (max-width: 500px) {
     position: inherit;
