@@ -10,11 +10,14 @@ import {
   WorkerContainer,
   CardText,
   Info,
+  ContainerStatus,
+  StatusCard,
 } from './style';
 import StickyHeadTable from '../../components/WorkerTable/index';
 import Sidebar from '../../components/Sidebar';
 import Chart from '../../components/SimpleLineChart';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
+import { StatusCircle } from '../../components/StatusCircle';
 
 /**
  * @export
@@ -36,34 +39,43 @@ export default function Worker() {
 
       <WorkerContainer>
         <TableContainer>
+          <Typography htmlTag="strong" fontSize="32px">
+            Worker
+          </Typography>
+          <Spacing vertical="20px" />
           <TableContent>
             <Spacing vertical="0px" />
             <StickyHeadTable />
           </TableContent>
         </TableContainer>
+
         <JobsContainer>
-          <Card>
-            <Info>
-              <h3>
-                Jobs - ( aguardando ) 6 Jobs - ( executando ) 1303 Jobs - (
-                finalizado ) 1 Jobs - ( falhou ) 0 Jobs - ( abortado )
-              </h3>
-            </Info>
+          <StatusCard>
+            <StatusCircle color="green" status="Executando" number="1" />
+          </StatusCard>
+          <StatusCard>
+            <StatusCircle color="yellow" status="Executando" number="222.222" />
+          </StatusCard>
+          <StatusCard>
+            <StatusCircle color="orange" status="Executando" number="420" />
+          </StatusCard>
+          <StatusCard>
+            <StatusCircle color="#0d3c61" status="Executando" number="4110" />
+          </StatusCard>
+          <StatusCard>
+            <StatusCircle color="red" status="Parados" number="340" />
+          </StatusCard>
+          <StatusCard>
+            <StatusCircle color="black" status="Abortado" number="410" />
+          </StatusCard>
 
-            <Info>
-              <CardText>SOMPO HDI MITSUI</CardText>
-            </Info>
+          {/* <Card>
+            <p>Quantidade de Docs.</p>
 
-            <Info>
-              <CardText>20</CardText>
-            </Info>
-          </Card>
-
-          <Card>
             <CardText>106,266</CardText>
-            <CardText>Quantidade ( documentos )</CardText>
+            <p>Ativos</p>
             <CardText>6</CardText>
-          </Card>
+          </Card>  */}
         </JobsContainer>
 
         <ChartContainer>

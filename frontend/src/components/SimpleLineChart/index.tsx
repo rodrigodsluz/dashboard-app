@@ -73,7 +73,7 @@ export default class Chart extends PureComponent {
     return (
       <LineChart
         width={this.props.size > 1024 ? 1400 : help} // 290
-        height={240}
+        height={340}
         data={data}
         margin={{
           top: 5,
