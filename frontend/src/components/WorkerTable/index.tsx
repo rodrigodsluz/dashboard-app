@@ -309,7 +309,7 @@ export default function StickyHeadTable() {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              {columns.map((column) => (
+              {columns.map(column => (
                 <TableCell
                   key={column.id}
                   align={column.align}
@@ -335,7 +335,7 @@ export default function StickyHeadTable() {
                     tabIndex={-1}
                     key={row.DataMov}
                   >
-                    {columns.map(column => {
+                    {columns.map((column) => {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
@@ -348,20 +348,6 @@ export default function StickyHeadTable() {
                   </TableRow>
                 </>
               ))}
-            <Modal open={open} title={rows[index].tenent}>
-              <Container>
-                <OutlineButton
-                  secondary
-                  handleClick={() => {}}
-                  onClick={() => setOpen(false)}
-                >
-                  Fechar
-                </OutlineButton>
-                {/* <span>Timer: {rows[index].Timer.toFixed(2)}</span>
-                <span>Timer: {rows[index].Timer.toFixed(2)}</span>
-                <span>Timer: {rows[index].Timer.toFixed(2)}</span> */}
-              </Container>
-            </Modal>
           </TableBody>
         </Table>
       </TableContainer>

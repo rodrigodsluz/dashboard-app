@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Modal, OutlineButton } from 'd1-components';
+import TabsPanel from '../../components/Tabs';
 
 import { Container } from './style';
 
@@ -61,7 +62,13 @@ function createData(
   Produto: number,
 ): Data {
   const Timer = Lote / Produto;
-  return { tenent, DataMov, Lote, Produto, Timer };
+  return {
+    tenent,
+    DataMov,
+    Lote,
+    Produto,
+    Timer,
+  };
 }
 
 const rows = [
@@ -73,28 +80,36 @@ const rows = [
   createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
   createData('SOROCRED', 'DE', 83019200, 357578),
   createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('QUALICORP', 'MX', 126577691, 1972550),
+  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
   createData('SOROCRED', 'DE', 83019200, 357578),
   createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('QUALICORP', 'MX', 126577691, 1972550),
+  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
   createData('SOROCRED', 'DE', 83019200, 357578),
   createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('QUALICORP', 'MX', 126577691, 1972550),
+  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
   createData('SOROCRED', 'DE', 83019200, 357578),
   createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('QUALICORP', 'MX', 126577691, 1972550),
+  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
   createData('SOROCRED', 'DE', 83019200, 357578),
   createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('QUALICORP', 'MX', 126577691, 1972550),
+  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
   createData('SOROCRED', 'DE', 83019200, 357578),
   createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('QUALICORP', 'MX', 126577691, 1972550),
+  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
   createData('SOROCRED', 'DE', 83019200, 357578),
   createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('QUALICORP', 'MX', 126577691, 1972550),
+  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
   createData('SOROCRED', 'DE', 83019200, 357578),
   createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
+  createData('QUALICORP', 'MX', 126577691, 1972550),
+  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
   createData('SOROCRED', 'DE', 83019200, 357578),
   createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
   createData('QUALICORP', 'MX', 126577691, 1972550),
@@ -105,7 +120,7 @@ const useStyles = makeStyles({
     width: '100%',
   },
   container: {
-    height: "70vh",
+    height: '70vh',
   },
 });
 
@@ -151,35 +166,34 @@ export default function StickyHeadTable() {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, i) => {
-                return (
-                  <>
-                    <TableRow
-                      onClick={() => {
-                        setOpen(true);
-                        setIndex(i);
-                      }}
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.DataMov}
-                    >
-                      {columns.map(column => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  </>
-                );
-              })}
+              .map((row, i) => (
+                <>
+                  <TableRow
+                    onClick={() => {
+                      setOpen(true);
+                      setIndex(i);
+                    }}
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={row.DataMov}
+                  >
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number'
+                            ? column.format(value)
+                            : value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                </>
+              ))}
             <Modal open={open} title={rows[index].tenent}>
               <Container>
+                <TabsPanel />
                 <OutlineButton
                   secondary
                   handleClick={() => {}}
