@@ -11,16 +11,18 @@ export const Border = styled.div<Props>`
   width: 70px;
   height: 3px;
   z-index: 2;
-  ${props => props.position === 'top'
-    && css`
+  ${props =>
+    props.position === 'top' &&
+    css`
       top: 0px;
       @media screen and (max-width: 500px) {
         width: 100%;
         height: 3px;
       }
     `}
-  ${props => props.position === 'bottom'
-    && css`
+  ${props =>
+    props.position === 'bottom' &&
+    css`
       bottom: 0px;
       @media screen and (max-width: 500px) {
         width: 100%;
@@ -104,4 +106,11 @@ export const IconWrapper = styled.div`
   @media screen and (max-width: 500px) {
     margin: 10px 3px;
   }
+`;
+
+export const ExpandIconClick = styled.div`
+  width: 100%;
+  display: flex;
+
+  justify-content: center;
 `;
