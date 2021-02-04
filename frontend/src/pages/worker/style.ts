@@ -5,7 +5,7 @@ export const Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: row;
-  overflow: hidden;
+  overflow-x: hidden;
   position: fixed;
   z-index: 1;
 
@@ -19,9 +19,8 @@ export const TableContainer = styled.div`
   width: 100vw;
   height: 40vh;
   padding: 40px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 4px;
-  margin: -30px 0 0 50px;
+  margin: 0px 0 0 50px;
 
   @media screen and (max-width: 1300px) {
     flex-direction: column;
@@ -36,6 +35,7 @@ export const TableContainer = styled.div`
 export const TableContent = styled.div`
   width: 100%;
   height: 100%;
+  padding: 10px;
 
   @media screen and (max-width: 530px) {
     width: 100%;
@@ -57,11 +57,12 @@ export const ChartContainer = styled.div`
 export const JobsContainer = styled.div`
   height: 30%;
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  justify-content: center;
   margin: 3px 0;
   margin-left: 39px;
-  padding: 0 47px;
+  padding: 20px 40px;
+  flex-wrap: wrap;
 
   @media screen and (max-width: 550px) {
     flex-direction: column;
@@ -87,15 +88,16 @@ export const JobsContainer = styled.div`
   }
 `;
 export const Card = styled.div`
-  width: 100%;
+  width: 50%;
   height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 4px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 4px;
+  padding: 50px;
+  margin: 10px;
 `;
 
 export const WorkerContainer = styled.div`
@@ -122,5 +124,18 @@ export const Info = styled.div`
   height: 100%;
   border-radius: 4px;
   text-align: center;
-  border-bottom: 3px solid grey;
+  border-bottom: 1px solid grey;
+`;
+
+export const ContainerStatus = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const StatusCard = styled.div`
+  width: 200px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 4px;
 `;
