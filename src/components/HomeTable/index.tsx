@@ -120,7 +120,7 @@ const useStyles = makeStyles({
     width: '100%',
   },
   container: {
-    height: '70vh',
+    height: '55vh',
   },
 });
 
