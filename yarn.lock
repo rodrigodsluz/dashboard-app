@@ -1894,6 +1894,11 @@ d1-components@^1.0.150:
   resolved "https://registry.yarnpkg.com/d1-components/-/d1-components-1.0.150.tgz#c82dc9bfb47f6a3d20c43ccd573962b359409ac8"
   integrity sha512-SJFpOG/kyfRwepsFxvP9sbe1aU0FPzX+AG+u60qoAHt9voH+P+QvWUIJB4VGAZW0298KOUImfo1woXz7RUdDhQ==
 
+d1-icons@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/d1-icons/-/d1-icons-1.1.0.tgz#609712536888910cfc14b568241c57850ee7adc0"
+  integrity sha512-gNV1bdk8b1wo5qOn30l6RU+Qw0UYlYJvkx6pDNDeJUOZsxAiJ8nJHYVijUwB6YS00FC4gMOhRtkVIDgRD/GQcw==
+
 d3-array@^2.3.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-2.11.0.tgz#5ed6a2869bc7d471aec8df9ff6ed9fef798facc4"

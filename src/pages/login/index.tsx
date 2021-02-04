@@ -38,4 +38,4 @@ export default function login() {
   );
 }
 
-const getInitialProps = async ctx => ({});
+const getInitialProps = async (ctx) => ({});

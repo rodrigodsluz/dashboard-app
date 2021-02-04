@@ -18,7 +18,7 @@ export const TableContainer = styled.div`
   overflow: auto;
   width: 100vw;
   height: 100vh;
-  padding: 40px;
+  padding: 20px 40px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 4px;
   margin: 0 0 0 50px;
@@ -28,6 +28,7 @@ export const TableContainer = styled.div`
   @media screen and (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
+
   }
 
   @media screen and (max-width: 500px) {
@@ -37,7 +38,7 @@ export const TableContainer = styled.div`
 
 export const TableContent = styled.div`
   width: 80%;
-  height: 90vh;
+  height: 80vh;
 
   @media screen and (max-width: 1000px) {
     width: 100%;
@@ -50,19 +51,53 @@ export const CardContainer = styled.div`
   align-items: center;
   padding: 20px 0;
   flex-wrap: wrap;
+
 `;
 
 export const PanelCard = styled.div`
-  padding: 10px 0px;
-  align-items: center;
+  text-align: center;
+
+  @media screen and (max-width: 1024px) {
+    padding: 10px;
+
+  }
+`;
+
+
+export const Card = styled.div`
+  padding: 10px;
+  border-radius: 7px;
+  border: 2px solid rgba(100, 100, 111, 0.2);
+  width: 240px;
+`;
+
+export const CardStatus = styled.h2`
+  margin: auto;
 `;
 
 export const GraphicContainer = styled.div`
   padding: 0px 20px;
-  @media screen and (max-width: 1300px) {
-    margin-top: 1260px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: 600px) {
+    margin-top: 460px;
+
+  }
+
+  @media screen and (min-width: 700px) and (max-width: 1024px){
+    margin-top: 200px;
+    flex-direction: row;
+  }
+`;
+
+export const GraphicWrapper = styled.div`
+  border-radius: 7px;
+  border: 2px solid rgba(100, 100, 111, 0.2);
+  margin-top: 20px;
+  text-align: center;
+
+  @media screen and (min-width: 700px) and (max-width: 1024px){
+    margin: 10px;
   }
 `;

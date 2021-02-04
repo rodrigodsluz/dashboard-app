@@ -79,17 +79,21 @@ const Sidebar = () => (
           </ExpandIconClick>
         </Link>
         <Link href="/home">
+        <ExpandIconClick>
+
           <TooltipArrow title="CCM Clound" placement="left" arrow>
             <IconWrapper>
               <CloudIcon />
             </IconWrapper>
           </TooltipArrow>
+          </ExpandIconClick>
+
         </Link>
-        
+
       </ContainerIcons>
       <ContainerIcons />
 
-     
+
     </SidebarContainer>
     <Border position="bottom" />
   </>

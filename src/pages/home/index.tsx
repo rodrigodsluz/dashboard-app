@@ -1,8 +1,5 @@
-import {
- Card, CardHeader, CardBody, Typography, Spacing
-} from 'd1-components';
+import {CardHeader, CardBody, Typography, Spacing } from 'd1-components';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import React from 'react';
 import {
   Container,
   TableContainer,
@@ -10,11 +7,14 @@ import {
   GraphicContainer,
   TableContent,
   PanelCard,
+  Card,
+  CardStatus,
+  GraphicWrapper
 } from './style';
 import StickyHeadTable from '../../components/HomeTable';
 import Graphic from '../../components/PieChart';
 import Sidebar from '../../components/Sidebar';
-import useWindowDimensions from '../../hooks/useWindowDimensions';
+import React from 'react';
 
 /**
  * @export
@@ -26,31 +26,25 @@ import useWindowDimensions from '../../hooks/useWindowDimensions';
  */
 
 export default function Home() {
-  /*  const { height, width } = useWindowDimensions();
-
-  console.log(width); */
   return (
     <Container>
-      {/* {width > 500 ? <Sidebar /> : null} */}
       <Sidebar />
 
       <TableContainer>
         <TableContent>
+
           <Typography htmlTag="strong" fontSize="32px">
             Conference
           </Typography>
-          <Spacing vertical="20px" />
+          <Spacing vertical="10px" />
+
           <StickyHeadTable />
-          <Alert severity="warning">
-            <AlertTitle>Atenção</AlertTitle>
-            Existem <strong>56 processos executando</strong> a mais de 24 horas.
-          </Alert>
 
           <CardContainer>
             <PanelCard>
               <Card>
                 <CardHeader>
-                  <h2>Executando</h2>
+                  <CardStatus>Executando</CardStatus>
                 </CardHeader>
                 <CardBody>
                   <h2>2</h2>
@@ -60,17 +54,17 @@ export default function Home() {
             <PanelCard>
               <Card>
                 <CardHeader>
-                  <h2>Erros</h2>
+                  <CardStatus>Erros</CardStatus>
                 </CardHeader>
                 <CardBody>
                   <h2>2</h2>
                 </CardBody>
               </Card>
-            </PanelCard>{' '}
+            </PanelCard>
             <PanelCard>
               <Card>
                 <CardHeader>
-                  <h2>Finalizados</h2>
+                  <CardStatus>Finalizados</CardStatus>
                 </CardHeader>
                 <CardBody>
                   <h2>2</h2>
@@ -78,9 +72,31 @@ export default function Home() {
               </Card>
             </PanelCard>
           </CardContainer>
+
+
+          <Alert severity="warning">
+            <AlertTitle>Atenção</AlertTitle>
+            Existem <strong>56 processos executando</strong> a mais de 24 horas.
+          </Alert>
+
+
         </TableContent>
+
         <GraphicContainer>
-          <Graphic />
+          <GraphicWrapper>
+            <Typography htmlTag="strong" fontSize="16px"> SLA em atraso</Typography>
+            <Graphic />
+          </GraphicWrapper>
+
+          <GraphicWrapper>
+            <Typography htmlTag="strong" fontSize="16px"> SLA em atraso</Typography>
+           <Graphic />
+          </GraphicWrapper>
+
+          <GraphicWrapper>
+            <Typography htmlTag="strong" fontSize="16px"> SLA em atraso</Typography>
+            <Graphic />
+          </GraphicWrapper>
         </GraphicContainer>
       </TableContainer>
     </Container>
