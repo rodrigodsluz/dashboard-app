@@ -28,6 +28,7 @@ export const TableContainer = styled.div`
   @media screen and (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
+
   }
 
   @media screen and (max-width: 500px) {
@@ -79,9 +80,24 @@ export const GraphicContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: 1300px) {
-    margin-top: 1260px;
-    justify-content: center;
-    align-items: center;
+  @media screen and (max-width: 600px) {
+    margin-top: 460px;
+
+  }
+
+  @media screen and (min-width: 700px) and (max-width: 1024px){
+    margin-top: 200px;
+    flex-direction: row;
+  }
+`;
+
+export const GraphicWrapper = styled.div`
+  border-radius: 7px;
+  border: 2px solid rgba(100, 100, 111, 0.2);
+  margin-top: 20px;
+  text-align: center;
+
+  @media screen and (min-width: 700px) and (max-width: 1024px){
+    margin: 10px;
   }
 `;

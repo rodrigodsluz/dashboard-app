@@ -8,7 +8,8 @@ import {
   TableContent,
   PanelCard,
   Card,
-  CardStatus
+  CardStatus,
+  GraphicWrapper
 } from './style';
 import StickyHeadTable from '../../components/HomeTable';
 import Graphic from '../../components/PieChart';
@@ -31,6 +32,7 @@ export default function Home() {
 
       <TableContainer>
         <TableContent>
+
           <Typography htmlTag="strong" fontSize="32px">
             Conference
           </Typography>
@@ -71,15 +73,30 @@ export default function Home() {
             </PanelCard>
           </CardContainer>
 
+
           <Alert severity="warning">
             <AlertTitle>Atenção</AlertTitle>
             Existem <strong>56 processos executando</strong> a mais de 24 horas.
           </Alert>
+
+
         </TableContent>
+
         <GraphicContainer>
-          <Graphic />
-          <Graphic />
-          <Graphic />
+          <GraphicWrapper>
+            <Typography htmlTag="strong" fontSize="16px"> SLA em atraso</Typography>
+            <Graphic />
+          </GraphicWrapper>
+
+          <GraphicWrapper>
+            <Typography htmlTag="strong" fontSize="16px"> SLA em atraso</Typography>
+           <Graphic />
+          </GraphicWrapper>
+
+          <GraphicWrapper>
+            <Typography htmlTag="strong" fontSize="16px"> SLA em atraso</Typography>
+            <Graphic />
+          </GraphicWrapper>
         </GraphicContainer>
       </TableContainer>
     </Container>
