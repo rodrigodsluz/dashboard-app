@@ -55,13 +55,16 @@ export const CardContainer = styled.div`
 export const PanelCard = styled.div`
   padding: 10px 0px;
   align-items: center;
+
 `;
 
 export const GraphicContainer = styled.div`
   padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+
   @media screen and (max-width: 1300px) {
     margin-top: 1260px;
-    display: flex;
     justify-content: center;
     align-items: center;
   }

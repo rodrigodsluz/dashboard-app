@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { LineHeader } from '../components/LineHeader';
 import Login from './login';
 
 const Home: React.FC = () => (
@@ -8,7 +7,6 @@ const Home: React.FC = () => (
       <title>SupportApp</title>
     </Head>
 
-    {/*  <LineHeader /> */}
     <Login />
   </>
 );

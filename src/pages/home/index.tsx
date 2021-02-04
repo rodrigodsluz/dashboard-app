@@ -1,8 +1,5 @@
-import {
- Card, CardHeader, CardBody, Typography, Spacing
-} from 'd1-components';
+import { Card, CardHeader, CardBody, Typography, Spacing } from 'd1-components';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import React from 'react';
 import {
   Container,
   TableContainer,
@@ -14,7 +11,6 @@ import {
 import StickyHeadTable from '../../components/HomeTable';
 import Graphic from '../../components/PieChart';
 import Sidebar from '../../components/Sidebar';
-import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 /**
  * @export
@@ -26,12 +22,8 @@ import useWindowDimensions from '../../hooks/useWindowDimensions';
  */
 
 export default function Home() {
-  /*  const { height, width } = useWindowDimensions();
-
-  console.log(width); */
   return (
     <Container>
-      {/* {width > 500 ? <Sidebar /> : null} */}
       <Sidebar />
 
       <TableContainer>
@@ -80,6 +72,8 @@ export default function Home() {
           </CardContainer>
         </TableContent>
         <GraphicContainer>
+          <Graphic />
+          <Graphic />
           <Graphic />
         </GraphicContainer>
       </TableContainer>
