@@ -7,19 +7,17 @@ import {
   SidebarContainer,
   ContainerIcons,
   Logo,
-  UsersIcon,
   RocketIcon,
   ChartPieIcon,
-  CloudIcon,
+  SignOutIcon,
   ExpandIconClick,
   ContainerLogo,
 } from './style';
 
 import d1Logo from '../../assets/d1-logo.png';
 import { ReactComponent as ChartPie } from '../../assets/SidebarIcons/chart-pie.svg';
-import { ReactComponent as Cloud } from '../../assets/SidebarIcons/ccm-cloud.svg';
 import { ReactComponent as Rocket } from '../../assets/SidebarIcons/rocket.svg';
-import { ReactComponent as Users} from '../../assets/SidebarIcons/user-friends.svg';
+import { ReactComponent as SignOut } from "../../assets/SidebarIcons/sign-out-alt.svg";
 
 const TooltipArrow = withStyles((theme: Theme) => ({
   arrow: {
@@ -60,7 +58,6 @@ const Sidebar = () => {
             </TooltipArrow>
           </ExpandIconClick>
         </Link>
-
         <Link href="/sending">
           <ExpandIconClick>
             <TooltipArrow title="Sending Events" placement="left" arrow>
@@ -70,27 +67,21 @@ const Sidebar = () => {
             </TooltipArrow>
           </ExpandIconClick>
         </Link>
-
-        <Link href="/home">
-          <ExpandIconClick>
-            <TooltipArrow title="Clientes" placement="left" arrow>
-              <UsersIcon url={router.pathname}>
-                <Users />
-              </UsersIcon>
-            </TooltipArrow>
-          </ExpandIconClick>
-        </Link>
-        <Link href="/home">
-          <ExpandIconClick>
-            <TooltipArrow title="CCM Clound" placement="left" arrow>
-              <CloudIcon url={router.pathname}>
-                <Cloud />
-              </CloudIcon>
-            </TooltipArrow>
-          </ExpandIconClick>
-        </Link>
       </ContainerIcons>
+
       <ContainerIcons />
+
+      <ContainerIcons>
+        <Link href="/login">
+            <ExpandIconClick>
+              <TooltipArrow title="Sair" placement="left" arrow>
+                <SignOutIcon url={router.pathname}>
+                  <SignOut />
+                </SignOutIcon>
+              </TooltipArrow>
+            </ExpandIconClick>
+          </Link>
+      </ContainerIcons>
     </SidebarContainer>
     <Border position="bottom" />
   </>

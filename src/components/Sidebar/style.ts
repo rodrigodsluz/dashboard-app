@@ -158,6 +158,12 @@ export const CloudIcon = styled.div<Props>`
     `}
 `;
 
+export const SignOutIcon = styled.div<Props>`
+  ${IconWrapper}
+
+  margin-top: 160px;
+`;
+
 export const ExpandIconClick = styled.div`
   width: 100%;
   display: flex;

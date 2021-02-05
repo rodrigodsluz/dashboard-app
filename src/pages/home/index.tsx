@@ -42,29 +42,29 @@ export default function Home() {
 
           <CardContainer>
             <PanelCard>
-              <Card>
+              <Card status='finalizados'>
+                <CardHeader>
+                  <CardStatus>Finalizados</CardStatus>
+                </CardHeader>
+                <CardBody>
+                  <h2>7</h2>
+                </CardBody>
+              </Card>
+            </PanelCard>
+            <PanelCard>
+              <Card status='executando'>
                 <CardHeader>
                   <CardStatus>Executando</CardStatus>
                 </CardHeader>
                 <CardBody>
-                  <h2>2</h2>
+                  <h2>5</h2>
                 </CardBody>
               </Card>
             </PanelCard>
             <PanelCard>
-              <Card>
+              <Card status='erros'>
                 <CardHeader>
                   <CardStatus>Erros</CardStatus>
-                </CardHeader>
-                <CardBody>
-                  <h2>2</h2>
-                </CardBody>
-              </Card>
-            </PanelCard>
-            <PanelCard>
-              <Card>
-                <CardHeader>
-                  <CardStatus>Finalizados</CardStatus>
                 </CardHeader>
                 <CardBody>
                   <h2>2</h2>
