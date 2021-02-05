@@ -78,7 +78,7 @@ export default function ScrollableTabsButtonAuto() {
         position="static"
         style={{
           background: '#1a1731',
-          color: '#117eff',
+          color: '#fff',
         }}
       >
         <Tabs

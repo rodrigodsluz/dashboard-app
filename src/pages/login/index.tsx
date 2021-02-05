@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Input, PrimaryButton, LinkButton } from 'd1-components';
 import { useState } from 'react';
 import { Container, Logo, Form } from './style';
@@ -11,8 +12,14 @@ import { Container, Logo, Form } from './style';
  * Tela para o usuário poder logar com o acesso da d1
  */
 export default function login() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleLogin = e => {
+    e.preventDefault();
+    router.push('/home');
+  };
   return (
     <Container>
       <Form action="">
@@ -27,9 +34,9 @@ export default function login() {
           value={password}
           handleChange={() => {}}
         />
-        <Link href="/home">
-          <PrimaryButton handleClick={() => {}}>Entrar</PrimaryButton>
-        </Link>
+
+        <PrimaryButton handleClick={handleLogin}>Entrar</PrimaryButton>
+
         <LinkButton secondary handleClick={() => {}}>
           Esqueceu sua senha?
         </LinkButton>
@@ -38,4 +45,4 @@ export default function login() {
   );
 }
 
-const getInitialProps = async (ctx) => ({});
+const getInitialProps = async ctx => ({});

@@ -55,46 +55,33 @@ const data = [
   },
 ];
 
-/* const { width } = useWindowDimensions();
+const SimpleLineChart: React.FC = props => {
+  return (
+    <LineChart
+      width={props.size} // 290
+      height={340}
+      data={data}
+      margin={{
+        top: 5,
+        right: 30,
+        left: 20,
+        bottom: 5,
+      }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="name" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <Line
+        type="monotone"
+        dataKey="pv"
+        stroke="#8884d8"
+        activeDot={{ r: 8 }}
+      />
+      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+    </LineChart>
+  );
+};
 
-console.log(width); */
-export default class Chart extends PureComponent {
-  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/xqjtetw0/';
-
-  render() {
-    // console.log(this.props.size);
-    let help = this.props.size;
-    // console.log(help);
-    if (help > 767) {
-      help = 650;
-    } else {
-      help = 290;
-    }
-    return (
-      <LineChart
-        width={this.props.size > 1024 ? 1400 : help} // 290
-        height={340}
-        data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="pv"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
-        />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-      </LineChart>
-    );
-  }
-}
+export default SimpleLineChart;

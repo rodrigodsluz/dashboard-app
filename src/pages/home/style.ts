@@ -33,7 +33,6 @@ export const TableContainer = styled.div`
     flex-direction: column;
     align-items: center;
     text-align: center;
-
   }
 
   @media screen and (max-width: 500px) {
@@ -56,7 +55,6 @@ export const CardContainer = styled.div`
   align-items: center;
   padding: 20px 0;
   flex-wrap: wrap;
-
 `;
 
 export const PanelCard = styled.div`
@@ -64,15 +62,13 @@ export const PanelCard = styled.div`
 
   @media screen and (max-width: 1024px) {
     padding: 10px;
-
   }
 `;
-
 
 export const Card = styled.div<Props>`
   padding: 10px;
   border-radius: 7px;
-  border: 2px solid rgba(100, 100, 111, 0.2);
+  border: none;
   width: 240px;
 
   ${props =>
@@ -82,16 +78,16 @@ export const Card = styled.div<Props>`
     `}
 
   ${props =>
-  props.status === 'erros' &&
-  css`
-    background: #ff4d4d;
-  `}
+    props.status === 'erros' &&
+    css`
+      background: #ff4d4d;
+    `}
 
   ${props =>
-  props.status === 'finalizados' &&
-  css`
-    background: #79ff4d;
-  `}
+    props.status === 'finalizados' &&
+    css`
+      background: #79ff4d;
+    `}
 `;
 
 export const CardStatus = styled.h2`
@@ -106,10 +102,9 @@ export const GraphicContainer = styled.div`
 
   @media screen and (max-width: 600px) {
     margin-top: 460px;
-
   }
 
-  @media screen and (min-width: 700px) and (max-width: 1024px){
+  @media screen and (min-width: 700px) and (max-width: 1024px) {
     margin-top: 200px;
     flex-direction: row;
   }
@@ -121,7 +116,7 @@ export const GraphicWrapper = styled.div`
   margin-top: 20px;
   text-align: center;
 
-  @media screen and (min-width: 700px) and (max-width: 1024px){
+  @media screen and (min-width: 700px) and (max-width: 1024px) {
     margin: 10px;
   }
 `;

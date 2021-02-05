@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface Props {
   position?: string;
-  url?: string;
+  icon?: string;
 }
 
 
@@ -92,7 +92,7 @@ export const Logo = styled.img`
   }
 `;
 
-export const IconWrapper = css`
+export const IconWrapper = styled.div<Props>`
   width: 20px;
   height: 20px;
   margin: 10px;
@@ -108,60 +108,12 @@ export const IconWrapper = css`
   @media screen and (max-width: 500px) {
     margin: 10px 3px;
   }
-`;
-
-export const ChartPieIcon = styled.div<Props>`
-  ${IconWrapper}
 
   ${props =>
-    props.url === '/worker' &&
+    props.icon === 'signout' &&
     css`
-      //fill: #117eff;
-      border-radius: 7px;
-      border-bottom: 2px solid #00e1ff;
+      margin-top: 160px;
     `}
-`;
-
-export const RocketIcon = styled.div<Props>`
-  ${IconWrapper}
-
-  ${props =>
-    props.url === '/sending' &&
-    css`
-      //fill: #117eff;
-      border-radius: 7px;
-      border-bottom: 2px solid #00e1ff;
-    `}
-`;
-
-export const UsersIcon = styled.div<Props>`
-  ${IconWrapper}
-
-  ${props =>
-    props.url === '/users' &&
-    css`
-      //fill: #117eff;
-      border-radius: 7px;
-      border-bottom: 2px solid #00e1ff;
-    `}
-`;
-
-export const CloudIcon = styled.div<Props>`
-  ${IconWrapper}
-
-  ${props =>
-    props.url === '/cloud' &&
-    css`
-      //fill: #117eff;
-      border-radius: 7px;
-      border-bottom: 2px solid #00e1ff;
-    `}
-`;
-
-export const SignOutIcon = styled.div<Props>`
-  ${IconWrapper}
-
-  margin-top: 160px;
 `;
 
 export const ExpandIconClick = styled.div`

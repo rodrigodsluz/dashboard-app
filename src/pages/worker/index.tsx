@@ -29,7 +29,7 @@ import { StatusCircle } from '../../components/StatusCircle';
  */
 
 export default function Worker() {
-  const { width } = useWindowDimensions();
+  // const { width } = useWindowDimensions();
 
   return (
     <Container>
@@ -66,19 +66,11 @@ export default function Worker() {
           <StatusCard>
             <StatusCircle color="black" status="Abortado" number="410" />
           </StatusCard>
-
-          {/* <Card>
-            <p>Quantidade de Docs.</p>
-
-            <CardText>106,266</CardText>
-            <p>Ativos</p>
-            <CardText>6</CardText>
-          </Card>  */}
         </JobsContainer>
 
         <ChartContainer>
-          <Chart size={width} />
-        </ChartContainer>
+          <Chart size={1000} />
+        </ChartContainer> 
       </WorkerContainer>
     </Container>
   );
