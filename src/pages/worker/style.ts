@@ -18,17 +18,20 @@ export const TableContainer = styled.div`
   overflow: hidden;
   width: 100vw;
   height: 40vh;
-  padding: 40px;
+  padding: 20px 60px;
   border-radius: 4px;
-  margin: 0px 0 0 50px;
+  margin: 0px 0 0 34px;
 
   @media screen and (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
+    padding: 50px;
+    text-align: center;
   }
 
   @media screen and (max-width: 500px) {
     margin: 0;
+    padding: 50px 20px;
   }
 `;
 
@@ -59,8 +62,7 @@ export const JobsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 3px 0;
-  margin-left: 39px;
+  margin: -65px 0 -50px 39px;
   padding: 20px 40px;
   flex-wrap: wrap;
 

@@ -28,6 +28,7 @@ export const TableContainer = styled.div`
   @media screen and (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
+    text-align: center;
 
   }
 
