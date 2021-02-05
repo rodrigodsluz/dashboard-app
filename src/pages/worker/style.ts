@@ -22,7 +22,7 @@ export const TableContainer = styled.div`
   border-radius: 4px;
   margin: 0px 0 0 34px;
 
-  @media screen and (max-width: 1300px) {
+  /* @media screen and (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
     padding: 50px;
@@ -32,17 +32,17 @@ export const TableContainer = styled.div`
   @media screen and (max-width: 500px) {
     margin: 0;
     padding: 50px 20px;
-  }
+  } */
 `;
 
 export const TableContent = styled.div`
   width: 100%;
-  height: 100%;
+  height: 600vh;
   padding: 10px;
 
-  @media screen and (max-width: 530px) {
+  /* @media screen and (max-width: 530px) {
     width: 100%;
-  }
+  } */
 `;
 
 export const SubTitle = styled.p`
@@ -55,39 +55,18 @@ export const ChartContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 100px;
 `;
 
 export const JobsContainer = styled.div`
-  height: 30%;
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: center;
   margin: -65px 0 -50px 39px;
   padding: 20px 40px;
+  margin-top: 40px;
   flex-wrap: wrap;
-
-  @media screen and (max-width: 550px) {
-    flex-direction: column;
-    margin-left: 0px;
-    width: 630px;
-  }
-
-  @media screen and (max-width: 500px) {
-    width: 100%;
-    margin: 30px 0;
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
-    flex-direction: row;
-    margin-left: 30px;
-    width: 830px;
-  }
-
-  @media screen and (min-width: 1024px) and (max-width: 1336px) {
-    flex-direction: row;
-    margin-left: 50px;
-    width: 1030px;
-  }
 `;
 export const Card = styled.div`
   width: 50%;
@@ -105,7 +84,8 @@ export const Card = styled.div`
 export const WorkerContainer = styled.div`
   margin-left: -8px;
   z-index: 0;
-
+  display: flex;
+  flex-direction: column;
   @media screen and (max-width: 530px) {
     margin-top: 40px;
     overflow: auto;
