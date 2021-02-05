@@ -31,7 +31,7 @@ export default function Sending() {
               The .table-bordered class adds borders to a table:
             </SubTitle>
           </Typography>
-          <Spacing vertical="20px" />
+          <Spacing vertical="10px" />
           <StickyHeadTable />
         </TableContent>
       </TableContainer>

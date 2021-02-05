@@ -275,9 +275,11 @@ const rows = [
 const useStyles = makeStyles({
   root: {
     width: '100%',
+
   },
   container: {
-    height: '70vh',
+    height: '30vh',
+
   },
 });
 

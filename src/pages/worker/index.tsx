@@ -29,12 +29,10 @@ import { StatusCircle } from '../../components/StatusCircle';
  */
 
 export default function Worker() {
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
-  // console.log(width);
   return (
     <Container>
-      {/* {width > 500 ? <Sidebar /> : null} */}
       <Sidebar />
 
       <WorkerContainer>
@@ -42,7 +40,7 @@ export default function Worker() {
           <Typography htmlTag="strong" fontSize="32px">
             Worker
           </Typography>
-          <Spacing vertical="20px" />
+          <Spacing vertical="3px" />
           <TableContent>
             <Spacing vertical="0px" />
             <StickyHeadTable />

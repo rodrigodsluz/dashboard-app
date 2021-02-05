@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface Props {
+  status: string;
+}
 
 export const Container = styled.div`
   width: 100vw;
@@ -28,6 +32,7 @@ export const TableContainer = styled.div`
   @media screen and (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
+    text-align: center;
 
   }
 
@@ -64,15 +69,34 @@ export const PanelCard = styled.div`
 `;
 
 
-export const Card = styled.div`
+export const Card = styled.div<Props>`
   padding: 10px;
   border-radius: 7px;
   border: 2px solid rgba(100, 100, 111, 0.2);
   width: 240px;
+
+  ${props =>
+    props.status === 'executando' &&
+    css`
+      background: #ffff66;
+    `}
+
+  ${props =>
+  props.status === 'erros' &&
+  css`
+    background: #ff4d4d;
+  `}
+
+  ${props =>
+  props.status === 'finalizados' &&
+  css`
+    background: #79ff4d;
+  `}
 `;
 
 export const CardStatus = styled.h2`
   margin: auto;
+  color: #1a1731;
 `;
 
 export const GraphicContainer = styled.div`
