@@ -1,8 +1,10 @@
 import styled, { css } from 'styled-components';
 
 interface Props {
-  position: string;
+  position?: string;
+  url?: string;
 }
+
 
 export const Border = styled.div<Props>`
   background: transparent linear-gradient(90deg, #00e1ff 0%, #117eff 100%);
@@ -90,11 +92,11 @@ export const Logo = styled.img`
   }
 `;
 
-export const IconWrapper = styled.div`
+export const IconWrapper = css`
   width: 20px;
   height: 20px;
   margin: 10px;
-  &:hover {
+  &:hover svg {
     fill: #117eff;
     cursor: pointer;
   }
@@ -108,9 +110,58 @@ export const IconWrapper = styled.div`
   }
 `;
 
+export const ChartPieIcon = styled.div<Props>`
+  ${IconWrapper}
+
+  ${props =>
+    props.url === '/worker' &&
+    css`
+      //fill: #117eff;
+      border-radius: 7px;
+      border-bottom: 2px solid #00e1ff;
+    `}
+`;
+
+export const RocketIcon = styled.div<Props>`
+  ${IconWrapper}
+
+  ${props =>
+    props.url === '/sending' &&
+    css`
+      //fill: #117eff;
+      border-radius: 7px;
+      border-bottom: 2px solid #00e1ff;
+    `}
+`;
+
+export const UsersIcon = styled.div<Props>`
+  ${IconWrapper}
+
+  ${props =>
+    props.url === '/users' &&
+    css`
+      //fill: #117eff;
+      border-radius: 7px;
+      border-bottom: 2px solid #00e1ff;
+    `}
+`;
+
+export const CloudIcon = styled.div<Props>`
+  ${IconWrapper}
+
+  ${props =>
+    props.url === '/cloud' &&
+    css`
+      //fill: #117eff;
+      border-radius: 7px;
+      border-bottom: 2px solid #00e1ff;
+    `}
+`;
+
 export const ExpandIconClick = styled.div`
   width: 100%;
   display: flex;
 
   justify-content: center;
 `;
+
