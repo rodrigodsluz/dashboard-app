@@ -76,7 +76,7 @@ const Sidebar = () => {
             <ExpandIconClick>
               <TooltipArrow title="Sair" placement="left" arrow>
                 <SignOutIcon url={router.pathname}>
-                  <SignOut />
+                  <SignOut fill="#fff" />
                 </SignOutIcon>
               </TooltipArrow>
             </ExpandIconClick>
