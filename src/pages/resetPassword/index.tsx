@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Input, PrimaryButton, LinkButton } from 'd1-components';
+import { Input, PrimaryButton, Typography, Spacing } from 'd1-components';
 import { useState } from 'react';
 import { Container, Logo, Form } from './style';
 
@@ -11,7 +11,7 @@ import { Container, Logo, Form } from './style';
  * @description
  * Tela para o usuário poder logar com o acesso da d1
  */
-export default function login() {
+export default function ResetPassword() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,31 +20,21 @@ export default function login() {
     e.preventDefault();
     router.push('/home');
   };
-
-  const handleResetPasswod = e => {
-    e.preventDefault();
-    router.push('/resetPassword');
-  };
   return (
     <Container>
       <Form action="">
         <Logo src="http://design.d1.cx/img/logotipo.png" />
+        <Typography htmlTag="p" fontSize="28px">
+          Recuperar senha
+        </Typography>
+        <Spacing vertical="10px" />
         <Input
           placeholder="email@email.com"
           value={email}
           handleChange={() => {}}
         />
-        <Input
-          placeholder="Digite sua senha"
-          value={password}
-          handleChange={() => {}}
-        />
 
         <PrimaryButton handleClick={handleLogin}>Entrar</PrimaryButton>
-
-        <LinkButton secondary handleClick={handleResetPasswod}>
-          Esqueceu sua senha?
-        </LinkButton>
       </Form>
     </Container>
   );

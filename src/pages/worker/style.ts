@@ -15,36 +15,19 @@ export const Container = styled.div`
 `;
 
 export const TableContainer = styled.div`
-  overflow: hidden;
-  width: 100vw;
-  height: 40vh;
-  padding: 20px 60px;
+  overflow: auto;
+  width: 100%;
   border-radius: 4px;
-  margin: 0px 0 0 34px;
-
-  /* @media screen and (max-width: 1300px) {
-    flex-direction: column;
-    align-items: center;
-    padding: 50px;
-    text-align: center;
-  }
-
-  @media screen and (max-width: 500px) {
-    margin: 0;
-    padding: 50px 20px;
-  } */
+  padding: 20px 40px;
+  margin: 0 0 0 50px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const TableContent = styled.div`
   width: 100%;
-  height: 600vh;
-  padding: 10px;
-
-  /* @media screen and (max-width: 530px) {
-    width: 100%;
-  } */
+  height: 80vh;
 `;
-
 export const SubTitle = styled.p`
   font-size: 16px;
   line-height: 25px;
@@ -63,8 +46,6 @@ export const JobsContainer = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin: -65px 0 -50px 39px;
-  padding: 20px 40px;
   margin-top: 40px;
   flex-wrap: wrap;
 `;
@@ -79,17 +60,6 @@ export const Card = styled.div`
   border-radius: 4px;
   padding: 50px;
   margin: 10px;
-`;
-
-export const WorkerContainer = styled.div`
-  margin-left: -8px;
-  z-index: 0;
-  display: flex;
-  flex-direction: column;
-  @media screen and (max-width: 530px) {
-    margin-top: 40px;
-    overflow: auto;
-  }
 `;
 
 export const CardText = styled.p`
