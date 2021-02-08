@@ -7,7 +7,6 @@ import {
   ChartContainer,
   JobsContainer,
   Card,
-  WorkerContainer,
   CardText,
   Info,
   ContainerStatus,
@@ -35,43 +34,44 @@ export default function Worker() {
     <Container>
       <Sidebar />
 
-      <WorkerContainer>
-        <TableContainer>
+      <TableContainer>
+        <TableContent>
           <Typography htmlTag="strong" fontSize="32px">
             Worker
           </Typography>
-          <Spacing vertical="3px" />
-          <TableContent>
-            <Spacing vertical="0px" />
-            <StickyHeadTable />
-          </TableContent>
-        </TableContainer>
+          <Spacing vertical="10px" />
+          <StickyHeadTable />
 
-        <JobsContainer>
-          <StatusCard>
-            <StatusCircle color="green" status="Executando" number="1" />
-          </StatusCard>
-          <StatusCard>
-            <StatusCircle color="yellow" status="Executando" number="222.222" />
-          </StatusCard>
-          <StatusCard>
-            <StatusCircle color="orange" status="Executando" number="420" />
-          </StatusCard>
-          <StatusCard>
-            <StatusCircle color="#0d3c61" status="Executando" number="4110" />
-          </StatusCard>
-          <StatusCard>
-            <StatusCircle color="red" status="Parados" number="340" />
-          </StatusCard>
-          <StatusCard>
-            <StatusCircle color="black" status="Abortado" number="410" />
-          </StatusCard>
-        </JobsContainer>
+          <JobsContainer>
+            <StatusCard>
+              <StatusCircle color="green" status="Executando" number="1" />
+            </StatusCard>
+            <StatusCard>
+              <StatusCircle
+                color="yellow"
+                status="Executando"
+                number="222.222"
+              />
+            </StatusCard>
+            <StatusCard>
+              <StatusCircle color="orange" status="Executando" number="420" />
+            </StatusCard>
+            <StatusCard>
+              <StatusCircle color="#0d3c61" status="Executando" number="4110" />
+            </StatusCard>
+            <StatusCard>
+              <StatusCircle color="red" status="Parados" number="340" />
+            </StatusCard>
+            <StatusCard>
+              <StatusCircle color="black" status="Abortado" number="410" />
+            </StatusCard>
+          </JobsContainer>
 
-        <ChartContainer>
-          <Chart size={1000} />
-        </ChartContainer> 
-      </WorkerContainer>
+          <ChartContainer>
+            <Chart size={1000} />
+          </ChartContainer>
+        </TableContent>
+      </TableContainer>
     </Container>
   );
 }

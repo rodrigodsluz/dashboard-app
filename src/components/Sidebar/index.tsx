@@ -7,9 +7,7 @@ import {
   SidebarContainer,
   ContainerIcons,
   Logo,
-  RocketIcon,
-  ChartPieIcon,
-  SignOutIcon,
+  IconWrapper,
   ExpandIconClick,
   ContainerLogo,
 } from './style';
@@ -52,18 +50,18 @@ const Sidebar = () => {
         <Link href="/worker">
           <ExpandIconClick>
             <TooltipArrow title="Worker" placement="left" arrow>
-              <ChartPieIcon url={router.pathname}>
-                <ChartPie />
-              </ChartPieIcon>
+              <IconWrapper >
+                <ChartPie fill={router.pathname === '/worker' ? '#117eff' : 'white'}/>
+              </IconWrapper>
             </TooltipArrow>
           </ExpandIconClick>
         </Link>
         <Link href="/sending">
           <ExpandIconClick>
             <TooltipArrow title="Sending Events" placement="left" arrow>
-              <RocketIcon url={router.pathname}>
-                <Rocket />
-              </RocketIcon>
+              <IconWrapper >
+                <Rocket fill={router.pathname === '/sending' ? '#117eff' : 'white'}/>
+              </IconWrapper>
             </TooltipArrow>
           </ExpandIconClick>
         </Link>
@@ -75,9 +73,9 @@ const Sidebar = () => {
         <Link href="/login">
             <ExpandIconClick>
               <TooltipArrow title="Sair" placement="left" arrow>
-                <SignOutIcon url={router.pathname}>
-                  <SignOut fill="#fff" />
-                </SignOutIcon>
+                <IconWrapper icon="signout">
+                  <SignOut />
+                </IconWrapper>
               </TooltipArrow>
             </ExpandIconClick>
           </Link>
