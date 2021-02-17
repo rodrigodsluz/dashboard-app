@@ -12,7 +12,6 @@ import {
   ContainerLogo,
 } from './style';
 
-import d1Logo from '../../assets/d1-logo.png';
 import { ReactComponent as ChartPie } from '../../assets/SidebarIcons/chart-pie.svg';
 import { ReactComponent as Rocket } from '../../assets/SidebarIcons/rocket.svg';
 import { ReactComponent as SignOut } from "../../assets/SidebarIcons/sign-out-alt.svg";
@@ -42,7 +41,7 @@ const Sidebar = () => {
     <SidebarContainer>
       <Link href="/home">
         <ContainerLogo>
-          <Logo alt="logo" src={d1Logo} />
+          <Logo alt="logo" src="https://github.com/rodrigodsluz/d1-test/blob/master/src/assets/images/logotipo-branco.png?raw=true" />
         </ContainerLogo>
       </Link>
 
