@@ -16,17 +16,29 @@ export const Container = styled.div`
 
 export const TableContainer = styled.div`
   overflow: auto;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   border-radius: 4px;
   padding: 20px 40px;
   margin: 0 0 0 50px;
   display: flex;
-  flex-direction: column;
+  z-index: 0;
+
+  @media screen and (max-width: 1300px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    text-align: center;
+  }
+  @media screen and (max-width: 500px) {
+    margin: 0;
+    padding: 50px 20px;
+  }
 `;
 
 export const TableContent = styled.div`
   width: 100%;
-  height: 80vh;
+  height: 100%;
 `;
 export const SubTitle = styled.p`
   font-size: 16px;
@@ -38,7 +50,7 @@ export const ChartContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 20px;
 `;
 
 export const JobsContainer = styled.div`
@@ -46,7 +58,7 @@ export const JobsContainer = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 20px;
   flex-wrap: wrap;
 `;
 export const Card = styled.div`

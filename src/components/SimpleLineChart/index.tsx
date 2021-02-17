@@ -1,4 +1,4 @@
-import React, { PureComponent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   LineChart,
   Line,
@@ -8,7 +8,6 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const data = [
   {
@@ -55,11 +54,28 @@ const data = [
   },
 ];
 
-const SimpleLineChart: React.FC = props => {
+const SimpleLineChart: React.FC = () => {
+  const useWidth = () => {
+    const [width, setWidth] = useState(1350); // default width, detect on server.
+    const handleResize = () => setWidth(window.innerWidth);
+    useEffect(() => {
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, [handleResize]);
+    return width;
+  };
+
+  let mobileSize = useWidth();
+  if (mobileSize > 767) {
+    mobileSize = 650;
+  } else {
+    mobileSize = 290;
+  }
+
   return (
     <LineChart
-      width={props.size} // 290
-      height={340}
+      width={useWidth() <= 1024 ? mobileSize : 1350}
+      height={240}
       data={data}
       margin={{
         top: 5,

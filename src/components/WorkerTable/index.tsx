@@ -275,11 +275,9 @@ const rows = [
 const useStyles = makeStyles({
   root: {
     width: '100%',
-
   },
   container: {
     height: '30vh',
-
   },
 });
 
@@ -301,9 +299,9 @@ export default function StickyHeadTable() {
     setPage(0);
   };
 
-  useEffect(() => {
+  /*  useEffect(() => {
     console.log(rows[index]);
-  }, [index]);
+  }, [index]); */
 
   return (
     <Paper className={classes.root}>

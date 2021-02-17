@@ -68,7 +68,7 @@ export default function Worker() {
           </JobsContainer>
 
           <ChartContainer>
-            <Chart size={1000} />
+            <Chart />
           </ChartContainer>
         </TableContent>
       </TableContainer>

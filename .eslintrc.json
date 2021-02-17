@@ -30,14 +30,15 @@
       "react/prop-types": "off",
       "react/jsx-filename-extension": [0],
       "react/react-in-jsx-scope": "off",
-      "import/prefer-default-export": "off"
+      "import/prefer-default-export": "off",
+      "import/no-unresolved": "off",
+      "import/named": "off"
     },
     "settings": {
       "import/resolver":{
         "typescript":{},
         "node": {
-          "extensions": [".js", ".jsx", ".ts", ".tsx"],
-          "moduleDirectory": ["node_modules", "src/"],
+          "extensions": [".js", ".jsx", ".ts", ".tsx"]
         }
       }
     }

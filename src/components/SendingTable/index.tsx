@@ -299,9 +299,9 @@ export default function StickyHeadTable() {
     setPage(0);
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     console.log(rows[index]);
-  }, [index]);
+  }, [index]); */
 
   return (
     <Paper className={classes.root}>
@@ -309,7 +309,7 @@ export default function StickyHeadTable() {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              {columns.map((column) => (
+              {columns.map(column => (
                 <TableCell
                   key={column.id}
                   align={column.align}
@@ -335,7 +335,7 @@ export default function StickyHeadTable() {
                     tabIndex={-1}
                     key={row.DataMov}
                   >
-                    {columns.map(column => {
+                    {columns.map((column) => {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
