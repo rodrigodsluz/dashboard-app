@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -9,9 +8,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Modal, OutlineButton } from 'd1-components';
+import { useEffect, useState } from 'react';
 import TabsPanel from '../../components/Tabs';
 
 import { Container } from './style';
+
+import api from '../../services/api';
 
 interface Column {
   id: 'tenent' | 'DataMov' | 'Lote' | 'Produto' | 'Timer';
@@ -126,10 +128,46 @@ const useStyles = makeStyles({
 
 export default function StickyHeadTable() {
   const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(20);
-  const [open, setOpen] = React.useState(false);
-  const [index, setIndex] = React.useState(0);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(20);
+  const [open, setOpen] = useState(false);
+  const [index, setIndex] = useState(0);
+
+  const [homeData, setHomeData] = useState([]);
+
+  const getHomeData = async () => {
+    const token = localStorage.getItem('userToken');
+
+    await api.get('/Home/Summary ', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+
+        const {
+          data: {
+            tenant, datamov, lote, produto, timer, sla, status,
+          },
+        } = res;
+
+        return {
+          tenant, datamov, lote, produto, timer, sla, status,
+        };
+
+        setHomeData(tenant);
+
+        console.log(homeData);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
+    getHomeData();
+  }, []);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -178,7 +216,7 @@ export default function StickyHeadTable() {
                     tabIndex={-1}
                     key={row.DataMov}
                   >
-                    {columns.map(column => {
+                    {columns.map((column) => {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
