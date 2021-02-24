@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Input, PrimaryButton, LinkButton } from 'd1-components';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
+import api from '../../services/api';
 import { Container, Logo, Form } from './style';
 
 /**
@@ -11,17 +11,32 @@ import { Container, Logo, Form } from './style';
  * @description
  * Tela para o usuário poder logar com o acesso da d1
  */
+
 export default function login() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = e => {
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    router.push('/home');
+
+    const userData = {
+      Login: email,
+      Password: password,
+    };
+
+    await api
+      .post('/Login/Authenticate', userData)
+      .then((response) => {
+        localStorage.setItem('userToken', response.data.token);
+        router.push('/home');
+      })
+      .catch(() => {
+        alert('Email ou senha incorretos!');
+      });
   };
 
-  const handleResetPasswod = e => {
+  const handleResetPassword = (e: FormEvent) => {
     e.preventDefault();
     router.push('/resetPassword');
   };
@@ -30,19 +45,23 @@ export default function login() {
       <Form action="">
         <Logo src="http://design.d1.cx/img/logotipo.png" />
         <Input
-          placeholder="email@email.com"
+          placeholder="Login@Login.com"
           value={email}
-          handleChange={() => {}}
+          handleChange={(e) => {
+            setEmail(e.target.value);
+          }}
         />
         <Input
           placeholder="Digite sua senha"
           value={password}
-          handleChange={() => {}}
+          handleChange={(e) => {
+            setPassword(e.target.value);
+          }}
         />
 
         <PrimaryButton handleClick={handleLogin}>Entrar</PrimaryButton>
 
-        <LinkButton secondary handleClick={handleResetPasswod}>
+        <LinkButton secondary handleClick={handleResetPassword}>
           Esqueceu sua senha?
         </LinkButton>
       </Form>
@@ -50,4 +69,4 @@ export default function login() {
   );
 }
 
-const getInitialProps = async ctx => ({});
+const getInitialProps = async (ctx) => ({});
