@@ -2,8 +2,7 @@ import {
   CardHeader, CardBody, Typography, Spacing,
 } from 'd1-components';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import React from 'react';
-import { homedir } from 'os';
+
 import {
   Container,
   TableContainer,
@@ -18,7 +17,6 @@ import {
 import StickyHeadTable from '../../components/HomeTable';
 import Graphic from '../../components/PieChart';
 import Sidebar from '../../components/Sidebar';
-import api from '../../services/api';
 
 /**
  * @export
@@ -29,22 +27,7 @@ import api from '../../services/api';
  * Página do sumário com a tabela principal e o gráfico
  */
 
-const Home = () => {
-  const token = localStorage.getItem('userToken');
-
-  api.get('/Home/StoppedMovements', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-
-  return (
+const Home = () => (
     <Container>
       <Sidebar />
 
@@ -123,8 +106,7 @@ const Home = () => {
         </GraphicContainer>
       </TableContainer>
     </Container>
-  );
-};
+);
 
 Home.getInitialProps = async (ctx) => ({});
 export default Home;
