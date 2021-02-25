@@ -9,11 +9,12 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Modal, OutlineButton } from 'd1-components';
 import { useEffect, useState } from 'react';
+import { get } from 'http';
 import TabsPanel from '../../components/Tabs';
 
 import { Container } from './style';
 
-import api from '../../services/api';
+import { getHomeData } from '../../services/api';
 
 interface Column {
   id: 'tenent' | 'DataMov' | 'Lote' | 'Produto' | 'Timer';
@@ -73,50 +74,6 @@ function createData(
   };
 }
 
-const rows = [
-  createData('HDI', 'IN', 1324171354, 3287263),
-  createData('CAEDU', 'CN', 1403500365, 9596961),
-  createData('SOMPOSEGUROS', 'IT', 60483973, 301340),
-  createData('SINAF', 'US', 327167434, 9833520),
-  createData('MITSUI', 'CA', 37602103, 9984670),
-  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
-  createData('SOROCRED', 'DE', 83019200, 357578),
-  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),
-  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
-  createData('SOROCRED', 'DE', 83019200, 357578),
-  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),
-  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
-  createData('SOROCRED', 'DE', 83019200, 357578),
-  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),
-  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
-  createData('SOROCRED', 'DE', 83019200, 357578),
-  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),
-  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
-  createData('SOROCRED', 'DE', 83019200, 357578),
-  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),
-  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
-  createData('SOROCRED', 'DE', 83019200, 357578),
-  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),
-  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
-  createData('SOROCRED', 'DE', 83019200, 357578),
-  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),
-  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
-  createData('SOROCRED', 'DE', 83019200, 357578),
-  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),
-  createData('PREVENTSENIOR', 'AU', 25475400, 7692024),
-  createData('SOROCRED', 'DE', 83019200, 357578),
-  createData('PERNAMBUCANAS', 'IE', 4857000, 70273),
-  createData('QUALICORP', 'MX', 126577691, 1972550),
-];
-
 const useStyles = makeStyles({
   root: {
     width: '100%',
@@ -135,39 +92,16 @@ export default function StickyHeadTable() {
 
   const [homeData, setHomeData] = useState([]);
 
-  const getHomeData = async () => {
-    const token = localStorage.getItem('userToken');
-
-    await api.get('/Home/Summary ', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        console.log(res);
-
-        const {
-          data: {
-            tenant, datamov, lote, produto, timer, sla, status,
-          },
-        } = res;
-
-        return {
-          tenant, datamov, lote, produto, timer, sla, status,
-        };
-
-        setHomeData(tenant);
-
-        console.log(homeData);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
   useEffect(() => {
-    getHomeData();
+    const fetchAPI = async () => {
+      setHomeData(await getHomeData());
+    };
+
+    fetchAPI();
   }, []);
+
+  const rows = homeData.map((d) =>
+    createData(d.tenant, d.datamov, d.lote, d.produto));
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
