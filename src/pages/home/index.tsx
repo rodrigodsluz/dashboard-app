@@ -3,6 +3,7 @@ import {
 } from 'd1-components';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
+import { useContext } from 'react';
 import {
   Container,
   TableContainer,
@@ -17,6 +18,7 @@ import {
 import StickyHeadTable from '../../components/HomeTable';
 import Graphic from '../../components/PieChart';
 import Sidebar from '../../components/Sidebar';
+import { HomeDataContext } from '../../context/HomeDataContext';
 
 /**
  * @export
@@ -27,7 +29,12 @@ import Sidebar from '../../components/Sidebar';
  * Página do sumário com a tabela principal e o gráfico
  */
 
-const Home = () => (
+const Home = () => {
+  const homeData = useContext(HomeDataContext);
+
+  const runningData = () => homeData.filter((v) => (v.status === 'RUNNING')).length;
+
+  return (
     <Container>
       <Sidebar />
 
@@ -75,7 +82,7 @@ const Home = () => (
 
           <Alert severity="warning">
             <AlertTitle>Atenção</AlertTitle>
-            Existem <strong>56 processos executando</strong> a mais de 24 horas.
+            Existem <strong>{runningData()} processos executando</strong> a mais de 24 horas.
           </Alert>
         </TableContent>
 
@@ -106,7 +113,8 @@ const Home = () => (
         </GraphicContainer>
       </TableContainer>
     </Container>
-);
+  );
+};
 
 Home.getInitialProps = async (ctx) => ({});
 export default Home;
