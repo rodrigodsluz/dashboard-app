@@ -8,12 +8,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Modal, OutlineButton } from 'd1-components';
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import TabsPanel from '../../components/Tabs';
 
 import { Container } from './style';
 
-import { getHomeData } from '../../services/api';
 import { HomeDataContext } from '../../context/HomeDataContext';
 
 interface Column {
@@ -99,15 +98,7 @@ export default function StickyHeadTable() {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
-  const [homeData, setHomeData] = useState([]);
-
-  useEffect(() => {
-    const fetchAPI = async () => {
-      setHomeData(await getHomeData());
-    };
-
-    fetchAPI();
-  }, []);
+  const homeData = useContext(HomeDataContext);
 
   const rows = homeData.map((d) =>
     createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status));
