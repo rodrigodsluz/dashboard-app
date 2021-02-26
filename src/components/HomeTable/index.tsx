@@ -9,7 +9,6 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Modal, OutlineButton } from 'd1-components';
 import { useEffect, useState } from 'react';
-import { get } from 'http';
 import TabsPanel from '../../components/Tabs';
 
 import { Container } from './style';
@@ -17,7 +16,7 @@ import { Container } from './style';
 import { getHomeData } from '../../services/api';
 
 interface Column {
-  id: 'tenent' | 'DataMov' | 'Lote' | 'Produto' | 'Timer';
+  id: 'tenant' | 'DataMov' | 'Lote' | 'Produto' | 'Timer' | 'Status';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -25,7 +24,7 @@ interface Column {
 }
 
 const columns: Column[] = [
-  { id: 'tenent', label: 'Tenent', minWidth: 170 },
+  { id: 'tenant', label: 'Tenent', minWidth: 170 },
   { id: 'DataMov', label: 'DataMov', minWidth: 100 },
   {
     id: 'Lote',
@@ -48,29 +47,39 @@ const columns: Column[] = [
     align: 'right',
     format: (value: number) => value.toFixed(2),
   },
+  {
+    id: 'Status',
+    label: 'Status',
+    minWidth: 170,
+    align: 'right',
+  },
 ];
 
 interface Data {
-  tenent: string;
+  tenant: string;
   DataMov: string;
   Lote: number;
   Produto: number;
   Timer: number;
+  Status: string;
 }
 
 function createData(
-  tenent: string,
+  tenant: string,
   DataMov: string,
   Lote: number,
   Produto: number,
+  Timer: number,
+  Status: string,
+
 ): Data {
-  const Timer = Lote / Produto;
   return {
-    tenent,
+    tenant,
     DataMov,
     Lote,
     Produto,
     Timer,
+    Status,
   };
 }
 
@@ -101,7 +110,7 @@ export default function StickyHeadTable() {
   }, []);
 
   const rows = homeData.map((d) =>
-    createData(d.tenant, d.datamov, d.lote, d.produto));
+    createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status));
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -113,10 +122,6 @@ export default function StickyHeadTable() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
-  /* useEffect(() => {
-    console.log(rows[index]);
-  }, [index]); */
 
   return (
     <Paper className={classes.root}>
@@ -163,7 +168,7 @@ export default function StickyHeadTable() {
                   </TableRow>
                 </>
               ))}
-            <Modal open={open} title={rows[index].tenent}>
+            <Modal open={open} title={rows[index].tenant}>
               <Container>
                 <TabsPanel />
                 <OutlineButton
