@@ -14,6 +14,7 @@ import TabsPanel from '../../components/Tabs';
 import { Container } from './style';
 
 import { getHomeData } from '../../services/api';
+import { HomeDataContext } from '../../context/HomeDataContext';
 
 interface Column {
   id: 'tenant' | 'DataMov' | 'Lote' | 'Produto' | 'Timer' | 'Status';
@@ -24,7 +25,7 @@ interface Column {
 }
 
 const columns: Column[] = [
-  { id: 'tenant', label: 'Tenent', minWidth: 170 },
+  { id: 'tenant', label: 'Tenant', minWidth: 170 },
   { id: 'DataMov', label: 'DataMov', minWidth: 100 },
   {
     id: 'Lote',
@@ -71,7 +72,6 @@ function createData(
   Produto: number,
   Timer: number,
   Status: string,
-
 ): Data {
   return {
     tenant,
@@ -124,77 +124,80 @@ export default function StickyHeadTable() {
   };
 
   return (
-    <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, i) => (
-                <>
-                  <TableRow
-                    onClick={() => {
-                      setOpen(true);
-                      setIndex(i);
-                    }}
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={row.DataMov}
+      <Paper className={classes.root}>
+        <TableContainer className={classes.container}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
                   >
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                </>
-              ))}
-            <Modal open={open} title={rows[index].tenant}>
-              <Container>
-                <TabsPanel />
-                <OutlineButton
-                  secondary
-                  handleClick={() => {}}
-                  onClick={() => setOpen(false)}
-                >
-                  Fechar
-                </OutlineButton>
-                {/* <span>Timer: {rows[index].Timer.toFixed(2)}</span>
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row, i) => (
+                  <>
+                    <TableRow
+                      onClick={() => {
+                        setOpen(true);
+                        setIndex(i);
+                      }}
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.DataMov}
+                    >
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  </>
+                ))}
+
+              <Modal open={open} title="eae">
+                {' '}
+                {/* //rows[index].tenant */}
+                <Container>
+                  <TabsPanel />
+                  <OutlineButton
+                    secondary
+                    handleClick={() => {}}
+                    onClick={() => setOpen(false)}
+                  >
+                    Fechar
+                  </OutlineButton>
+                  {/* <span>Timer: {rows[index].Timer.toFixed(2)}</span>
                 <span>Timer: {rows[index].Timer.toFixed(2)}</span>
                 <span>Timer: {rows[index].Timer.toFixed(2)}</span> */}
-              </Container>
-            </Modal>
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
-    </Paper>
+                </Container>
+              </Modal>
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </Paper>
   );
 }
