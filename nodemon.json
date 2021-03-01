@@ -1,0 +1,7 @@
+{
+  "verbose": true,
+  "ignore": ["node_modules", ".next"],
+  "watch": ["src/server/**/*", "src/**/*", "index.ts"],
+  "exec": "ts-node --project tsconfig.server.json server/index.ts",
+  "ext": "ts js json"
+}

@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { getHomeData } from '../services/api';
+import Services from '../services';
 
 export const HomeDataContext = createContext(null);
 
@@ -8,7 +8,7 @@ const HomeDataContextProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchAPI = async () => {
-      setHomeData(await getHomeData());
+      setHomeData(await Services.home.get());
     };
 
     fetchAPI();

@@ -1,15 +1,39 @@
-const withImages = require('next-images');
+const { resolve } = require('path');
 
-module.exports = withImages({
-  esModule: true,
-});
+/**
+ * Resolve tsconfig.json paths to Webpack aliases
+ * @param  {string} tsconfigPath           - Path to tsconfig
+ * @param  {string} webpackConfigBasePath  - Path from tsconfig to Webpack config to create absolute aliases
+ * @return {object}                        - Webpack alias config
+ */
+function resolveTsconfigPathsToAlias({
+  tsconfigPath = './tsconfig.server.json',
+  webpackConfigBasePath = __dirname,
+} = {}) {
+  const { paths } = require(tsconfigPath).compilerOptions;
+  const aliases = {};
+
+  Object.keys(paths).forEach((item) => {
+    const key = item.replace('/*', '');
+    const value = resolve(
+      webpackConfigBasePath,
+      paths[item][0].replace('/*', '').replace('*', '')
+    );
+    aliases[key] = value;
+  });
+
+  return aliases;
+}
 
 module.exports = {
-  typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
-    ignoreBuildErrors: true,
+  webpack(config, { dev }) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+    };
+
+    return config;
+  },
+  env: {
+    API: process.env.API,
   },
 };

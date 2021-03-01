@@ -1,0 +1,6 @@
+import { LAYOUT_WIDTH_DEFAULT, LAYOUT_WIDTH_SHRINK } from './sizes';
+
+export default {
+  LAYOUT_WIDTH_DEFAULT,
+  LAYOUT_WIDTH_SHRINK,
+};
