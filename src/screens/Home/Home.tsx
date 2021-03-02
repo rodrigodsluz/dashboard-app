@@ -31,10 +31,15 @@ import Graphic from './components/PieChart';
  * Responsável por montar a tela de escolha rcs ou mensagens
  */
 export const HomeScreen = (): JSX.Element => {
-  // const homeData = useContext(HomeDataContext);
+  const homeData = useContext(HomeDataContext);
 
-  // const runningData = () =>
-  //   homeData.filter((v) => v.status === 'RUNNING').length;
+  console.log(homeData);
+
+  const processStatus = (status: string) => {
+    return status === '24h'
+      ? 35
+      : homeData.filter((v) => v.status === status).length;
+  };
 
   return (
     <Container>
@@ -56,7 +61,7 @@ export const HomeScreen = (): JSX.Element => {
                   <CardStatus>Finalizados</CardStatus>
                 </CardHeader>
                 <CardBody>
-                  <h2>7</h2>
+                  <h2>{processStatus('FINISHED')}</h2>
                 </CardBody>
               </Card>
             </PanelCard>
@@ -66,7 +71,7 @@ export const HomeScreen = (): JSX.Element => {
                   <CardStatus>Executando</CardStatus>
                 </CardHeader>
                 <CardBody>
-                  <h2>5</h2>
+                  <h2>{processStatus('RUNNING')}</h2>
                 </CardBody>
               </Card>
             </PanelCard>
@@ -76,7 +81,7 @@ export const HomeScreen = (): JSX.Element => {
                   <CardStatus>Erros</CardStatus>
                 </CardHeader>
                 <CardBody>
-                  <h2>2</h2>
+                  <h2>{processStatus('ERROR')}</h2>
                 </CardBody>
               </Card>
             </PanelCard>
@@ -84,7 +89,10 @@ export const HomeScreen = (): JSX.Element => {
 
           <Alert severity="warning">
             <AlertTitle>Atenção</AlertTitle>
-            Existem <strong>13 processos executando</strong> a mais de 24 horas.
+            Existem <strong>
+              {processStatus('24h')} processos executando
+                    </strong>{' '}
+            a mais de 24 horas.
           </Alert>
         </TableContent>
 

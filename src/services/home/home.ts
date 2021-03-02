@@ -21,16 +21,15 @@ export async function get() {
 
   try {
     const { data } = await axios({ method: 'GET', ...options });
-
     return data.map(
-      ({ tenant, datamov, lote, produto, timer, sla, status }) => ({
+      ({ tenant, datamov, lote, produto, sla, status, timer_processing }) => ({
         tenant,
         datamov,
         lote,
         produto,
-        timer,
         sla,
         status,
+        timer_processing,
       })
     );
   } catch (error) {
