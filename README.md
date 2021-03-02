@@ -1,6 +1,6 @@
-# Demostração de Venda
+# Support App
 
-Aplicação feita para o time de vendas demostrar disparos de e-mail e sms para os clientes.
+Aplicação feita para o time de suporte.
 
 ## Como rodar o projeto
 
@@ -8,25 +8,25 @@ Aplicação feita para o time de vendas demostrar disparos de e-mail e sms para 
 2. Faça o clone do repositório:
 
 ```bash
-git clone https://directoneapp@dev.azure.com/directoneapp/Thanos/_git/directone.demo.sales.front
+git clone https://github.com/rodrigodsluz/support-app.git
 ```
 
 3. Acesse a pasta via terminal:
 
 ```bash
-cd directone.demo.sales.front
+cd support-app
 ```
 
 4. Instale as dependências:
 
 ```bash
-npm install
+yarn install
 ```
 
 5. Com as dependências instaladas agora e só rodar o comando:
 
 ```bash
-npm run dev
+yarn run dev
 ```
 
 Após rodar o comando acima abra o seu browser de preferência e acesse:
@@ -35,14 +35,3 @@ Após rodar o comando acima abra o seu browser de preferência e acesse:
 http://localhost:3000
 ```
 
-# Tarefas automatizadas
-
-Veja abaixo todas as tarefas automatizada utilizando npm [NPM scripts](https://docs.npmjs.com/misc/scripts).
-
-| **Tarefas**       | **Descrição**                                                                                               |
-| ----------------- | ----------------------------------------------------------------------------------------------------------- |
-| **npm run dev**   | Responsável por inicializar o servidor na porta **3000**.                                                   |
-| **npm run build** | Responsável por fazer o **next** compilar a aplicação.                                                      |
-| **npm run prod**  | Responsável por para testar a aplicação compilada pelo **next**, também inicializa o servidor na porta 3000 |
-| **npm start**     | Responsável por rodar a projeto após ele ter sido compilado pelo **next**.                                  |
-| **npm run lint**  | Responsável por verificar erros e padronizar o código.                                                      |
