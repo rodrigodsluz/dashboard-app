@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { CardHeader, CardBody, Typography, Spacing } from 'd1-components';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
+import moment from 'moment';
 import { HomeDataContext } from '../../context/HomeDataContext';
 
 import Sidebar from '../../components/Sidebar';
@@ -33,13 +34,19 @@ import Graphic from './components/PieChart';
 export const HomeScreen = (): JSX.Element => {
   const { homeData } = useContext(HomeDataContext);
 
-  console.log(homeData.graphic);
-
   const processStatus = (status: string) => {
     return status === '24h'
-      ? 35
+      ? homeData.processes.filter(
+          (v) => moment().diff(moment(v.timer_processing), 'days') >= 1
+        ).length
       : homeData.processes.filter((v) => v.status === status).length;
   };
+
+  console.log(
+    homeData.processes.filter(
+      (v) => moment().diff(moment(v.timer_processing), 'days') >= 1
+    )
+  );
 
   return (
     <Container>
