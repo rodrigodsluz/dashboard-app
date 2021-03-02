@@ -1,3 +1,3 @@
-import { get } from './home';
+import { getData, getGraphicData } from './home';
 
-export default { get };
+export default { getData, getGraphicData };

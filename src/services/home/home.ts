@@ -9,7 +9,7 @@ import axios from 'axios';
  * @description
  * Responsável por enviar os dados da comunicação.
  */
-export async function get() {
+export async function getData() {
   const token = localStorage.getItem('token');
 
   const options = {
@@ -32,6 +32,24 @@ export async function get() {
         timer_processing,
       })
     );
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function getGraphicData() {
+  const token = localStorage.getItem('token');
+
+  const options = {
+    url: `http://api.suporte.d1.cx/api/Home/PieChartSla`,
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const { data } = await axios({ method: 'GET', ...options });
+    return data;
   } catch (error) {
     return error;
   }

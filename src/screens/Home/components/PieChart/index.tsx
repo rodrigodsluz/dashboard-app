@@ -1,13 +1,9 @@
-import React, { PureComponent } from 'react';
-import {
- PieChart, Pie, Sector, Cell
-} from 'recharts';
+import React, { PureComponent, useState } from 'react';
+import { PieChart, Pie, Sector, Cell } from 'recharts';
 
-const data = [
+let data = [
   { name: 'Group A', value: 400 },
   { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
 ];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
@@ -39,10 +35,17 @@ const renderCustomizedLabel = ({
   );
 };
 
-export default class Graphic extends PureComponent {
+export default class Graphic extends PureComponent<Props> {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/c9pL8k61/';
 
   render() {
+    for (const x in this.props.data) {
+      data = [
+        { name: 'Group A', value: this.props.data[0] },
+        { name: 'Group B', value: this.props.data[1] },
+      ];
+    }
+
     return (
       <PieChart width={200} height={200}>
         <Pie

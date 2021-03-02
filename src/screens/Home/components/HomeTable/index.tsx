@@ -103,9 +103,9 @@ export default function StickyHeadTable() {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
-  const homeData = useContext(HomeDataContext);
+  const { homeData } = useContext(HomeDataContext);
 
-  const rows = homeData.map((d) =>
+  const rows = homeData.processes.map((d) =>
     createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
   );
 

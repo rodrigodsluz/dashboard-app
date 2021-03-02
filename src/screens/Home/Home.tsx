@@ -31,14 +31,14 @@ import Graphic from './components/PieChart';
  * Responsável por montar a tela de escolha rcs ou mensagens
  */
 export const HomeScreen = (): JSX.Element => {
-  const homeData = useContext(HomeDataContext);
+  const { homeData } = useContext(HomeDataContext);
 
-  console.log(homeData);
+  console.log(homeData.graphic);
 
   const processStatus = (status: string) => {
     return status === '24h'
       ? 35
-      : homeData.filter((v) => v.status === status).length;
+      : homeData.processes.filter((v) => v.status === status).length;
   };
 
   return (
@@ -102,23 +102,7 @@ export const HomeScreen = (): JSX.Element => {
               {' '}
               SLA em atraso
             </Typography>
-            <Graphic />
-          </GraphicWrapper>
-
-          <GraphicWrapper>
-            <Typography htmlTag="strong" fontSize="16px">
-              {' '}
-              SLA em atraso
-            </Typography>
-            <Graphic />
-          </GraphicWrapper>
-
-          <GraphicWrapper>
-            <Typography htmlTag="strong" fontSize="16px">
-              {' '}
-              SLA em atraso
-            </Typography>
-            <Graphic />
+            <Graphic data={homeData.graphic} />
           </GraphicWrapper>
         </GraphicContainer>
       </TableContainer>
