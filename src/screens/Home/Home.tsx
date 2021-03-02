@@ -31,10 +31,10 @@ import Graphic from './components/PieChart';
  * Responsável por montar a tela de escolha rcs ou mensagens
  */
 export const HomeScreen = (): JSX.Element => {
-  const homeData = useContext(HomeDataContext);
+  // const homeData = useContext(HomeDataContext);
 
-  const runningData = () =>
-    homeData.filter((v) => v.status === 'RUNNING').length;
+  // const runningData = () =>
+  //   homeData.filter((v) => v.status === 'RUNNING').length;
 
   return (
     <Container>
@@ -84,8 +84,7 @@ export const HomeScreen = (): JSX.Element => {
 
           <Alert severity="warning">
             <AlertTitle>Atenção</AlertTitle>
-            Existem <strong>{runningData()} processos executando</strong> a mais
-            de 24 horas.
+            Existem <strong>13 processos executando</strong> a mais de 24 horas.
           </Alert>
         </TableContent>
 

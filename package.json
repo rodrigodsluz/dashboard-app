@@ -7,7 +7,7 @@
     "build": "next build && tsc --project tsconfig.server.json",
     "build:next": "next build",
     "build:ts": "tsc --project tsconfig.server.json",
-    "dev": "cross-env API=development nodemon server/index.ts",
+    "dev": "cross-env API=development next dev",
     "prod": "node dist/server",
     "start": "pm2-runtime dist/server/index.js",
     "test": "jest --coverage",
