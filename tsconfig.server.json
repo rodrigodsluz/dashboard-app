@@ -1,0 +1,31 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "dist",
+    "target": "es6",
+    "isolatedModules": true,
+    "removeComments": true,
+    "noEmit": false,
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "paths": {
+      "@src/*": [
+        "./src/*"
+      ],
+      "@components/*": ["./src/components/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@configuration/*": [
+        "./src/configuration/*"
+      ],
+      "@screens/*": ["./src/screens/*"],
+      "@rcs/*": [
+        "./src/screens/Rcs/*"
+      ],
+      "@styles/*": ["./src/styles/*"],
+      "@services/*": ["./src/services/*"],
+      "@utils/*": ["./src/utils/*"],
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+}
