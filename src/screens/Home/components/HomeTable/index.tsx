@@ -107,9 +107,7 @@ export default function HomeTable({ data: { processes }, filter }) {
         createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
       );
 
-  /* const rows = processes.map((d) =>
-    createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
-  ); */
+  const modalTitle = rows.map((v) => v.tenant);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -168,7 +166,7 @@ export default function HomeTable({ data: { processes }, filter }) {
                 </>
               ))}
 
-            <Modal open={open} title="3">
+            <Modal open={open} title={modalTitle[index]}>
               {' '}
               {/* //rows[index].tenant */}
               <Container>
