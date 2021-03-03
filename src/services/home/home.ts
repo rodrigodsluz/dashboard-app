@@ -21,15 +21,26 @@ export async function getData() {
 
   try {
     const { data } = await axios({ method: 'GET', ...options });
+    // console.log(data);
     return data.map(
-      ({ tenant, datamov, lote, produto, sla, status, timer_processing }) => ({
+      ({
         tenant,
         datamov,
         lote,
         produto,
         sla,
         status,
-        timer_processing,
+        logger_ini,
+        logger_fim,
+      }) => ({
+        tenant,
+        datamov,
+        lote,
+        produto,
+        sla,
+        status,
+        logger_ini,
+        logger_fim,
       })
     );
   } catch (error) {
@@ -42,6 +53,24 @@ export async function getGraphicData() {
 
   const options = {
     url: `http://api.suporte.d1.cx/api/Home/PieChartSla`,
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const { data } = await axios({ method: 'GET', ...options });
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function getStoppedMovementsAmount() {
+  const token = localStorage.getItem('token');
+
+  const options = {
+    url: `http://api.suporte.d1.cx/api/Home/StoppedCount`,
     headers: {
       authorization: `Bearer ${token}`,
     },

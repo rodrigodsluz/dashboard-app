@@ -35,18 +35,10 @@ export const HomeScreen = (): JSX.Element => {
   const { homeData } = useContext(HomeDataContext);
 
   const processStatus = (status: string) => {
-    return status === '24h'
-      ? homeData.processes.filter(
-          (v) => moment().diff(moment(v.timer_processing), 'days') >= 1
-        ).length
+    return status === 'STOPPED_MOVEMENTS'
+      ? homeData.stoppedAmount
       : homeData.processes.filter((v) => v.status === status).length;
   };
-
-  console.log(
-    homeData.processes.filter(
-      (v) => moment().diff(moment(v.timer_processing), 'days') >= 1
-    )
-  );
 
   return (
     <Container>
@@ -96,9 +88,10 @@ export const HomeScreen = (): JSX.Element => {
 
           <Alert severity="warning">
             <AlertTitle>Atenção</AlertTitle>
-            Existem <strong>
-              {processStatus('24h')} processos executando
-                    </strong>{' '}
+            Existem{' '}
+            <strong>
+              {processStatus('STOPPED_MOVEMENTS')} processos executando
+            </strong>{' '}
             a mais de 24 horas.
           </Alert>
         </TableContent>

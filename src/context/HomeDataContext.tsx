@@ -7,6 +7,7 @@ const HomeDataContextProvider = ({ children }) => {
   const [homeData, setHomeData] = useState({
     processes: [],
     graphic: [],
+    stoppedAmount: 0,
   });
 
   useEffect(() => {
@@ -14,6 +15,7 @@ const HomeDataContextProvider = ({ children }) => {
       setHomeData({
         processes: await Services.home.getData(),
         graphic: await Services.home.getGraphicData(),
+        stoppedAmount: await Services.home.getStoppedMovementsAmount(),
       });
     };
     fetchAPI();
