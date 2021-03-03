@@ -65,7 +65,8 @@ export const PanelCard = styled.div`
   }
 `;
 
-export const Card = styled.div<Props>`
+export const Card = styled.button<Props>`
+  cursor: pointer;
   padding: 10px;
   border-radius: 7px;
   border: none;

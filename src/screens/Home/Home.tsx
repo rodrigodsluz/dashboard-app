@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { CardHeader, CardBody, Typography, Spacing } from 'd1-components';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
-import moment from 'moment';
 import { HomeDataContext } from '../../context/HomeDataContext';
 
 import Sidebar from '../../components/Sidebar';
@@ -20,8 +19,9 @@ import {
   GraphicWrapper,
 } from './styled';
 
-import StickyHeadTable from './components/HomeTable';
+import HomeTable from './components/HomeTable';
 import Graphic from './components/PieChart';
+import { set } from 'js-cookie';
 
 /**
  * @export
@@ -34,10 +34,16 @@ import Graphic from './components/PieChart';
 export const HomeScreen = (): JSX.Element => {
   const { homeData } = useContext(HomeDataContext);
 
+  const [filter, setFilter] = useState(false);
+
   const processStatus = (status: string) => {
     return status === 'STOPPED_MOVEMENTS'
       ? homeData.stoppedAmount
       : homeData.processes.filter((v) => v.status === status).length;
+  };
+
+  const handleClick = () => {
+    setFilter(!filter)
   };
 
   return (
@@ -51,11 +57,11 @@ export const HomeScreen = (): JSX.Element => {
           </Typography>
           <Spacing vertical="10px" />
 
-          <StickyHeadTable />
+          <HomeTable data={homeData} isFilter={filter} />
 
           <CardContainer>
             <PanelCard>
-              <Card status="finalizados">
+              <Card onClick={handleClick} status="finalizados">
                 <CardHeader>
                   <CardStatus>Finalizados</CardStatus>
                 </CardHeader>

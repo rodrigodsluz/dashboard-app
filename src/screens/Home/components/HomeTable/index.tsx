@@ -8,17 +8,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Modal, OutlineButton } from 'd1-components';
-import {
-  ChangeEvent,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
-import { HomeDataContext } from '../../../../context/HomeDataContext';
 import TabsPanel from '../TabsPanel';
 
 import { Container } from './style';
+import { useState } from 'react';
 
 interface Column {
   id: 'tenant' | 'DataMov' | 'Lote' | 'Produto' | 'Timer' | 'Status';
@@ -90,24 +83,32 @@ function createData(
 const useStyles = makeStyles({
   root: {
     width: '100%',
+    cursor: 'pointer',
   },
   container: {
     height: '55vh',
   },
 });
 
-export default function StickyHeadTable() {
+export default function HomeTable({ data: { processes }, isFilter }) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
-  const { homeData } = useContext(HomeDataContext);
+  const filteredData = processes.filter((v) => v.status === 'RUNNING')
 
-  const rows = homeData.processes.map((d) =>
+  console.log(isFilter)
+
+  const rows = isFilter ? filteredData.map((d) =>
     createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
-  );
+  ) : processes.map((d) =>
+  createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status));
+
+  /* const rows = processes.map((d) =>
+    createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
+  ); */
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -166,7 +167,7 @@ export default function StickyHeadTable() {
                 </>
               ))}
 
-            <Modal open={open} title="eae">
+            <Modal open={open} title='3'>
               {' '}
               {/* //rows[index].tenant */}
               <Container>

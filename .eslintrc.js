@@ -59,5 +59,6 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'react/require-default-props': 'off',
     'no-param-reassign': 'off',
+    'react/react-in-jsx-scope'
   },
 };
