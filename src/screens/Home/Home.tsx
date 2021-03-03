@@ -34,7 +34,10 @@ import { set } from 'js-cookie';
 export const HomeScreen = (): JSX.Element => {
   const { homeData } = useContext(HomeDataContext);
 
-  const [filter, setFilter] = useState(false);
+  const [filterStatus, setFilterStatus] = useState({
+    isFilter: false,
+    status: '',
+  });
 
   const processStatus = (status: string) => {
     return status === 'STOPPED_MOVEMENTS'
@@ -42,8 +45,11 @@ export const HomeScreen = (): JSX.Element => {
       : homeData.processes.filter((v) => v.status === status).length;
   };
 
-  const handleClick = () => {
-    setFilter(!filter)
+  const handleClick = param => () => {
+    setFilterStatus({
+      isFilter: true,
+      status: param,
+    })
   };
 
   return (
@@ -57,11 +63,11 @@ export const HomeScreen = (): JSX.Element => {
           </Typography>
           <Spacing vertical="10px" />
 
-          <HomeTable data={homeData} isFilter={filter} />
+          <HomeTable data={homeData} filter={filterStatus} />
 
           <CardContainer>
             <PanelCard>
-              <Card onClick={handleClick} status="finalizados">
+              <Card onClick={handleClick('FINISHED')} status="finalizados">
                 <CardHeader>
                   <CardStatus>Finalizados</CardStatus>
                 </CardHeader>
@@ -71,7 +77,7 @@ export const HomeScreen = (): JSX.Element => {
               </Card>
             </PanelCard>
             <PanelCard>
-              <Card status="executando">
+              <Card onClick={handleClick('RUNNING')} status="executando">
                 <CardHeader>
                   <CardStatus>Executando</CardStatus>
                 </CardHeader>
@@ -81,7 +87,7 @@ export const HomeScreen = (): JSX.Element => {
               </Card>
             </PanelCard>
             <PanelCard>
-              <Card status="erros">
+              <Card onClick={handleClick('ERROR')} status="erros">
                 <CardHeader>
                   <CardStatus>Erros</CardStatus>
                 </CardHeader>

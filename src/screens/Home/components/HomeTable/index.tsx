@@ -90,21 +90,22 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HomeTable({ data: { processes }, isFilter }) {
+export default function HomeTable({ data: { processes }, filter }) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
-  const filteredData = processes.filter((v) => v.status === 'RUNNING')
+  const filteredData = processes.filter((v) => v.status === filter.status);
 
-  console.log(isFilter)
-
-  const rows = isFilter ? filteredData.map((d) =>
-    createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
-  ) : processes.map((d) =>
-  createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status));
+  const rows = filter.isFilter
+    ? filteredData.map((d) =>
+        createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
+      )
+    : processes.map((d) =>
+        createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
+      );
 
   /* const rows = processes.map((d) =>
     createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
@@ -167,7 +168,7 @@ export default function HomeTable({ data: { processes }, isFilter }) {
                 </>
               ))}
 
-            <Modal open={open} title='3'>
+            <Modal open={open} title="3">
               {' '}
               {/* //rows[index].tenant */}
               <Container>
