@@ -167,7 +167,7 @@ export default function HomeTable({ data: { processes }, filter }) {
               ))}
             <Modal open={open} title={modalTitle[index]}>
               <Container>
-                <TabsPanel />
+                <TabsPanel data={processes[index]} />
                 <OutlineButton
                   secondary
                   handleClick={() => {}}

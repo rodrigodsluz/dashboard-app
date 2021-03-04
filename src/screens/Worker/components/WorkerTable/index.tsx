@@ -299,10 +299,6 @@ export default function StickyHeadTable() {
     setPage(0);
   };
 
-  /*  useEffect(() => {
-    console.log(rows[index]);
-  }, [index]); */
-
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>

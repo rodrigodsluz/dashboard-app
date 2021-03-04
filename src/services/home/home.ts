@@ -21,7 +21,7 @@ export async function getData() {
 
   try {
     const { data } = await axios({ method: 'GET', ...options });
-    // console.log(data);
+    //console.log(data);
     return data.map(
       ({
         tenant,
@@ -30,8 +30,24 @@ export async function getData() {
         produto,
         sla,
         status,
+        timer_processing,
         logger_ini,
         logger_fim,
+        run_timer,
+        hierarquia,
+        action,
+        steps,
+        arquivo_job,
+        steps_serie,
+        step_start_end,
+        descricao,
+        memory_free,
+        memory_total,
+        ip,
+        host,
+        link,
+        obs,
+        log
       }) => ({
         tenant,
         datamov,
@@ -39,8 +55,24 @@ export async function getData() {
         produto,
         sla,
         status,
+        timer_processing,
         logger_ini,
         logger_fim,
+        run_timer,
+        hierarquia,
+        action,
+        steps,
+        arquivo_job,
+        steps_serie,
+        step_start_end,
+        descricao,
+        memory_free,
+        memory_total,
+        ip,
+        host,
+        link,
+        obs,
+        log
       })
     );
   } catch (error) {

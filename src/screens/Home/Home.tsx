@@ -61,7 +61,6 @@ const TooltipArrow = withStyles((theme: Theme) => ({
 export const HomeScreen = (): JSX.Element => {
   const { homeData } = useContext(HomeDataContext);
   const [open, setOpen] = useState(false);
-
   const [filterStatus, setFilterStatus] = useState({
     isFilter: false,
     status: '',
@@ -69,7 +68,7 @@ export const HomeScreen = (): JSX.Element => {
 
   ////////////////////////
   const processesStatus = homeData.processes.map((v) => v.status);
-  console.log(processesStatus);
+  //console.log(processesStatus);
 
   const processStatus = (status: string) => {
     return status === 'STOPPED_MOVEMENTS'

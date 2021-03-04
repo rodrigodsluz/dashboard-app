@@ -59,20 +59,22 @@ function a11yProps(index: any) {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
-    width: '100%',
+    width: '830px',
     height: '430px',
     backgroundColor: theme.palette.background.paper,
     alignSelf: 'center',
   },
 }));
 
-export default function TabsPanel() {
+export default function TabsPanel({ data }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
+
+  console.log(data)
 
   return (
     <div className={classes.root}>
@@ -105,10 +107,10 @@ export default function TabsPanel() {
 
         <Typography>TENANT <TooltipArrow title="Conjuntos de campos para identificação de um processamento!" placement="right" arrow><Info>!</Info></TooltipArrow> </Typography>
 
-          <RowContent>Tenant: PREVENTSENIOR</RowContent>
-          <RowContent>Datamov: 03022021</RowContent>
-          <RowContent>Lote: 00348</RowContent>
-          <RowContent>Produto: PREVENTSENIOR</RowContent>
+          <RowContent>Tenant: {data.tenant}</RowContent>
+          <RowContent>Datamov: {data.datamov}</RowContent>
+          <RowContent>Lote: {data.lote}</RowContent>
+          <RowContent>Produto: {data.produto}</RowContent>
         </RowCategory>
 
         <RowCategory>
@@ -122,10 +124,10 @@ export default function TabsPanel() {
         </div>}
 
          placement="right" arrow><Info>!</Info></TooltipArrow> </Typography>
-          <RowContent>Processamento: 2021/02/03 10:01:53.554</RowContent>
-          <RowContent>Logger: 03/02/2021 11:13:18</RowContent>
-          <RowContent>Sla: 6(hh)</RowContent>
-          <RowContent>Tempo de processamento: 1(hh)</RowContent>
+          <RowContent>Processamento: {data.timer_processing}</RowContent>
+          <RowContent>Logger: {data.logger_ini}</RowContent>
+          <RowContent>Sla: {data.sla}</RowContent>
+          <RowContent>Tempo de processamento: {data.run_timer}</RowContent>
         </RowCategory>
 
         <RowCategory>
@@ -139,23 +141,23 @@ export default function TabsPanel() {
 
         placement="right" arrow><Info>!</Info></TooltipArrow> </Typography>
 
-          <RowContent>Hierarquia: OMEGA</RowContent>
-          <RowContent>Açao: END</RowContent>
-          <RowContent>Status: FINISHED</RowContent>
+          <RowContent>Hierarquia: {data.hierarquia}</RowContent>
+          <RowContent>Açao: {data.action}</RowContent>
+          <RowContent>Status: {data.status}</RowContent>
         </RowCategory>
 
         <RowCategory>
 
         <Typography>FLUXO <TooltipArrow title="Step(s) Já foram concluidos!" placement="right" arrow><Info>!</Info></TooltipArrow> </Typography>
 
-          <RowContent>Fluxo: ->ETL -> Update_VUC -> DISPAROS -> EMAIL_BOOT</RowContent>
+          <RowContent>Fluxo: {data.steps}</RowContent>
         </RowCategory>
 
         <RowCategory>
 
         <Typography>JOB / TRANSFORMAÇÃO <TooltipArrow title="Arquivo: são redes de tarefas lógicas essenciais para a trasformação do fluxo de dados" placement="right" arrow><Info>!</Info></TooltipArrow> </Typography>
 
-          <RowContent>Arquivo: PREVENTSENIOR_JOB_START_P1.kjb</RowContent>
+          <RowContent>Arquivo: {data.arquivo_job}</RowContent>
         </RowCategory>
 
         <RowCategory>
@@ -171,27 +173,27 @@ export default function TabsPanel() {
 
        placement="right" arrow><Info>!</Info></TooltipArrow> </Typography>
 
-          <RowContent>Anterior: DISPAROS</RowContent>
-          <RowContent>Atual: EMAIL_BOOT</RowContent>
-          <RowContent>data inicial: 03/02/2021 11:13:18</RowContent>
-          <RowContent>data final: 03/02/2021 11:13:22</RowContent>
-          <RowContent>Descrição: Email de Acompanhamento de Produção</RowContent>
+          <RowContent>Anterior: {data.steps_serie[0].Anterior}</RowContent>
+          <RowContent>Atual: {data.steps_serie[0].Seguinte}</RowContent>
+          <RowContent>data inicial: {data.step_start_end[0].StepStart}</RowContent>
+          <RowContent>data final: {data.step_start_end[0].StepEnd}</RowContent>
+          <RowContent>Descrição: {data.descricao}</RowContent>
         </RowCategory>
 
 
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <RowContent>Memoria total: 16.0 GiB -</RowContent>
-        <RowContent>Memoria livre: 12.6 GiB</RowContent>
-        <RowContent>Máquina: ccm-vm-template</RowContent>
-        <RowContent>IP: 172.17.25.67</RowContent>
+      <RowContent>Memoria total: {data.memory_total}</RowContent>
+        <RowContent>Memoria livre: {data.memory_free}</RowContent>
+        <RowContent>Máquina: {data.host}</RowContent>
+        <RowContent>IP:{data.ip}</RowContent>
       </TabPanel>
       <TabPanel value={value} index={2}>
-      <RowContent>Link: -</RowContent>
-        <RowContent>Comentário: -</RowContent>
+      <RowContent>Link: {data.link}</RowContent>
+        <RowContent>Comentário: {data.obs}</RowContent>
       </TabPanel>
       <TabPanel value={value} index={3}>
-      <RowContent>-</RowContent>
+      <RowContent>Erro: {data.log}</RowContent>
 
       </TabPanel>
 
