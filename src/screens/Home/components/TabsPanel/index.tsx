@@ -60,11 +60,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
     width: '100%',
+    height: '430px',
     backgroundColor: theme.palette.background.paper,
+    alignSelf: 'center',
   },
 }));
 
-export default function ScrollableTabsButtonAuto() {
+export default function TabsPanel() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -75,7 +77,7 @@ export default function ScrollableTabsButtonAuto() {
   return (
     <div className={classes.root}>
       <AppBar
-        position="static"
+        position="sticky"
         style={{
           background: '#1a1731',
           color: '#fff',

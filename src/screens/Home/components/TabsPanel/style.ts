@@ -5,7 +5,7 @@ export const RowCategory = styled.div`
 `;
 
 export const TabPanelContainer = styled.div`
-  height: 60vh;
+  height: 50vh;
   overflow-y: scroll;
 
   @media screen and (max-width: 376px) {

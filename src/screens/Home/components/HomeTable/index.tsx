@@ -165,10 +165,7 @@ export default function HomeTable({ data: { processes }, filter }) {
                   </TableRow>
                 </>
               ))}
-
             <Modal open={open} title={modalTitle[index]}>
-              {' '}
-              {/* //rows[index].tenant */}
               <Container>
                 <TabsPanel />
                 <OutlineButton
@@ -178,9 +175,7 @@ export default function HomeTable({ data: { processes }, filter }) {
                 >
                   Fechar
                 </OutlineButton>
-                {/* <span>Timer: {rows[index].Timer.toFixed(2)}</span>
-                <span>Timer: {rows[index].Timer.toFixed(2)}</span>
-                <span>Timer: {rows[index].Timer.toFixed(2)}</span> */}
+
               </Container>
             </Modal>
           </TableBody>
