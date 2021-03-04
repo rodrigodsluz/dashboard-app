@@ -90,7 +90,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HomeTable({ data: { processes }, filter }) {
+export default function StoppedMovementsTable({ data: { processes }, filter }) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);

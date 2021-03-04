@@ -14,7 +14,6 @@ import { HomeDataContext } from '../../context/HomeDataContext';
 
 import Sidebar from '../../components/Sidebar';
 import { Theme, withStyles } from '@material-ui/core/styles';
-import TabsPanel from './components/TabsPanel';
 
 import {
   Container,
@@ -32,6 +31,7 @@ import {
 } from './styled';
 
 import HomeTable from './components/HomeTable';
+import StoppedMovementsTable from './components/StoppedMovementsTable';
 import Graphic from './components/PieChart';
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -146,9 +146,19 @@ export const HomeScreen = (): JSX.Element => {
                 <Info>!</Info>
               </TooltipArrow>
             </InfoBtn>
-            <Modal open={open} title="eae">
+            <Modal open={open} title="Relatório para conferência">
+              <Typography htmlTag="p" fontSize="13px">
+                Segue abaixo informações do(s) movimento(s) que precisam da sua
+                atenção!
+              </Typography>
+
+              <Typography htmlTag="p" fontSize="13px">
+                Caso esses movimentos já estejam finalizados, por favor executar
+                o comando de conclusão!
+              </Typography>
+
               <ModalContainer>
-                <TabsPanel />
+                <StoppedMovementsTable data={homeData} filter={filterStatus} />
                 <OutlineButton
                   secondary
                   handleClick={() => {}}
