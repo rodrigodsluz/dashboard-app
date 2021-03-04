@@ -63,6 +63,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: '430px',
     backgroundColor: theme.palette.background.paper,
     alignSelf: 'center',
+    ['@media (max-width:780px)']: {
+      width: '40vh',
+    }
   },
 }));
 

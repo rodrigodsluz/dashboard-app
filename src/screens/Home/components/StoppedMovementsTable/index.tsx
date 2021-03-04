@@ -7,14 +7,17 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import { Modal, OutlineButton } from 'd1-components';
-import TabsPanel from '../TabsPanel';
-
-import { Container } from './style';
 import { useState } from 'react';
 
 interface Column {
-  id: 'tenant' | 'DataMov' | 'Lote' | 'Produto' | 'Timer' | 'Status';
+  id:
+    | 'time'
+    | 'tenant'
+    | 'datamov'
+    | 'lot'
+    | 'status'
+    | 'step'
+    | 'data_processamento';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -22,92 +25,90 @@ interface Column {
 }
 
 const columns: Column[] = [
-  { id: 'tenant', label: 'Tenant', minWidth: 170 },
-  { id: 'DataMov', label: 'DataMov', minWidth: 100 },
+  { id: 'time', label: 'Time', minWidth: 170 },
+  { id: 'tenant', label: 'Tenant', minWidth: 100 },
   {
-    id: 'Lote',
-    label: 'Lote',
+    id: 'datamov',
+    label: 'Datamov',
     minWidth: 170,
     align: 'right',
     format: (value: number) => value.toLocaleString('en-US'),
   },
   {
-    id: 'Produto',
-    label: 'Produto\u00a0(km\u00b2)',
+    id: 'lot',
+    label: 'Lot',
     minWidth: 170,
     align: 'right',
     format: (value: number) => value.toLocaleString('en-US'),
   },
   {
-    id: 'Timer',
-    label: 'Timer',
+    id: 'status',
+    label: 'Status',
     minWidth: 170,
     align: 'right',
     format: (value: number) => value.toFixed(2),
   },
   {
-    id: 'Status',
-    label: 'Status',
+    id: 'step',
+    label: 'Step',
+    minWidth: 170,
+    align: 'right',
+  },
+  {
+    id: 'data_processamento',
+    label: 'Data Processamento',
     minWidth: 170,
     align: 'right',
   },
 ];
 
 interface Data {
+  time: string;
   tenant: string;
-  DataMov: string;
-  Lote: number;
-  Produto: number;
-  Timer: number;
-  Status: string;
+  datamov: number;
+  lot: number;
+  status: string;
+  step: string;
+  data_processamento: string;
 }
 
 function createData(
+  time: string,
   tenant: string,
-  DataMov: string,
-  Lote: number,
-  Produto: number,
-  Timer: number,
-  Status: string
+  datamov: number,
+  lot: number,
+  status: string,
+  step: string,
+  data_processamento: string
 ): Data {
   return {
+    time,
     tenant,
-    DataMov,
-    Lote,
-    Produto,
-    Timer,
-    Status,
+    datamov,
+    lot,
+    status,
+    step,
+    data_processamento,
   };
 }
 
 const useStyles = makeStyles({
   root: {
     width: '100%',
-    cursor: 'pointer',
   },
   container: {
-    height: '55vh',
+    height: '44vh',
   },
 });
 
-export default function StoppedMovementsTable({ data: { processes }, filter }) {
+export default function StoppedMovementsTable({ data: { stoppedMovements } }) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);
-  const [open, setOpen] = useState(false);
-  const [index, setIndex] = useState(0);
 
-  const filteredData = processes.filter((v) => v.status === filter.status);
-
-  const rows = filter.isFilter
-    ? filteredData.map((d) =>
-        createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
-      )
-    : processes.map((d) =>
-        createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
-      );
-
-  const modalTitle = rows.map((v) => v.tenant);
+  const rows = stoppedMovements.map((d) =>
+    createData(d.created, d.tenant, d.datamov, d.lote, d.status, d.step, d.timer_processing)
+  );
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -143,10 +144,6 @@ export default function StoppedMovementsTable({ data: { processes }, filter }) {
               .map((row, i) => (
                 <>
                   <TableRow
-                    onClick={() => {
-                      setOpen(true);
-                      setIndex(i);
-                    }}
                     hover
                     role="checkbox"
                     tabIndex={-1}
@@ -165,19 +162,6 @@ export default function StoppedMovementsTable({ data: { processes }, filter }) {
                   </TableRow>
                 </>
               ))}
-            <Modal open={open} title={modalTitle[index]}>
-              <Container>
-                <TabsPanel />
-                <OutlineButton
-                  secondary
-                  handleClick={() => {}}
-                  onClick={() => setOpen(false)}
-                >
-                  Fechar
-                </OutlineButton>
-
-              </Container>
-            </Modal>
           </TableBody>
         </Table>
       </TableContainer>

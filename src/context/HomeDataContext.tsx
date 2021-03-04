@@ -8,14 +8,16 @@ const HomeDataContextProvider = ({ children }) => {
     processes: [],
     graphic: [],
     stoppedAmount: 0,
+    stoppedMovements: []
   });
 
   useEffect(() => {
     const fetchAPI = async () => {
       setHomeData({
-        processes: await Services.home.getData(),
+        processes: await Services.home.getProcesses(),
         graphic: await Services.home.getGraphicData(),
         stoppedAmount: await Services.home.getStoppedMovementsAmount(),
+        stoppedMovements: await Services.home.getStoppedMovements(),
       });
     };
     fetchAPI();

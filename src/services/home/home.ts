@@ -9,7 +9,7 @@ import axios from 'axios';
  * @description
  * Responsável por enviar os dados da comunicação.
  */
-export async function getData() {
+export async function getProcesses() {
   const token = localStorage.getItem('token');
 
   const options = {
@@ -111,6 +111,42 @@ export async function getStoppedMovementsAmount() {
   try {
     const { data } = await axios({ method: 'GET', ...options });
     return data;
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function getStoppedMovements() {
+  const token = localStorage.getItem('token');
+
+  const options = {
+    url: `http://api.suporte.d1.cx/api/Home/StoppedMovements`,
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const { data } = await axios({ method: 'GET', ...options });
+    return data.map(
+      ({
+        created,
+        tenant,
+        datamov,
+        lote,
+        status,
+        step,
+        timer_processing
+      }) => ({
+        created,
+        tenant,
+        datamov,
+        lote,
+        status,
+        step,
+        timer_processing
+      })
+    );
   } catch (error) {
     return error;
   }

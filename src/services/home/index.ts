@@ -1,3 +1,3 @@
-import { getData, getGraphicData, getStoppedMovementsAmount } from './home';
+import { getProcesses, getGraphicData, getStoppedMovementsAmount, getStoppedMovements } from './home';
 
-export default { getData, getGraphicData, getStoppedMovementsAmount };
+export default { getProcesses, getGraphicData, getStoppedMovementsAmount, getStoppedMovements };
