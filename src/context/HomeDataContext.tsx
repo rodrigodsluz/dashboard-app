@@ -8,7 +8,8 @@ const HomeDataContextProvider = ({ children }) => {
     processes: [],
     graphic: [],
     stoppedAmount: 0,
-    stoppedMovements: []
+    stoppedMovements: [],
+    btnNotification: []
   });
 
   useEffect(() => {
@@ -18,6 +19,7 @@ const HomeDataContextProvider = ({ children }) => {
         graphic: await Services.home.getGraphicData(),
         stoppedAmount: await Services.home.getStoppedMovementsAmount(),
         stoppedMovements: await Services.home.getStoppedMovements(),
+        btnNotification: await Services.home.getBtnNotification()
       });
     };
     fetchAPI();

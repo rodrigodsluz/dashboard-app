@@ -137,48 +137,48 @@ export default function HomeTable({ data: { processes }, filter }) {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, i) => (
-                <>
-                  <TableRow
-                    onClick={() => {
-                      setOpen(true);
-                      setIndex(i);
-                    }}
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={row.DataMov}
-                  >
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                </>
-              ))}
-            <Modal open={open} title={modalTitle[index]}>
-              <Container>
-                <TabsPanel data={processes[index]} />
-                <OutlineButton
-                  secondary
-                  handleClick={() => {}}
-                  onClick={() => setOpen(false)}
-                >
-                  Fechar
-                </OutlineButton>
+            <TableBody>
+              {rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row, i) => (
+                  <>
+                    <TableRow
+                      onClick={() => {
+                        setOpen(true);
+                        setIndex(i);
+                      }}
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.DataMov}
+                    >
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  </>
+                ))}
 
-              </Container>
-            </Modal>
-          </TableBody>
+              <Modal open={open} title={modalTitle[index]}>
+                <Container>
+                  <TabsPanel data={processes[index]} />
+                  <OutlineButton
+                    secondary
+                    handleClick={() => {}}
+                    onClick={() => setOpen(false)}
+                  >
+                    Fechar
+                  </OutlineButton>
+                </Container>
+              </Modal>
+            </TableBody>
         </Table>
       </TableContainer>
       <TablePagination

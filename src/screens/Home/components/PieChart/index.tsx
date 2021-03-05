@@ -2,8 +2,8 @@ import React, { PureComponent, useState } from 'react';
 import { PieChart, Pie, Sector, Cell } from 'recharts';
 
 let data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
+  { name: 'Group A', value: 0 },
+  { name: 'Group B', value: 0 },
 ];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];

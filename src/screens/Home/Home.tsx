@@ -35,6 +35,7 @@ import StoppedMovementsTable from './components/StoppedMovementsTable';
 import Graphic from './components/PieChart';
 import Tooltip from '@material-ui/core/Tooltip';
 
+
 /**
  * @export
  * @component
@@ -66,17 +67,6 @@ export const HomeScreen = (): JSX.Element => {
     status: '',
   });
 
-  ////////////////////////
-  const processesStatus = homeData.processes.map((v) => v.status);
-  //console.log(processesStatus);
-
-  const processStatus = (status: string) => {
-    return status === 'STOPPED_MOVEMENTS'
-      ? homeData.stoppedAmount
-      : processesStatus.filter((st) => st === status).length;
-  };
-  ////////////////////////////////////////////////////////////////
-
   const handleClick = (param) => () => {
     setFilterStatus({
       isFilter: true,
@@ -104,7 +94,7 @@ export const HomeScreen = (): JSX.Element => {
                   <CardStatus>Finalizados</CardStatus>
                 </CardHeader>
                 <CardBody>
-                  <h2>{processStatus('FINISHED')}</h2>
+                  <h2>{homeData.btnNotification[2]}</h2>
                 </CardBody>
               </Card>
             </PanelCard>
@@ -114,7 +104,7 @@ export const HomeScreen = (): JSX.Element => {
                   <CardStatus>Executando</CardStatus>
                 </CardHeader>
                 <CardBody>
-                  <h2>{processStatus('RUNNING')}</h2>
+                  <h2>{homeData.btnNotification[1]}</h2>
                 </CardBody>
               </Card>
             </PanelCard>
@@ -124,7 +114,7 @@ export const HomeScreen = (): JSX.Element => {
                   <CardStatus>Erros</CardStatus>
                 </CardHeader>
                 <CardBody>
-                  <h2>{processStatus('ERROR')}</h2>
+                  <h2>{homeData.btnNotification[0]}</h2>
                 </CardBody>
               </Card>
             </PanelCard>
@@ -134,7 +124,7 @@ export const HomeScreen = (): JSX.Element => {
             <AlertTitle>Atenção</AlertTitle>
             Existe(m){' '}
             <strong>
-              {processStatus('STOPPED_MOVEMENTS')} processos executando
+              {homeData.stoppedAmount} processos executando
             </strong>{' '}
             processamento(s) com mais de 24hs.{' '}
             <InfoBtn onClick={() => setOpen(!open)}>
@@ -158,7 +148,7 @@ export const HomeScreen = (): JSX.Element => {
               </Typography>
 
               <ModalContainer>
-                <StoppedMovementsTable data={homeData} filter={filterStatus} />
+                <StoppedMovementsTable data={homeData} />
                 <OutlineButton
                   secondary
                   handleClick={() => {}}

@@ -151,3 +151,21 @@ export async function getStoppedMovements() {
     return error;
   }
 }
+
+export async function getBtnNotification() {
+  const token = localStorage.getItem('token');
+
+  const options = {
+    url: `http://api.suporte.d1.cx/api/Home/BtnNotification`,
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const { data } = await axios({ method: 'GET', ...options });
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
