@@ -36,7 +36,6 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-input-mask": "2.0.4",
-    "react-recaptcha-v3": "2.0.1",
     "recharts": "^2.0.8",
     "recoil": "0.1.2",
     "request": "2.88.0",

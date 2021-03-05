@@ -19,7 +19,6 @@ type UseFormLoginTypes = {
   setErrorPassword: (value: boolean) => void;
   setErrorLogin: (value: boolean) => void;
 
-  verifyCallback: (value: string) => void;
   handleCloseNotification: (event: MouseEvent) => void;
   handleResetForm: (event: MouseEvent) => void;
   handleFormLogin: (event: ChangeEvent<HTMLFormElement>) => void;
@@ -43,19 +42,6 @@ const useFormLogin = (): UseFormLoginTypes => {
   const [errorPassword, setErrorPassword] = useState<boolean>(false);
   const [disableButtons, setDisableButtons] = useState<boolean>(false);
   const [loadingButton, setLoadingButtons] = useState<boolean>(false);
-  const [tokenRecaptcha, setTokenRecaptcha] = useState('');
-
-  /**
-   * @async
-   * @function
-   * @name verifyCallback
-   *
-   * @description
-   * Função responsável por setar o token do reCaptcha no estado
-   */
-  const verifyCallback = (recaptchaToken: string) => {
-    setTokenRecaptcha(recaptchaToken);
-  };
 
   /**
    * @function
@@ -102,7 +88,6 @@ const useFormLogin = (): UseFormLoginTypes => {
       const response = await Services.login.authentication({
         login: email,
         password,
-        recaptcha: tokenRecaptcha,
       });
       if (response.error) {
         setOpenNotification(true);
@@ -168,7 +153,6 @@ const useFormLogin = (): UseFormLoginTypes => {
     errorPassword,
     disableButtons,
     loadingButton,
-    verifyCallback,
     handleCloseNotification,
     handleFormLogin,
     handleChangePassword,

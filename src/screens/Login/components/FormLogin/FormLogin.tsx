@@ -1,5 +1,4 @@
 import React, { useEffect, createRef } from 'react';
-import { loadReCaptcha, ReCaptcha } from 'react-recaptcha-v3';
 import {
   FlexContent,
   Input,
@@ -9,7 +8,6 @@ import {
 } from 'd1-components';
 
 import Notification from '@components/Notification';
-import { RECAPTCHA_SITE_KEY } from '@configuration/recaptchaKey';
 
 import { ButtonSpacingStyled } from './styled';
 import useFormLogin from './useFormLogin';
@@ -39,16 +37,11 @@ export const FormLogin = () => {
     disableButtons,
     handleResetForm,
     loadingButton,
-    verifyCallback,
   } = useFormLogin();
   /**
    * @todo
    * Temporario
    */
-  const captchaRef: any = createRef();
-  useEffect(() => {
-    loadReCaptcha(RECAPTCHA_SITE_KEY);
-  }, []);
 
   return (
     <form onSubmit={handleFormLogin}>
@@ -103,14 +96,6 @@ export const FormLogin = () => {
           </OutlineButton>
         </ButtonSpacingStyled>
       </FlexContent>
-      <ReCaptcha
-        ref={(ref) => {
-          captchaRef.current = ref;
-        }}
-        sitekey={RECAPTCHA_SITE_KEY}
-        action="submit"
-        verifyCallback={verifyCallback}
-      />
     </form>
   );
 };
