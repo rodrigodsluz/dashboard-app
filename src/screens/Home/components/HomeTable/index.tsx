@@ -8,10 +8,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Modal, OutlineButton } from 'd1-components';
+import { useState } from 'react';
 import TabsPanel from '../TabsPanel';
 
 import { Container } from './style';
-import { useState } from 'react';
 
 interface Column {
   id: 'tenant' | 'DataMov' | 'Lote' | 'Produto' | 'Timer' | 'Status';
@@ -137,48 +137,48 @@ export default function HomeTable({ data: { processes }, filter }) {
               ))}
             </TableRow>
           </TableHead>
-            <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, i) => (
-                  <>
-                    <TableRow
-                      onClick={() => {
-                        setOpen(true);
-                        setIndex(i);
-                      }}
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.DataMov}
-                    >
-                      {columns.map((column) => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  </>
-                ))}
-
-              <Modal open={open} title={modalTitle[index]}>
-                <Container>
-                  <TabsPanel data={processes[index]} />
-                  <OutlineButton
-                    secondary
-                    handleClick={() => {}}
-                    onClick={() => setOpen(false)}
+          <TableBody>
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row, i) => (
+                <>
+                  <TableRow
+                    onClick={() => {
+                      setOpen(true);
+                      setIndex(i);
+                    }}
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={row.DataMov}
                   >
-                    Fechar
-                  </OutlineButton>
-                </Container>
-              </Modal>
-            </TableBody>
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === 'number'
+                            ? column.format(value)
+                            : value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                </>
+              ))}
+
+            <Modal open={open} title={modalTitle[index]}>
+              <Container>
+                <TabsPanel data={processes[index]} />
+                <OutlineButton
+                  secondary
+                  handleClick={() => {}}
+                  onClick={() => setOpen(false)}
+                >
+                  Fechar
+                </OutlineButton>
+              </Container>
+            </Modal>
+          </TableBody>
         </Table>
       </TableContainer>
       <TablePagination

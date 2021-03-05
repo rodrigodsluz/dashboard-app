@@ -10,10 +10,11 @@ import {
 } from 'd1-components';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
+import { Theme, withStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
 import { HomeDataContext } from '../../context/HomeDataContext';
 
 import Sidebar from '../../components/Sidebar';
-import { Theme, withStyles } from '@material-ui/core/styles';
 
 import {
   Container,
@@ -28,14 +29,13 @@ import {
   Info,
   InfoBtn,
   ModalContainer,
+  TopMenu,
 } from './styled';
 
 import HomeTable from './components/HomeTable';
 import StoppedMovementsTable from './components/StoppedMovementsTable';
 import Graphic from './components/PieChart';
-import Tooltip from '@material-ui/core/Tooltip';
-
-
+import SearchBar from './components/SearchBar';
 /**
  * @export
  * @component
@@ -80,13 +80,14 @@ export const HomeScreen = (): JSX.Element => {
 
       <TableContainer>
         <TableContent>
-          <Typography htmlTag="strong" fontSize="32px">
-            Conference
-          </Typography>
+          <TopMenu>
+            <Typography htmlTag="strong" fontSize="32px">
+              Conference
+            </Typography>
+            <SearchBar />
+          </TopMenu>
           <Spacing vertical="10px" />
-
           <HomeTable data={homeData} filter={filterStatus} />
-
           <CardContainer>
             <PanelCard>
               <Card onClick={handleClick('FINISHED')} status="finalizados">
@@ -119,13 +120,10 @@ export const HomeScreen = (): JSX.Element => {
               </Card>
             </PanelCard>
           </CardContainer>
-
           <Alert severity="warning">
             <AlertTitle>Atenção</AlertTitle>
             Existe(m){' '}
-            <strong>
-              {homeData.stoppedAmount} processos executando
-            </strong>{' '}
+            <strong>{homeData.stoppedAmount} processos executando</strong>{' '}
             processamento(s) com mais de 24hs.{' '}
             <InfoBtn onClick={() => setOpen(!open)}>
               <TooltipArrow

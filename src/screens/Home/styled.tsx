@@ -129,8 +129,8 @@ export const Info = styled.span`
   background: #00e1ff;
 
   &:hover {
-        background: #577074;
-    }
+    background: #577074;
+  }
 `;
 
 export const InfoBtn = styled.button`
@@ -140,13 +140,18 @@ export const InfoBtn = styled.button`
   cursor: pointer;
 
   &:hover {
-        color: white;
-    }
+    color: white;
+  }
 `;
-
 
 export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+`;
+
+export const TopMenu = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
