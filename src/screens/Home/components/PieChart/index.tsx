@@ -35,6 +35,10 @@ const renderCustomizedLabel = ({
   );
 };
 
+type Props = {
+  data: {};
+};
+
 export default class Graphic extends PureComponent<Props> {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/c9pL8k61/';
 

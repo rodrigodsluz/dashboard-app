@@ -8,9 +8,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import { Modal, OutlineButton } from 'd1-components';
-
-import { Container } from './style';
 
 interface Column {
   id:
@@ -39,21 +36,18 @@ const columns: Column[] = [
     label: 'Lote',
     minWidth: 150,
     align: 'right',
-    format: (value: number) => value,
   },
   {
     id: 'EmailSend',
     label: 'Email Send',
     minWidth: 150,
     align: 'right',
-    format: (value: number) => value,
   },
   {
     id: 'SmsSend',
     label: 'SMS Send',
     minWidth: 150,
     align: 'right',
-    format: (value: number) => value,
   },
 
   {
@@ -61,21 +55,18 @@ const columns: Column[] = [
     label: 'Print Send',
     minWidth: 150,
     align: 'right',
-    format: (value: number) => value,
   },
   {
     id: 'WebSend',
     label: 'Web Send',
     minWidth: 150,
     align: 'right',
-    format: (value: number) => value,
   },
   {
     id: 'Pending',
     label: 'Pending',
     minWidth: 150,
     align: 'right',
-    format: (value: number) => value,
   },
 ];
 
