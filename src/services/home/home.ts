@@ -13,7 +13,7 @@ export async function getProcesses() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `http://api.suporte.d1.cx/api/Home/Summary`,
+    url: `https://api.suporte.d1.cx/api/Home/Summary`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -21,7 +21,7 @@ export async function getProcesses() {
 
   try {
     const { data } = await axios({ method: 'GET', ...options });
-    //console.log(data);
+    // console.log(data);
     return data.map(
       ({
         tenant,
@@ -47,7 +47,7 @@ export async function getProcesses() {
         host,
         link,
         obs,
-        log
+        log,
       }) => ({
         tenant,
         datamov,
@@ -72,7 +72,7 @@ export async function getProcesses() {
         host,
         link,
         obs,
-        log
+        log,
       })
     );
   } catch (error) {
@@ -84,7 +84,7 @@ export async function getGraphicData() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `http://api.suporte.d1.cx/api/Home/PieChartSla`,
+    url: `https://api.suporte.d1.cx/api/Home/PieChartSla`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -102,7 +102,7 @@ export async function getStoppedMovementsAmount() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `http://api.suporte.d1.cx/api/Home/StoppedCount`,
+    url: `https://api.suporte.d1.cx/api/Home/StoppedCount`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -120,7 +120,7 @@ export async function getStoppedMovements() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `http://api.suporte.d1.cx/api/Home/StoppedMovements`,
+    url: `https://api.suporte.d1.cx/api/Home/StoppedMovements`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -129,22 +129,14 @@ export async function getStoppedMovements() {
   try {
     const { data } = await axios({ method: 'GET', ...options });
     return data.map(
-      ({
+      ({ created, tenant, datamov, lote, status, step, timer_processing }) => ({
         created,
         tenant,
         datamov,
         lote,
         status,
         step,
-        timer_processing
-      }) => ({
-        created,
-        tenant,
-        datamov,
-        lote,
-        status,
-        step,
-        timer_processing
+        timer_processing,
       })
     );
   } catch (error) {
@@ -156,7 +148,7 @@ export async function getBtnNotification() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `http://api.suporte.d1.cx/api/Home/BtnNotification`,
+    url: `https://api.suporte.d1.cx/api/Home/BtnNotification`,
     headers: {
       authorization: `Bearer ${token}`,
     },
