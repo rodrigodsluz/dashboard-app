@@ -30,12 +30,12 @@ import {
   InfoBtn,
   ModalContainer,
   TopMenu,
+  SearchBar,
 } from './styled';
 
 import HomeTable from './components/HomeTable';
 import StoppedMovementsTable from './components/StoppedMovementsTable';
 import Graphic from './components/PieChart';
-import SearchBar from './components/SearchBar';
 /**
  * @export
  * @component
@@ -62,13 +62,17 @@ const TooltipArrow = withStyles((theme: Theme) => ({
 export const HomeScreen = (): JSX.Element => {
   const { homeData } = useContext(HomeDataContext);
   const [open, setOpen] = useState(false);
-  const [filterStatus, setFilterStatus] = useState({
+  const [searchBarData, setSearchBarData] = useState({
+    data: '',
+    isFilter: false,
+  });
+  const [statusFilter, setStatusFilter] = useState({
     isFilter: false,
     status: '',
   });
 
   const handleClick = (param) => () => {
-    setFilterStatus({
+    setStatusFilter({
       isFilter: true,
       status: param,
     });
@@ -84,10 +88,25 @@ export const HomeScreen = (): JSX.Element => {
             <Typography htmlTag="strong" fontSize="32px">
               Conference
             </Typography>
-            <SearchBar />
+
+            <SearchBar
+              type="search"
+              placeholder="O que você está procurando?"
+              onChange={(e) => {
+                setSearchBarData({
+                  data: e.target.value,
+                  isFilter: true,
+                });
+              }}
+            />
           </TopMenu>
           <Spacing vertical="10px" />
-          <HomeTable data={homeData} filter={filterStatus} />
+
+          <HomeTable
+            data={homeData}
+            statusFilter={statusFilter}
+            searchBarFilter={searchBarData}
+          />
           <CardContainer>
             <PanelCard>
               <Card onClick={handleClick('FINISHED')} status="finalizados">

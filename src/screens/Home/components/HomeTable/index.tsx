@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Modal, OutlineButton } from 'd1-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TabsPanel from '../TabsPanel';
 
 import { Container } from './style';
@@ -90,22 +90,61 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HomeTable({ data: { processes }, filter }) {
+export default function HomeTable({
+  data: { processes },
+  statusFilter,
+  searchBarFilter,
+}) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
+  const [filteredData, setFilteredData] = useState([]);
 
-  const filteredData = processes.filter((v) => v.status === filter.status);
+  // const filteredStatusData = processes.filter(
+  //   (v) => v.status === filter.status
+  // );
 
-  const rows = filter.isFilter
-    ? filteredData.map((d) =>
-        createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
-      )
-    : processes.map((d) =>
-        createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
-      );
+  const createTableData = (data) => {
+    return data.map((d) =>
+      createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
+    );
+  };
+
+  useEffect(() => {
+    if (processes !== undefined) {
+      const results = statusFilter.isFilter
+        ? processes.filter((v) => v.status === statusFilter.status)
+        : processes.filter(
+            (v) =>
+              v.tenant ||
+              v.datamov ||
+              v.lote ||
+              v.produto ||
+              v.sla ||
+              v.status === searchBarFilter.data
+          );
+      setFilteredData(results);
+    }
+  }, [processes]);
+
+  // const filteredData = statusFilter.isFilter
+  //   ? processes.filter((v) => v.status === statusFilter.status)
+  //   : processes.filter(
+  //       (v) =>
+  //         v.tenant ||
+  //         v.datamov ||
+  //         v.lote ||
+  //         v.produto ||
+  //         v.sla ||
+  //         v.status === searchBarFilter.data
+  //     );
+
+  const rows =
+    statusFilter.isFilter || searchBarFilter.isFilter
+      ? createTableData(filteredData)
+      : createTableData(processes);
 
   const modalTitle = rows.map((v) => v.tenant);
 
@@ -137,35 +176,39 @@ export default function HomeTable({ data: { processes }, filter }) {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, i) => (
-                <>
-                  <TableRow
-                    onClick={() => {
-                      setOpen(true);
-                      setIndex(i);
-                    }}
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={row.DataMov}
-                  >
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                </>
-              ))}
 
+          <TableBody>
+            {rows != '' ? (
+              rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row, i) => (
+                  <>
+                    <TableRow
+                      onClick={() => {
+                        setOpen(true);
+                        setIndex(i);
+                      }}
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.DataMov}
+                    >
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  </>
+                ))
+            ) : (
+              <div>Busca não encontrada</div>
+            )}
             <Modal open={open} title={modalTitle[index]}>
               <Container>
                 <TabsPanel data={processes[index]} />
