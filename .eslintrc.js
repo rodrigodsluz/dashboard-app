@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 module.exports = {
   env: {
     node: true,
@@ -60,7 +61,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'no-param-reassign': 'off',
     'react/react-in-jsx-scope': 'off',
-    // eslint-disable-next-line prettier/prettier
     'eqeqeq': 'off',
+    'camelcase': 'off',
   },
 };

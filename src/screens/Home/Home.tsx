@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import {
   CardHeader,
@@ -76,8 +76,21 @@ export const HomeScreen = (): JSX.Element => {
       isFilter: true,
       status: param,
     });
+
+    setSearchBarData({
+      data: '',
+      isFilter: false,
+    });
   };
 
+  const handleSearchBarChange = (e) => {
+    setSearchBarData({
+      data: e.target.value,
+      isFilter: true,
+    });
+  };
+
+  // console.log(searchBarData);
   return (
     <Container>
       <Sidebar />
@@ -90,14 +103,11 @@ export const HomeScreen = (): JSX.Element => {
             </Typography>
 
             <SearchBar
+              name="searchBarData"
+              value={searchBarData.data}
               type="search"
               placeholder="O que você está procurando?"
-              onChange={(e) => {
-                setSearchBarData({
-                  data: e.target.value,
-                  isFilter: true,
-                });
-              }}
+              onChange={handleSearchBarChange}
             />
           </TopMenu>
           <Spacing vertical="10px" />

@@ -13,7 +13,7 @@ export async function getProcesses() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `http://api.suporte.d1.cx/api/Home/Summary`,
+    url: `http://api.suporte.d1.cx/api/Home/Summary/?date1=2021-03-08&date2=2021-03-08`,
     headers: {
       authorization: `Bearer ${token}`,
     },

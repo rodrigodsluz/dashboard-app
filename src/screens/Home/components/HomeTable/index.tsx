@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import TabsPanel from '../TabsPanel';
 
 import { Container } from './style';
+import SearchBar from '../SearchBar';
 
 interface Column {
   id: 'tenant' | 'DataMov' | 'Lote' | 'Produto' | 'Timer' | 'Status';
@@ -106,28 +107,29 @@ export default function HomeTable({
   //   (v) => v.status === filter.status
   // );
 
-  const createTableData = (data) => {
-    return data.map((d) =>
-      createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
-    );
-  };
-
   useEffect(() => {
-    if (processes !== undefined) {
-      const results = statusFilter.isFilter
-        ? processes.filter((v) => v.status === statusFilter.status)
-        : processes.filter(
+    const results =
+      searchBarFilter.isFilter && searchBarFilter.data !== ''
+        ? processes.filter(
             (v) =>
-              v.tenant ||
-              v.datamov ||
-              v.lote ||
-              v.produto ||
-              v.sla ||
+              v.tenant === searchBarFilter.data ||
+              v.datamov === searchBarFilter.data ||
+              v.lote === searchBarFilter.data ||
+              v.produto === searchBarFilter.data ||
+              v.sla === searchBarFilter.data ||
               v.status === searchBarFilter.data
-          );
-      setFilteredData(results);
-    }
-  }, [processes]);
+          )
+        : processes.filter((v) => v.status === statusFilter.status);
+
+    setFilteredData(results);
+  }, [processes, statusFilter, searchBarFilter]);
+
+  // console.log(searchBarFilter);
+  // console.log(statusFilter);
+  // console.log(filteredData);
+  // console.log(processes);
+
+  // console.log(processes.filter((v) => v.tenant));
 
   // const filteredData = statusFilter.isFilter
   //   ? processes.filter((v) => v.status === statusFilter.status)
@@ -140,6 +142,11 @@ export default function HomeTable({
   //         v.sla ||
   //         v.status === searchBarFilter.data
   //     );
+  const createTableData = (data) => {
+    return data.map((d) =>
+      createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
+    );
+  };
 
   const rows =
     statusFilter.isFilter || searchBarFilter.isFilter
