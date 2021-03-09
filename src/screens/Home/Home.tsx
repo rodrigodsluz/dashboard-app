@@ -85,7 +85,7 @@ export const HomeScreen = (): JSX.Element => {
 
   const handleSearchBarChange = (e) => {
     setSearchBarData({
-      data: e.target.value,
+      data: e.target.value.toLowerCase(),
       isFilter: true,
     });
   };
