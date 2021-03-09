@@ -124,7 +124,7 @@ export default function HomeTable({
     setFilteredData(results);
   }, [processes, statusFilter, searchBarFilter]);
 
-  // console.log(searchBarFilter);
+  console.log(searchBarFilter);
   // console.log(statusFilter);
   // console.log(filteredData);
   // console.log(processes);
@@ -149,7 +149,7 @@ export default function HomeTable({
   };
 
   const rows =
-    statusFilter.isFilter || searchBarFilter.isFilter
+    statusFilter.isFilter || searchBarFilter.data !== ''
       ? createTableData(filteredData)
       : createTableData(processes);
 

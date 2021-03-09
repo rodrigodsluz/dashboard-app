@@ -88,6 +88,11 @@ export const HomeScreen = (): JSX.Element => {
       data: e.target.value.toLowerCase(),
       isFilter: true,
     });
+
+    setStatusFilter({
+      isFilter: false,
+      status: '',
+    });
   };
 
   // console.log(searchBarData);
