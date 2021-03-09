@@ -155,3 +155,10 @@ export const TopMenu = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+export const SearchBar = styled.input`
+  width: 30%;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+`;

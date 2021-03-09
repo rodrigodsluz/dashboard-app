@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import {
   CardHeader,
@@ -30,12 +30,12 @@ import {
   InfoBtn,
   ModalContainer,
   TopMenu,
+  SearchBar,
 } from './styled';
 
 import HomeTable from './components/HomeTable';
 import StoppedMovementsTable from './components/StoppedMovementsTable';
 import Graphic from './components/PieChart';
-import SearchBar from './components/SearchBar';
 /**
  * @export
  * @component
@@ -62,15 +62,22 @@ const TooltipArrow = withStyles((theme: Theme) => ({
 export const HomeScreen = (): JSX.Element => {
   const { homeData } = useContext(HomeDataContext);
   const [open, setOpen] = useState(false);
-  const [filterStatus, setFilterStatus] = useState({
-    isFilter: false,
-    status: '',
+  const [filter, setFilter] = useState({
+    btnStatus: '',
+    searchBarData: '',
   });
 
-  const handleClick = (param) => () => {
-    setFilterStatus({
-      isFilter: true,
-      status: param,
+  const handleClick = (status) => () => {
+    setFilter({
+      btnStatus: status,
+      searchBarData: '',
+    });
+  };
+
+  const handleSearchBarChange = (e) => {
+    setFilter({
+      searchBarData: e.target.value.toLowerCase(),
+      btnStatus: '',
     });
   };
 
@@ -84,10 +91,18 @@ export const HomeScreen = (): JSX.Element => {
             <Typography htmlTag="strong" fontSize="32px">
               Conference
             </Typography>
-            <SearchBar />
+
+            <SearchBar
+              name="searchBarData"
+              value={filter.searchBarData}
+              type="search"
+              placeholder="O que você está procurando?"
+              onChange={handleSearchBarChange}
+            />
           </TopMenu>
           <Spacing vertical="10px" />
-          <HomeTable data={homeData} filter={filterStatus} />
+
+          <HomeTable data={homeData} filter={filter} />
           <CardContainer>
             <PanelCard>
               <Card onClick={handleClick('FINISHED')} status="finalizados">
