@@ -62,40 +62,25 @@ const TooltipArrow = withStyles((theme: Theme) => ({
 export const HomeScreen = (): JSX.Element => {
   const { homeData } = useContext(HomeDataContext);
   const [open, setOpen] = useState(false);
-  const [searchBarData, setSearchBarData] = useState({
-    data: '',
-    isFilter: false,
-  });
-  const [statusFilter, setStatusFilter] = useState({
-    isFilter: false,
-    status: '',
+  const [filter, setFilter] = useState({
+    btnStatus: '',
+    searchBarData: '',
   });
 
-  const handleClick = (param) => () => {
-    setStatusFilter({
-      isFilter: true,
-      status: param,
-    });
-
-    setSearchBarData({
-      data: '',
-      isFilter: false,
+  const handleClick = (status) => () => {
+    setFilter({
+      btnStatus: status,
+      searchBarData: '',
     });
   };
 
   const handleSearchBarChange = (e) => {
-    setSearchBarData({
-      data: e.target.value.toLowerCase(),
-      isFilter: true,
-    });
-
-    setStatusFilter({
-      isFilter: false,
-      status: '',
+    setFilter({
+      searchBarData: e.target.value.toLowerCase(),
+      btnStatus: '',
     });
   };
 
-  // console.log(searchBarData);
   return (
     <Container>
       <Sidebar />
@@ -109,7 +94,7 @@ export const HomeScreen = (): JSX.Element => {
 
             <SearchBar
               name="searchBarData"
-              value={searchBarData.data}
+              value={filter.searchBarData}
               type="search"
               placeholder="O que você está procurando?"
               onChange={handleSearchBarChange}
@@ -117,11 +102,7 @@ export const HomeScreen = (): JSX.Element => {
           </TopMenu>
           <Spacing vertical="10px" />
 
-          <HomeTable
-            data={homeData}
-            statusFilter={statusFilter}
-            searchBarFilter={searchBarData}
-          />
+          <HomeTable data={homeData} filter={filter} />
           <CardContainer>
             <PanelCard>
               <Card onClick={handleClick('FINISHED')} status="finalizados">

@@ -12,7 +12,6 @@ import { useEffect, useState } from 'react';
 import TabsPanel from '../TabsPanel';
 
 import { Container } from './style';
-import SearchBar from '../SearchBar';
 
 interface Column {
   id: 'tenant' | 'DataMov' | 'Lote' | 'Produto' | 'Timer' | 'Status';
@@ -91,11 +90,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HomeTable({
-  data: { processes },
-  statusFilter,
-  searchBarFilter,
-}) {
+export default function HomeTable({ data: { processes }, filter }) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);
@@ -103,45 +98,23 @@ export default function HomeTable({
   const [index, setIndex] = useState(0);
   const [filteredData, setFilteredData] = useState([]);
 
-  // const filteredStatusData = processes.filter(
-  //   (v) => v.status === filter.status
-  // );
-
   useEffect(() => {
     const results =
-      searchBarFilter.isFilter && searchBarFilter.data !== ''
+      filter.searchBarData !== ''
         ? processes.filter(
             (v) =>
-              v.tenant.toLowerCase().includes(searchBarFilter.data) ||
-              v.datamov.toLowerCase().includes(searchBarFilter.data) ||
-              v.lote.toLowerCase().includes(searchBarFilter.data) ||
-              v.produto.toLowerCase().includes(searchBarFilter.data) ||
-              v.sla.toLowerCase().includes(searchBarFilter.data) ||
-              v.status.toLowerCase().includes(searchBarFilter.data)
+              v.tenant.toLowerCase().includes(filter.searchBarData) ||
+              v.datamov.toLowerCase().includes(filter.searchBarData) ||
+              v.lote.toLowerCase().includes(filter.searchBarData) ||
+              v.produto.toLowerCase().includes(filter.searchBarData) ||
+              v.sla.toLowerCase().includes(filter.searchBarData) ||
+              v.status.toLowerCase().includes(filter.searchBarData)
           )
-        : processes.filter((v) => v.status === statusFilter.status);
+        : processes.filter((v) => v.status === filter.btnStatus);
 
     setFilteredData(results);
-  }, [processes, statusFilter, searchBarFilter]);
+  }, [processes, filter]);
 
-  console.log(searchBarFilter);
-  // console.log(statusFilter);
-  // console.log(filteredData);
-  // console.log(processes);
-
-  // console.log(processes.filter((v) => v.tenant));
-
-  // const filteredData = statusFilter.isFilter
-  //   ? processes.filter((v) => v.status === statusFilter.status)
-  //   : processes.filter(
-  //       (v) =>
-  //         v.tenant ||
-  //         v.datamov ||
-  //         v.lote ||
-  //         v.produto ||
-  //         v.sla ||
-  //         v.status === searchBarFilter.data
-  //     );
   const createTableData = (data) => {
     return data.map((d) =>
       createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
@@ -149,7 +122,7 @@ export default function HomeTable({
   };
 
   const rows =
-    statusFilter.isFilter || searchBarFilter.data !== ''
+    filter.btnStatus !== '' || filter.searchBarData !== ''
       ? createTableData(filteredData)
       : createTableData(processes);
 
