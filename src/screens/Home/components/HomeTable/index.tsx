@@ -112,12 +112,12 @@ export default function HomeTable({
       searchBarFilter.isFilter && searchBarFilter.data !== ''
         ? processes.filter(
             (v) =>
-              v.tenant === searchBarFilter.data ||
-              v.datamov === searchBarFilter.data ||
-              v.lote === searchBarFilter.data ||
-              v.produto === searchBarFilter.data ||
-              v.sla === searchBarFilter.data ||
-              v.status === searchBarFilter.data
+              v.tenant.includes(searchBarFilter.data) ||
+              v.datamov.includes(searchBarFilter.data) ||
+              v.lote.includes(searchBarFilter.data) ||
+              v.produto.includes(searchBarFilter.data) ||
+              v.sla.includes(searchBarFilter.data) ||
+              v.status.includes(searchBarFilter.data)
           )
         : processes.filter((v) => v.status === statusFilter.status);
 
