@@ -13,7 +13,7 @@ export async function getProcesses() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `http://api.suporte.d1.cx/api/Home/Summary/?date1=2021-03-08&date2=2021-03-08`,
+    url: `https://api-suporte.d1.cx/api/Home/Summary/?date1=2021-03-08&date2=2021-03-08`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -84,7 +84,7 @@ export async function getGraphicData() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `http://api.suporte.d1.cx/api/Home/PieChartSla`,
+    url: `https://api-suporte.d1.cx/api/Home/PieChartSla`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -102,7 +102,7 @@ export async function getStoppedMovementsAmount() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `http://api.suporte.d1.cx/api/Home/StoppedCount`,
+    url: `https://api-suporte.d1.cx/api/Home/StoppedCount`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -120,7 +120,7 @@ export async function getStoppedMovements() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `http://api.suporte.d1.cx/api/Home/StoppedMovements`,
+    url: `https://api-suporte.d1.cx/api/Home/StoppedMovements`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -148,7 +148,7 @@ export async function getBtnNotification() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `http://api.suporte.d1.cx/api/Home/BtnNotification`,
+    url: `https://api-suporte.d1.cx/api/Home/BtnNotification`,
     headers: {
       authorization: `Bearer ${token}`,
     },

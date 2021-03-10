@@ -11,7 +11,7 @@ import axios from 'axios';
  */
 export async function authentication(payload: any) {
   const options = {
-    url: `http://api.suporte.d1.cx/api/Login/Authenticate`,
+    url: `https://api-suporte.d1.cx/api/Login/Authenticate`,
     data: payload,
   };
 
