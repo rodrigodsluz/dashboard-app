@@ -1,4 +1,4 @@
-import { Typography, Spacing } from 'd1-components';
+import { Typography, Spacing } from '@d1.cx/components';
 import React from 'react';
 import {
   Container,

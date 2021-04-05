@@ -395,6 +395,16 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@d1.cx/components@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@d1.cx/components/-/components-1.0.2.tgz#36fc4ea538d484ef65bacd16edea5a37d9832e24"
+  integrity sha512-3prw6Rs60/KZAMt0e87D4Qxs6YZUvyrfAe0uVf2pwrxBT0uRGm4+5P9egWaNKr/nEZoRtLjsc6wEqwkDKmLhlA==
+
+"@d1.cx/icons@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@d1.cx/icons/-/icons-1.0.1.tgz#5f37777dd1ca64192e2381f37592b17d006be78f"
+  integrity sha512-g29Sa7c7qtpHO44l2zmhcSazimlZseLUwcOOjma/kB3L5u2xYuchWiQU7cgOEu6OqfCK5gjOnKjbSIrnCdv0ew==
+
 "@emotion/hash@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.8.0.tgz#bbbff68978fefdbe68ccb533bc8cbe1d1afb5413"
@@ -663,7 +673,7 @@
     react-is "^16.8.0 || ^17.0.0"
     react-transition-group "^4.4.0"
 
-"@material-ui/lab@^4.0.0-alpha.57":
+"@material-ui/lab@4.0.0-alpha.57":
   version "4.0.0-alpha.57"
   resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-4.0.0-alpha.57.tgz#e8961bcf6449e8a8dabe84f2700daacfcafbf83a"
   integrity sha512-qo/IuIQOmEKtzmRD2E4Aa6DB4A87kmY6h0uYhjUmrrgmEAgbbw9etXpWPVXuRK6AGIQCjFzV6WO2i21m1R4FCw==
@@ -3084,16 +3094,6 @@ cyclist@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
-
-d1-components@1.0.102:
-  version "1.0.102"
-  resolved "https://registry.yarnpkg.com/d1-components/-/d1-components-1.0.102.tgz#ec5cd4f55d1a552f79d2a4c3bc37e233150c639c"
-  integrity sha512-wFNNGwWZR3skX1Fm4ptsGHQY03mB2FwrWzNJaLIDm12x8+3hvk/vyoMa7ei+0faErSdaW+cwYOjI1VhD3jqSGg==
-
-d1-icons@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/d1-icons/-/d1-icons-1.1.0.tgz#609712536888910cfc14b568241c57850ee7adc0"
-  integrity sha512-gNV1bdk8b1wo5qOn30l6RU+Qw0UYlYJvkx6pDNDeJUOZsxAiJ8nJHYVijUwB6YS00FC4gMOhRtkVIDgRD/GQcw==
 
 d3-array@^2.3.0:
   version "2.11.0"
@@ -7927,7 +7927,7 @@ recharts-scale@^0.4.2:
   dependencies:
     decimal.js-light "^2.4.1"
 
-recharts@^2.0.8:
+recharts@2.0.8:
   version "2.0.8"
   resolved "https://registry.yarnpkg.com/recharts/-/recharts-2.0.8.tgz#54ff6c4fd4c9d38e4e6de53015f9ee1004a3a098"
   integrity sha512-38Pc1Z3UaNdi+zv1O5CQs1vCv2ZHo8sZ2c8UaTFydNKNO07uNVc3411TYRDOqMj0SZCwhoEW7uTHNhWBTkPmaQ==

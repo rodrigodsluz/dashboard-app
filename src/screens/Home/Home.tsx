@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import {
   CardHeader,
@@ -7,12 +7,12 @@ import {
   Spacing,
   Modal,
   OutlineButton,
-} from 'd1-components';
+  MenuFilterLoading,
+} from '@d1.cx/components';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
 import { Theme, withStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
-import { HomeDataContext } from '../../context/HomeDataContext';
 
 import Sidebar from '../../components/Sidebar';
 
@@ -61,7 +61,7 @@ const TooltipArrow = withStyles((theme: Theme) => ({
 }))(Tooltip);
 
 export const HomeScreen = (): JSX.Element => {
-  const [data, setData] = useState({
+  const [homeData, setHomeData] = useState({
     processes: [],
     graphic: [],
     stoppedAmount: 0,
@@ -76,13 +76,19 @@ export const HomeScreen = (): JSX.Element => {
 
   const getData = useCallback(async () => {
     try {
-      let process = await Services.home.getProcesses();
+      let processes = await Services.home.getProcesses();
       let graphic = await Services.home.getGraphicData();
       let amount = await Services.home.getStoppedMovementsAmount();
       let movements = await Services.home.getStoppedMovements();
       let notifications = await Services.home.getBtnNotification();
 
-      console.log(process, graphic, amount, movements, notifications);
+      setHomeData({
+        processes,
+        graphic,
+        stoppedAmount: amount,
+        stoppedMovements: movements,
+        btnNotification: notifications,
+      });
     } catch (e) {
       console.log(e);
     }
@@ -92,6 +98,7 @@ export const HomeScreen = (): JSX.Element => {
     getData();
   }, []);
 
+  console.log(homeData);
   const handleClick = (status) => () => {
     setFilter({
       btnStatus: status,
@@ -126,7 +133,11 @@ export const HomeScreen = (): JSX.Element => {
             />
           </TopMenu>
           <Spacing vertical="10px" />
-          {/* {homeData ? <HomeTable data={homeData} filter={filter} /> : null} */}
+          {homeData.processes.length > 0 ? (
+            <HomeTable data={homeData} filter={filter} />
+          ) : (
+            <MenuFilterLoading />
+          )}
 
           <CardContainer>
             <PanelCard>
@@ -135,7 +146,9 @@ export const HomeScreen = (): JSX.Element => {
                   <CardStatus>Finalizados</CardStatus>
                 </CardHeader>
                 <CardBody>
-                  {/* <h2>{homeData.btnNotification[2]}</h2> */}
+                  {homeData.btnNotification ? (
+                    <h2>{homeData.btnNotification[2]}</h2>
+                  ) : null}
                 </CardBody>
               </Card>
             </PanelCard>
@@ -145,7 +158,9 @@ export const HomeScreen = (): JSX.Element => {
                   <CardStatus>Executando</CardStatus>
                 </CardHeader>
                 <CardBody>
-                  {/* <h2>{homeData.btnNotification[1]}</h2> */}
+                  {homeData.btnNotification ? (
+                    <h2>{homeData.btnNotification[1]}</h2>
+                  ) : null}
                 </CardBody>
               </Card>
             </PanelCard>
@@ -155,7 +170,9 @@ export const HomeScreen = (): JSX.Element => {
                   <CardStatus>Erros</CardStatus>
                 </CardHeader>
                 <CardBody>
-                  {/* <h2>{homeData.btnNotification[0]}</h2> */}
+                  {homeData.btnNotification ? (
+                    <h2>{homeData.btnNotification[0]}</h2>
+                  ) : null}
                 </CardBody>
               </Card>
             </PanelCard>
@@ -163,7 +180,11 @@ export const HomeScreen = (): JSX.Element => {
           <Alert severity="warning">
             <AlertTitle>Atenção</AlertTitle>
             Existe(m){' '}
-            {/* <strong>{homeData.stoppedAmount} processos executando</strong>{' '} */}
+            {homeData.stoppedAmount ? (
+              <strong>{homeData.stoppedAmount} processos executando</strong>
+            ) : (
+              '_'
+            )}
             processamento(s) com mais de 24hs.{' '}
             <InfoBtn onClick={() => setOpen(!open)}>
               <TooltipArrow

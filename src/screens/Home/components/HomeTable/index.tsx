@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import { Modal, OutlineButton } from 'd1-components';
+import { Modal, OutlineButton } from '@d1.cx/components';
 import { useEffect, useState } from 'react';
 import TabsPanel from '../TabsPanel';
 

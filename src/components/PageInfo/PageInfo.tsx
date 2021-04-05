@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Breadcrumb } from 'd1-components';
+import { Typography, Breadcrumb } from '@d1.cx/components';
 
 import {
   ContentButtonStyled,
