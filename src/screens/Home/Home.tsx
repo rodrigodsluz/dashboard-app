@@ -67,6 +67,7 @@ export const HomeScreen = (): JSX.Element => {
     searchBarData: '',
   });
 
+  console.table(homeData);
   const handleClick = (status) => () => {
     setFilter({
       btnStatus: status,
@@ -101,8 +102,8 @@ export const HomeScreen = (): JSX.Element => {
             />
           </TopMenu>
           <Spacing vertical="10px" />
+          {/* {homeData ? <HomeTable data={homeData} filter={filter} /> : null} */}
 
-          <HomeTable data={homeData} filter={filter} />
           <CardContainer>
             <PanelCard>
               <Card onClick={handleClick('FINISHED')} status="finalizados">
@@ -110,7 +111,7 @@ export const HomeScreen = (): JSX.Element => {
                   <CardStatus>Finalizados</CardStatus>
                 </CardHeader>
                 <CardBody>
-                  <h2>{homeData.btnNotification[2]}</h2>
+                  {/* <h2>{homeData.btnNotification[2]}</h2> */}
                 </CardBody>
               </Card>
             </PanelCard>
@@ -120,7 +121,7 @@ export const HomeScreen = (): JSX.Element => {
                   <CardStatus>Executando</CardStatus>
                 </CardHeader>
                 <CardBody>
-                  <h2>{homeData.btnNotification[1]}</h2>
+                  {/* <h2>{homeData.btnNotification[1]}</h2> */}
                 </CardBody>
               </Card>
             </PanelCard>
@@ -130,7 +131,7 @@ export const HomeScreen = (): JSX.Element => {
                   <CardStatus>Erros</CardStatus>
                 </CardHeader>
                 <CardBody>
-                  <h2>{homeData.btnNotification[0]}</h2>
+                  {/* <h2>{homeData.btnNotification[0]}</h2> */}
                 </CardBody>
               </Card>
             </PanelCard>
@@ -161,7 +162,7 @@ export const HomeScreen = (): JSX.Element => {
               </Typography>
 
               <ModalContainer>
-                <StoppedMovementsTable data={homeData} />
+                {/* <StoppedMovementsTable data={homeData} /> */}
                 <OutlineButton
                   secondary
                   handleClick={() => {}}
@@ -180,7 +181,7 @@ export const HomeScreen = (): JSX.Element => {
               {' '}
               SLA em atraso
             </Typography>
-            <Graphic data={homeData.graphic} />
+            {/* <Graphic data={homeData.graphic} /> */}
           </GraphicWrapper>
         </GraphicContainer>
       </TableContainer>

@@ -116,11 +116,9 @@ export default function HomeTable({ data: { processes }, filter }) {
   }, [processes, filter]);
 
   const createTableData = (data) => {
-    if (data) {
-      return data.map((d) =>
-        createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
-      );
-    }
+    return data.map((d) =>
+      createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
+    );
   };
 
   const rows =
