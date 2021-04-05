@@ -158,7 +158,8 @@ export const TopMenu = styled.div`
 
 export const SearchBar = styled.input`
   width: 30%;
-  border: 1px solid black;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
+  outline: none;
 `;

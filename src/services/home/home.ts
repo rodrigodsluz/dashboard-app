@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API } from './API';
 
 /**
  * @async
@@ -9,19 +10,18 @@ import axios from 'axios';
  * @description
  * Responsável por enviar os dados da comunicação.
  */
+
 export async function getProcesses() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `https://api-suporte.d1.cx/api/Home/Summary/?date1=2021-03-08&date2=2021-03-08`,
+    url: `${API}/Home/Summary/?date1=2021-04-05&date2=2021-04-05`,
     headers: {
       authorization: `Bearer ${token}`,
     },
   };
-
   try {
     const { data } = await axios({ method: 'GET', ...options });
-    // console.log(data);
     return data.map(
       ({
         tenant,
@@ -76,7 +76,7 @@ export async function getProcesses() {
       })
     );
   } catch (error) {
-    return error;
+    return false;
   }
 }
 
@@ -84,7 +84,7 @@ export async function getGraphicData() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `https://api-suporte.d1.cx/api/Home/PieChartSla`,
+    url: `${API}/Home/PieChartSla`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -94,7 +94,7 @@ export async function getGraphicData() {
     const { data } = await axios({ method: 'GET', ...options });
     return data;
   } catch (error) {
-    return error;
+    return false;
   }
 }
 
@@ -102,7 +102,7 @@ export async function getStoppedMovementsAmount() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `https://api-suporte.d1.cx/api/Home/StoppedCount`,
+    url: `${API}/Home/StoppedCount`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -112,7 +112,7 @@ export async function getStoppedMovementsAmount() {
     const { data } = await axios({ method: 'GET', ...options });
     return data;
   } catch (error) {
-    return error;
+    return false;
   }
 }
 
@@ -120,7 +120,7 @@ export async function getStoppedMovements() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `https://api-suporte.d1.cx/api/Home/StoppedMovements`,
+    url: `${API}/Home/StoppedMovements`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -140,7 +140,7 @@ export async function getStoppedMovements() {
       })
     );
   } catch (error) {
-    return error;
+    return false;
   }
 }
 
@@ -148,7 +148,7 @@ export async function getBtnNotification() {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `https://api-suporte.d1.cx/api/Home/BtnNotification`,
+    url: `${API}/Home/BtnNotification`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -158,6 +158,6 @@ export async function getBtnNotification() {
     const { data } = await axios({ method: 'GET', ...options });
     return data;
   } catch (error) {
-    return error;
+    return false;
   }
 }

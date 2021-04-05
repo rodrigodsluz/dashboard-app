@@ -1,5 +1,5 @@
 import React, { MouseEvent } from 'react';
-import { FlexContent } from 'd1-components';
+import { FlexContent } from '@d1.cx/components';
 
 import { NotificationStyled } from './styled';
 

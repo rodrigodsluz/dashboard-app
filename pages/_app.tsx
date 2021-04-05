@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppProps } from 'next/app';
-import { GlobalStyle } from 'd1-components';
+import { GlobalStyle } from '@d1.cx/components';
 import { RecoilRoot } from 'recoil';
 import HomeDataContextProvider from '../src/context/HomeDataContext';
 

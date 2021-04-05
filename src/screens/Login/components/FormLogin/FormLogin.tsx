@@ -5,7 +5,7 @@ import {
   Typography,
   OutlineButton,
   PrimaryButton,
-} from 'd1-components';
+} from '@d1.cx/components';
 
 import Notification from '@components/Notification';
 
