@@ -98,7 +98,6 @@ export const HomeScreen = (): JSX.Element => {
     getData();
   }, []);
 
-  console.log(homeData);
   const handleClick = (status) => () => {
     setFilter({
       btnStatus: status,
