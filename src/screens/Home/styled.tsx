@@ -163,3 +163,19 @@ export const SearchBar = styled.input`
   padding: 10px;
   outline: none;
 `;
+
+export const DateInput = styled.input`
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0px 10px;
+  outline: none;
+
+`;
+
+export const ContainerDate = styled.div`
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

@@ -31,6 +31,8 @@ import {
   ModalContainer,
   TopMenu,
   SearchBar,
+  DateInput,
+  ContainerDate,
 } from './styled';
 
 import HomeTable from './components/HomeTable';
@@ -122,7 +124,13 @@ export const HomeScreen = (): JSX.Element => {
             <Typography htmlTag="strong" fontSize="32px">
               Conference
             </Typography>
+            <ContainerDate>
+              <Typography fontSize="16px">Inicio:</Typography>
+              <DateInput type="date" />
 
+              <Typography fontSize="16px">Fim:</Typography>
+              <DateInput type="date" />
+            </ContainerDate>
             <SearchBar
               name="searchBarData"
               value={filter.searchBarData}
