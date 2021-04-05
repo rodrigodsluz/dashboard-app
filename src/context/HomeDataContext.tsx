@@ -12,18 +12,6 @@ const HomeDataContextProvider = ({ children }) => {
     btnNotification: [],
   });
 
-  useEffect(() => {
-    async () => {
-      await setHomeData({
-        processes: await Services.home.getProcesses(),
-        graphic: await Services.home.getGraphicData(),
-        stoppedAmount: await Services.home.getStoppedMovementsAmount(),
-        stoppedMovements: await Services.home.getStoppedMovements(),
-        btnNotification: await Services.home.getBtnNotification(),
-      });
-    };
-  }, []);
-
   return (
     <HomeDataContext.Provider value={{ homeData }}>
       {children}

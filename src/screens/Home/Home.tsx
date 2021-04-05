@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import {
   CardHeader,
@@ -36,6 +36,7 @@ import {
 import HomeTable from './components/HomeTable';
 import StoppedMovementsTable from './components/StoppedMovementsTable';
 import Graphic from './components/PieChart';
+import Services from '../../services';
 /**
  * @export
  * @component
@@ -60,14 +61,37 @@ const TooltipArrow = withStyles((theme: Theme) => ({
 }))(Tooltip);
 
 export const HomeScreen = (): JSX.Element => {
-  const { homeData } = useContext(HomeDataContext);
+  const [data, setData] = useState({
+    processes: [],
+    graphic: [],
+    stoppedAmount: 0,
+    stoppedMovements: [],
+    btnNotification: [],
+  });
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState({
     btnStatus: '',
     searchBarData: '',
   });
 
-  console.table(homeData);
+  const getData = useCallback(async () => {
+    try {
+      let process = await Services.home.getProcesses();
+      let graphic = await Services.home.getGraphicData();
+      let amount = await Services.home.getStoppedMovementsAmount();
+      let movements = await Services.home.getStoppedMovements();
+      let notifications = await Services.home.getBtnNotification();
+
+      console.log(process, graphic, amount, movements, notifications);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const handleClick = (status) => () => {
     setFilter({
       btnStatus: status,
@@ -139,7 +163,7 @@ export const HomeScreen = (): JSX.Element => {
           <Alert severity="warning">
             <AlertTitle>Atenção</AlertTitle>
             Existe(m){' '}
-            <strong>{homeData.stoppedAmount} processos executando</strong>{' '}
+            {/* <strong>{homeData.stoppedAmount} processos executando</strong>{' '} */}
             processamento(s) com mais de 24hs.{' '}
             <InfoBtn onClick={() => setOpen(!open)}>
               <TooltipArrow
