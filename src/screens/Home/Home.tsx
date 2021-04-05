@@ -75,7 +75,8 @@ export const HomeScreen = (): JSX.Element => {
     btnStatus: '',
     searchBarData: '',
   });
-
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
   const getData = useCallback(async () => {
     try {
       let processes = await Services.home.getProcesses();
@@ -97,8 +98,9 @@ export const HomeScreen = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
+    console.log('aqui');
     getData();
-  }, []);
+  }, [end]);
 
   const handleClick = (status) => () => {
     setFilter({
@@ -114,6 +116,13 @@ export const HomeScreen = (): JSX.Element => {
     });
   };
 
+  const handleDate = useCallback(
+    (selectedDate: string, type: string) => {
+      type == 'start' ? setStart(selectedDate) : setEnd(selectedDate);
+    },
+    [start, end]
+  );
+
   return (
     <Container>
       <Sidebar />
@@ -126,10 +135,22 @@ export const HomeScreen = (): JSX.Element => {
             </Typography>
             <ContainerDate>
               <Typography fontSize="16px">Inicio:</Typography>
-              <DateInput type="date" />
+              <DateInput
+                type="date"
+                placeholder="Set the date"
+                onChange={({ target }) => {
+                  handleDate(target.value, 'start');
+                }}
+              />
 
               <Typography fontSize="16px">Fim:</Typography>
-              <DateInput type="date" />
+              <DateInput
+                type="date"
+                placeholder="Set the date"
+                onChange={({ target }) => {
+                  handleDate(target.value, 'end');
+                }}
+              />
             </ContainerDate>
             <SearchBar
               name="searchBarData"
@@ -214,7 +235,7 @@ export const HomeScreen = (): JSX.Element => {
               </Typography>
 
               <ModalContainer>
-                {/* <StoppedMovementsTable data={homeData} /> */}
+                <StoppedMovementsTable data={homeData} />
                 <OutlineButton
                   secondary
                   handleClick={() => {}}
@@ -227,15 +248,18 @@ export const HomeScreen = (): JSX.Element => {
           </Alert>
         </TableContent>
 
-        <GraphicContainer>
-          <GraphicWrapper>
-            <Typography htmlTag="strong" fontSize="16px">
-              {' '}
-              SLA em atraso
-            </Typography>
-            {/* <Graphic data={homeData.graphic} /> */}
-          </GraphicWrapper>
-        </GraphicContainer>
+        {homeData.graphic && (
+          <GraphicContainer>
+            <GraphicWrapper>
+              <Spacing vertical="5px" />
+              <Typography htmlTag="strong" fontSize="16px">
+                {' '}
+                SLA em atraso
+              </Typography>
+              <Graphic data={homeData.graphic} />
+            </GraphicWrapper>
+          </GraphicContainer>
+        )}
       </TableContainer>
     </Container>
   );
