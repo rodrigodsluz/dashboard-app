@@ -1,3 +1,3 @@
-import { authentication } from './login';
+import { authentication, getInfoUser } from './login';
 
-export default { authentication };
+export default { authentication, getInfoUser };

@@ -20,7 +20,7 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   const [urlImg, setUrlImg] = useState('');
   const [open, setOpen] = useState(false);
   const [ocupation, setOcupation] = useState('');
-
+  console.log(name, urlImg);
   function configureUsername(username) {
     setName(username);
   }

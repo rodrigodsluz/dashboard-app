@@ -1,10 +1,17 @@
-import { useState, useCallback, ChangeEvent, MouseEvent } from 'react';
+import {
+  useState,
+  useCallback,
+  ChangeEvent,
+  MouseEvent,
+  useContext,
+} from 'react';
 
 import { redirect } from '@utils/redirect';
 import { checkEmailValid, checkEmpty } from '@utils/validation';
 import { setCookie } from '@utils/cookie';
 import Services from '@src/services';
 import { routes } from '@src/routes';
+import { HomeDataContext } from '@src/context/HomeDataContext';
 
 type UseFormLoginTypes = {
   openNotification: boolean;
@@ -35,6 +42,9 @@ type UseFormLoginTypes = {
  * Responsável por conter todos os estado e eventos do login.
  */
 const useFormLogin = (): UseFormLoginTypes => {
+  const { configureOcupation, configureURLImg, configureUsername } = useContext(
+    HomeDataContext
+  );
   const [openNotification, setOpenNotification] = useState<boolean>(false);
   const [inputLogin, setInputLogin] = useState<string>('');
   const [errorLogin, setErrorLogin] = useState<boolean>(false);
@@ -97,6 +107,10 @@ const useFormLogin = (): UseFormLoginTypes => {
       }
       setCookie('token', response.data.access_token);
       localStorage.setItem('token', response.data.token);
+      const res = await Services.login.getInfoUser(response.data);
+      await configureOcupation(res.ocupacao);
+      await configureURLImg(res.imagem);
+      await configureUsername(res.nome);
       redirect(routes.home);
     },
     []
