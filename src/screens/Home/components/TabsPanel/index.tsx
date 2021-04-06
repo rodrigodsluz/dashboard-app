@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
     width: '830px',
-    height: '430px',
+    height: '100%',
     backgroundColor: theme.palette.background.paper,
     alignSelf: 'center',
     '@media (max-width:780px)': {

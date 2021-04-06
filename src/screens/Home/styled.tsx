@@ -71,29 +71,38 @@ export const Card = styled.button<Props>`
   border-radius: 7px;
   border: none;
   width: 240px;
-
+  transition: 0.2s ease;
   ${(props) =>
     props.status === 'executando' &&
     css`
-      background: #ffff66;
-    `}
+      background: #fbbc05;
 
+      &:hover {
+        background-color: #242321;
+      }
+    `}
   ${(props) =>
     props.status === 'erros' &&
     css`
-      background: #ff4d4d;
+      background: #ea4335;
+      &:hover {
+        background-color: #242321;
+      }
     `}
-
-  ${(props) =>
+    ${(props) =>
     props.status === 'finalizados' &&
     css`
-      background: #79ff4d;
-    `}
+      background: #34a853;
+      &:hover {
+        background-color: #242321;
+      }
+    `};
 `;
 
 export const CardStatus = styled.h2`
   margin: auto;
-  color: #1a1731;
+  color: #fff;
+  font-size: 18px;
 `;
 
 export const GraphicContainer = styled.div`
@@ -162,4 +171,25 @@ export const SearchBar = styled.input`
   border-radius: 5px;
   padding: 10px;
   outline: none;
+`;
+
+export const DateInput = styled.input`
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0px 10px;
+  outline: none;
+`;
+
+export const ContainerDate = styled.div`
+  width: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Count = styled.h2`
+  color: #fff;
+  font-weight: 900;
+  font-size: 25px;
 `;

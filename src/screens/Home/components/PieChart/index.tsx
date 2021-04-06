@@ -1,12 +1,12 @@
-import React, { PureComponent, useState } from 'react';
-import { PieChart, Pie, Sector, Cell } from 'recharts';
+import React, { PureComponent } from 'react';
+import { PieChart, Pie, Cell } from 'recharts';
 
 let data = [
   { name: 'Group A', value: 0 },
   { name: 'Group B', value: 0 },
 ];
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#ea4335', '#34a853'];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -16,7 +16,6 @@ const renderCustomizedLabel = ({
   innerRadius,
   outerRadius,
   percent,
-  index,
 }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);

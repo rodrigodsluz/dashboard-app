@@ -31,6 +31,9 @@ import {
   ModalContainer,
   TopMenu,
   SearchBar,
+  DateInput,
+  ContainerDate,
+  Count,
 } from './styled';
 
 import HomeTable from './components/HomeTable';
@@ -43,7 +46,7 @@ import Services from '../../services';
  * @name HomeScreen
  *
  * @description
- * Responsável por montar a tela de escolha rcs ou mensagens
+ * Responsável por montar a tela de Home. Exibindo a tabela com os processos, gráfico dos mesmos e filtro por status.
  */
 
 const TooltipArrow = withStyles((theme: Theme) => ({
@@ -73,14 +76,15 @@ export const HomeScreen = (): JSX.Element => {
     btnStatus: '',
     searchBarData: '',
   });
-
-  const getData = useCallback(async () => {
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
+  const getData = useCallback(async (start: string, end: string) => {
     try {
-      let processes = await Services.home.getProcesses();
-      let graphic = await Services.home.getGraphicData();
-      let amount = await Services.home.getStoppedMovementsAmount();
-      let movements = await Services.home.getStoppedMovements();
-      let notifications = await Services.home.getBtnNotification();
+      let processes = await Services.home.getProcesses(start, end);
+      let graphic = await Services.home.getGraphicData(start, end);
+      let amount = await Services.home.getStoppedMovementsAmount(start, end);
+      let movements = await Services.home.getStoppedMovements(start, end);
+      let notifications = await Services.home.getBtnNotification(start, end);
 
       setHomeData({
         processes,
@@ -95,8 +99,30 @@ export const HomeScreen = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    getData();
-  }, []);
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+
+    let day = handleFormatDate(dd);
+    let month = handleFormatDate(mm);
+
+    let currentDate = `${yyyy.toString()}-${month}-${day}`;
+    if (end.length > 0) {
+      if (start.length == 0) {
+        alert('Por favor, selecione uma data de inicio para continuar');
+      } else {
+        getData(start, end);
+      }
+    } else {
+      getData(currentDate, currentDate);
+    }
+  }, [end]);
+
+  const handleFormatDate = (date: number) => {
+    let formatDate = date < 10 ? '0' + date : date;
+    return formatDate.toString();
+  };
 
   const handleClick = (status) => () => {
     setFilter({
@@ -112,6 +138,13 @@ export const HomeScreen = (): JSX.Element => {
     });
   };
 
+  const handleDate = useCallback(
+    (selectedDate: string, type: string) => {
+      type == 'start' ? setStart(selectedDate) : setEnd(selectedDate);
+    },
+    [start, end]
+  );
+
   return (
     <Container>
       <Sidebar />
@@ -122,7 +155,25 @@ export const HomeScreen = (): JSX.Element => {
             <Typography htmlTag="strong" fontSize="32px">
               Conference
             </Typography>
+            <ContainerDate>
+              <Typography fontSize="16px">Inicio:</Typography>
+              <DateInput
+                type="date"
+                placeholder="Set the date"
+                onChange={({ target }) => {
+                  handleDate(target.value, 'start');
+                }}
+              />
 
+              <Typography fontSize="16px">Fim:</Typography>
+              <DateInput
+                type="date"
+                placeholder="Set the date"
+                onChange={({ target }) => {
+                  handleDate(target.value, 'end');
+                }}
+              />
+            </ContainerDate>
             <SearchBar
               name="searchBarData"
               value={filter.searchBarData}
@@ -146,7 +197,7 @@ export const HomeScreen = (): JSX.Element => {
                 </CardHeader>
                 <CardBody>
                   {homeData.btnNotification ? (
-                    <h2>{homeData.btnNotification[2]}</h2>
+                    <Count>{homeData.btnNotification[2]}</Count>
                   ) : null}
                 </CardBody>
               </Card>
@@ -158,7 +209,7 @@ export const HomeScreen = (): JSX.Element => {
                 </CardHeader>
                 <CardBody>
                   {homeData.btnNotification ? (
-                    <h2>{homeData.btnNotification[1]}</h2>
+                    <Count>{homeData.btnNotification[1]}</Count>
                   ) : null}
                 </CardBody>
               </Card>
@@ -170,7 +221,7 @@ export const HomeScreen = (): JSX.Element => {
                 </CardHeader>
                 <CardBody>
                   {homeData.btnNotification ? (
-                    <h2>{homeData.btnNotification[0]}</h2>
+                    <Count>{homeData.btnNotification[0]}</Count>
                   ) : null}
                 </CardBody>
               </Card>
@@ -206,7 +257,7 @@ export const HomeScreen = (): JSX.Element => {
               </Typography>
 
               <ModalContainer>
-                {/* <StoppedMovementsTable data={homeData} /> */}
+                <StoppedMovementsTable data={homeData} />
                 <OutlineButton
                   secondary
                   handleClick={() => {}}
@@ -219,15 +270,18 @@ export const HomeScreen = (): JSX.Element => {
           </Alert>
         </TableContent>
 
-        <GraphicContainer>
-          <GraphicWrapper>
-            <Typography htmlTag="strong" fontSize="16px">
-              {' '}
-              SLA em atraso
-            </Typography>
-            {/* <Graphic data={homeData.graphic} /> */}
-          </GraphicWrapper>
-        </GraphicContainer>
+        {homeData.graphic && (
+          <GraphicContainer>
+            <GraphicWrapper>
+              <Spacing vertical="5px" />
+              <Typography htmlTag="strong" fontSize="16px">
+                {' '}
+                SLA em atraso
+              </Typography>
+              <Graphic data={homeData.graphic} />
+            </GraphicWrapper>
+          </GraphicContainer>
+        )}
       </TableContainer>
     </Container>
   );

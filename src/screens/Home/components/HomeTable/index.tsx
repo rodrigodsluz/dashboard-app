@@ -7,9 +7,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import { Modal, OutlineButton } from '@d1.cx/components';
-import { useEffect, useState } from 'react';
+import { Modal, OutlineButton, Spacing } from '@d1.cx/components';
+import React, { useEffect, useState } from 'react';
 import TabsPanel from '../TabsPanel';
+import Status from '../Status/Status';
 
 import { Container } from './style';
 
@@ -90,6 +91,7 @@ const useStyles = makeStyles({
   },
 });
 
+const STATUS = ['RUNNING', 'FINISHED', 'ERROR'];
 export default function HomeTable({ data: { processes }, filter }) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
@@ -175,11 +177,16 @@ export default function HomeTable({ data: { processes }, filter }) {
                     >
                       {columns.map((column) => {
                         const value = row[column.id];
+                        console.log(value);
                         return (
                           <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
+                            {column.format && typeof value === 'number' ? (
+                              column.format(value)
+                            ) : STATUS.includes(value) ? (
+                              <Status status={value}></Status>
+                            ) : (
+                              value
+                            )}
                           </TableCell>
                         );
                       })}
@@ -192,6 +199,7 @@ export default function HomeTable({ data: { processes }, filter }) {
             <Modal open={open} title={modalTitle[index]}>
               <Container>
                 <TabsPanel data={processes[index]} />
+                <Spacing vertical="10px"/>
                 <OutlineButton
                   secondary
                   handleClick={() => {}}
