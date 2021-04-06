@@ -11,11 +11,11 @@ import { API } from './API';
  * Responsável por enviar os dados da comunicação.
  */
 
-export async function getProcesses() {
+export async function getProcesses(start: string, end: string) {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `${API}/Home/Summary/?date1=2021-04-05&date2=2021-04-05`,
+    url: `${API}/Home/Summary/?date1=${start}&date2=${end}`,
     headers: {
       authorization: `Bearer ${token}`,
     },

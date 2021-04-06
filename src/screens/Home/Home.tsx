@@ -77,9 +77,9 @@ export const HomeScreen = (): JSX.Element => {
   });
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
-  const getData = useCallback(async () => {
+  const getData = useCallback(async (start: string, end: string) => {
     try {
-      let processes = await Services.home.getProcesses();
+      let processes = await Services.home.getProcesses(start, end);
       let graphic = await Services.home.getGraphicData();
       let amount = await Services.home.getStoppedMovementsAmount();
       let movements = await Services.home.getStoppedMovements();
@@ -99,8 +99,31 @@ export const HomeScreen = (): JSX.Element => {
 
   useEffect(() => {
     console.log('aqui');
-    getData();
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+
+    let day = handleFormatDate(dd);
+    let month = handleFormatDate(mm);
+
+    let currentDate = `${yyyy.toString()}-${month}-${day}`;
+    console.log(end, start);
+    if (end.length > 0) {
+      if (start.length == 0) {
+        alert('Por favor, selecione uma data de inicio para continuar');
+      } else {
+        getData(start, end);
+      }
+    } else {
+      getData(currentDate, currentDate);
+    }
   }, [end]);
+
+  const handleFormatDate = (date: number) => {
+    let formatDate = date < 10 ? '0' + date : date;
+    return formatDate.toString();
+  };
 
   const handleClick = (status) => () => {
     setFilter({
