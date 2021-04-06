@@ -122,7 +122,7 @@ export const GraphicContainer = styled.div`
 
 export const GraphicWrapper = styled.div`
   border-radius: 7px;
-  border: 2px solid rgba(100, 100, 111, 0.2);
+  border: 1px solid #ccc;
   margin-top: 20px;
   text-align: center;
 
@@ -193,3 +193,4 @@ export const Count = styled.h2`
   font-weight: 900;
   font-size: 25px;
 `;
+

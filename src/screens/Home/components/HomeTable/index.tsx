@@ -177,7 +177,6 @@ export default function HomeTable({ data: { processes }, filter }) {
                     >
                       {columns.map((column) => {
                         const value = row[column.id];
-                        console.log(value);
                         return (
                           <TableCell key={column.id} align={column.align}>
                             {column.format && typeof value === 'number' ? (
