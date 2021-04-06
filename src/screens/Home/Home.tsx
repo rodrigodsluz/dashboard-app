@@ -45,7 +45,7 @@ import Services from '../../services';
  * @name HomeScreen
  *
  * @description
- * Responsável por montar a tela de escolha rcs ou mensagens
+ * Responsável por montar a tela de Home. Exibindo a tabela com os processos, gráfico dos mesmos e filtro por status.
  */
 
 const TooltipArrow = withStyles((theme: Theme) => ({
