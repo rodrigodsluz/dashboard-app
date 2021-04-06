@@ -1,19 +1,53 @@
-import { createContext, useEffect, useState } from 'react';
-import Services from '../services';
+import { createContext, useState } from 'react';
+type Type = {
+  name?: string;
+  urlImg?: string;
+  ocupation?: string;
+  open?: boolean;
+  configureUsername?: (name: string) => void;
+  configureURLImg?: (url: string) => void;
+  configureOcupation?: (ocupation: string) => void;
+  openModal?: () => void;
+};
 
-export const HomeDataContext = createContext(null);
+type Props = {
+  children: React.ReactNode;
+};
+export const HomeDataContext = createContext<Type>({});
 
-const HomeDataContextProvider = ({ children }) => {
-  const [homeData, setHomeData] = useState({
-    processes: [],
-    graphic: [],
-    stoppedAmount: 0,
-    stoppedMovements: [],
-    btnNotification: [],
-  });
+const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
+  const [name, setName] = useState('Leo');
+  const [urlImg, setUrlImg] = useState('');
+  const [open, setOpen] = useState(false);
+  const [ocupation, setOcupation] = useState('');
 
+  function configureUsername(username) {
+    setName(username);
+  }
+
+  const configureURLImg = (url) => {
+    setUrlImg(url);
+  };
+
+  const configureOcupation = (ocupation) => {
+    setOcupation(ocupation);
+  };
+  const openModal = () => {
+    setOpen(!open);
+  };
   return (
-    <HomeDataContext.Provider value={{ homeData }}>
+    <HomeDataContext.Provider
+      value={{
+        configureUsername,
+        configureURLImg,
+        configureOcupation,
+        name,
+        urlImg,
+        ocupation,
+        openModal,
+        open,
+      }}
+    >
       {children}
     </HomeDataContext.Provider>
   );

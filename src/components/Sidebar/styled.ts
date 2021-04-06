@@ -5,7 +5,6 @@ interface Props {
   icon?: string;
 }
 
-
 export const Border = styled.div<Props>`
   background: transparent linear-gradient(90deg, #00e1ff 0%, #117eff 100%);
   position: fixed;
@@ -13,7 +12,7 @@ export const Border = styled.div<Props>`
   width: 70px;
   height: 3px;
   z-index: 2;
-  ${props =>
+  ${(props) =>
     props.position === 'top' &&
     css`
       top: 0px;
@@ -22,7 +21,7 @@ export const Border = styled.div<Props>`
         height: 3px;
       }
     `}
-  ${props =>
+  ${(props) =>
     props.position === 'bottom' &&
     css`
       bottom: 0px;
@@ -63,6 +62,10 @@ export const ContainerLogo = styled.div`
   @media screen and (max-width: 300px) {
     margin: 17px 0 0 5px;
   }
+`;
+
+export const Name = styled.h2`
+  color: #fff;
 `;
 
 export const ContainerIcons = styled.div`
@@ -109,7 +112,7 @@ export const IconWrapper = styled.div<Props>`
     margin: 10px 3px;
   }
 
-  ${props =>
+  ${(props) =>
     props.icon === 'signout' &&
     css`
       margin-top: 160px;
@@ -123,3 +126,8 @@ export const ExpandIconClick = styled.div`
   justify-content: center;
 `;
 
+export const ModalButton = styled.button`
+  border: none;
+  outline: none;
+  background-color: transparent;
+`;
