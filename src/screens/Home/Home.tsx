@@ -108,7 +108,6 @@ export const HomeScreen = (): JSX.Element => {
     let month = handleFormatDate(mm);
 
     let currentDate = `${yyyy.toString()}-${month}-${day}`;
-    console.log(end, start);
     if (end.length > 0) {
       if (start.length == 0) {
         alert('Por favor, selecione uma data de inicio para continuar');
