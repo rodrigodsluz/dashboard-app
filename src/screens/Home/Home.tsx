@@ -33,6 +33,7 @@ import {
   SearchBar,
   DateInput,
   ContainerDate,
+  Count,
 } from './styled';
 
 import HomeTable from './components/HomeTable';
@@ -80,10 +81,10 @@ export const HomeScreen = (): JSX.Element => {
   const getData = useCallback(async (start: string, end: string) => {
     try {
       let processes = await Services.home.getProcesses(start, end);
-      let graphic = await Services.home.getGraphicData();
-      let amount = await Services.home.getStoppedMovementsAmount();
-      let movements = await Services.home.getStoppedMovements();
-      let notifications = await Services.home.getBtnNotification();
+      let graphic = await Services.home.getGraphicData(start, end);
+      let amount = await Services.home.getStoppedMovementsAmount(start, end);
+      let movements = await Services.home.getStoppedMovements(start, end);
+      let notifications = await Services.home.getBtnNotification(start, end);
 
       setHomeData({
         processes,
@@ -98,7 +99,6 @@ export const HomeScreen = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    console.log('aqui');
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1;
@@ -197,7 +197,7 @@ export const HomeScreen = (): JSX.Element => {
                 </CardHeader>
                 <CardBody>
                   {homeData.btnNotification ? (
-                    <h2>{homeData.btnNotification[2]}</h2>
+                    <Count>{homeData.btnNotification[2]}</Count>
                   ) : null}
                 </CardBody>
               </Card>
@@ -209,7 +209,7 @@ export const HomeScreen = (): JSX.Element => {
                 </CardHeader>
                 <CardBody>
                   {homeData.btnNotification ? (
-                    <h2>{homeData.btnNotification[1]}</h2>
+                    <Count>{homeData.btnNotification[1]}</Count>
                   ) : null}
                 </CardBody>
               </Card>
@@ -221,7 +221,7 @@ export const HomeScreen = (): JSX.Element => {
                 </CardHeader>
                 <CardBody>
                   {homeData.btnNotification ? (
-                    <h2>{homeData.btnNotification[0]}</h2>
+                    <Count>{homeData.btnNotification[0]}</Count>
                   ) : null}
                 </CardBody>
               </Card>

@@ -80,11 +80,11 @@ export async function getProcesses(start: string, end: string) {
   }
 }
 
-export async function getGraphicData() {
+export async function getGraphicData(start: string, end: string) {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `${API}/Home/PieChartSla`,
+    url: `${API}/Home/PieChartSla?date1=${start}&date2=${end}`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -98,11 +98,11 @@ export async function getGraphicData() {
   }
 }
 
-export async function getStoppedMovementsAmount() {
+export async function getStoppedMovementsAmount(start: string, end: string) {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `${API}/Home/StoppedCount`,
+    url: `${API}/Home/StoppedCount?date1=${start}&date2=${end}`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -116,11 +116,11 @@ export async function getStoppedMovementsAmount() {
   }
 }
 
-export async function getStoppedMovements() {
+export async function getStoppedMovements(start: string, end: string) {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `${API}/Home/StoppedMovements`,
+    url: `${API}/Home/StoppedMovements?date1=${start}&date2=${end}`,
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -144,11 +144,11 @@ export async function getStoppedMovements() {
   }
 }
 
-export async function getBtnNotification() {
+export async function getBtnNotification(start: string, end: string) {
   const token = localStorage.getItem('token');
 
   const options = {
-    url: `${API}/Home/BtnNotification`,
+    url: `${API}/Home/BtnNotification?date1=${start}&date2=${end}`,
     headers: {
       authorization: `Bearer ${token}`,
     },
