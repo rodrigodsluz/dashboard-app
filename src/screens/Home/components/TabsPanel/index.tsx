@@ -79,7 +79,7 @@ export default function TabsPanel({ data }) {
   return (
     <div className={classes.root}>
       <AppBar
-        position="sticky"
+        position="relative"
         style={{
           background: '#1a1731',
           color: '#fff',
