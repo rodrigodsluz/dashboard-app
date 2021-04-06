@@ -8,6 +8,7 @@ import {
   Modal,
   OutlineButton,
   MenuFilterLoading,
+  PrimaryButton,
 } from '@d1.cx/components';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
@@ -78,6 +79,7 @@ export const HomeScreen = (): JSX.Element => {
   });
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
+  const [loading, setLoading] = useState(false);
   const getData = useCallback(async (start: string, end: string) => {
     try {
       let processes = await Services.home.getProcesses(start, end);
@@ -93,12 +95,19 @@ export const HomeScreen = (): JSX.Element => {
         stoppedMovements: movements,
         btnNotification: notifications,
       });
+
+      setLoading(false);
     } catch (e) {
       console.log(e);
     }
   }, []);
 
   useEffect(() => {
+    handleSubmit();
+  }, []);
+
+  const handleSubmit = useCallback(async () => {
+    setLoading(true);
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1;
@@ -108,16 +117,18 @@ export const HomeScreen = (): JSX.Element => {
     let month = handleFormatDate(mm);
 
     let currentDate = `${yyyy.toString()}-${month}-${day}`;
+
     if (end.length > 0) {
       if (start.length == 0) {
         alert('Por favor, selecione uma data de inicio para continuar');
+        setLoading(false);
       } else {
         getData(start, end);
       }
     } else {
       getData(currentDate, currentDate);
     }
-  }, [end]);
+  }, [start, end]);
 
   const handleFormatDate = (date: number) => {
     let formatDate = date < 10 ? '0' + date : date;
@@ -173,6 +184,14 @@ export const HomeScreen = (): JSX.Element => {
                   handleDate(target.value, 'end');
                 }}
               />
+              <OutlineButton
+                type="submit"
+                loading={loading}
+                disabled={loading}
+                onClick={handleSubmit}
+              >
+                Atualizar
+              </OutlineButton>
             </ContainerDate>
             <SearchBar
               name="searchBarData"
