@@ -1,19 +1,11 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
-import {
-  Typography,
-  Spacing,
-  Modal,
-  OutlineButton,
-  MenuFilterLoading,
-} from '@d1.cx/components';
-import { Alert, AlertTitle } from '@material-ui/lab';
+import { Typography, Spacing, MenuFilterLoading } from '@d1.cx/components';
 
 import { Theme, withStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 import Sidebar from '../../components/Sidebar';
 import HomeTable from './components/HomeTable';
-import StoppedMovementsTable from './components/StoppedMovementsTable';
 import Graphic from './components/PieChart';
 import { Menu } from './components/TopMenu/TopMenu';
 import { HomeDataContext } from '@src/context/HomeDataContext';
@@ -28,9 +20,6 @@ import {
   TableContent,
   GraphicWrapper,
   Content,
-  Info,
-  InfoBtn,
-  ModalContainer,
   SearchBar,
 } from './styled';
 import { AlertContent } from './components/Alert/Alert';
@@ -43,20 +32,6 @@ import { AlertContent } from './components/Alert/Alert';
  * Responsável por montar a tela de Home. Exibindo a tabela com os processos, gráfico dos mesmos e filtro por status.
  */
 
-const TooltipArrow = withStyles((theme: Theme) => ({
-  arrow: {
-    color: 'white',
-  },
-  tooltip: {
-    backgroundColor: 'white',
-    color: '#3E4157',
-    fontWeight: 'bold',
-    boxShadow: theme.shadows[1],
-    padding: theme.spacing(1),
-    fontSize: '14px',
-  },
-}))(Tooltip);
-
 export const HomeScreen = (): JSX.Element => {
   const { startDate, endDate } = useContext(HomeDataContext);
   const [homeData, setHomeData] = useState({
@@ -66,7 +41,6 @@ export const HomeScreen = (): JSX.Element => {
     stoppedMovements: [],
     btnNotification: [],
   });
-  const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState({
     btnStatus: '',
     searchBarData: '',

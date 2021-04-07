@@ -163,6 +163,10 @@ export const TopMenu = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 1100px) {
+    margin: 10px;
+    flex-direction: column;
+  }
 `;
 
 export const SearchBar = styled.input`
@@ -179,6 +183,10 @@ export const DateInput = styled.input`
   border-radius: 5px;
   margin: 0px 10px;
   outline: none;
+
+  @media screen and (max-width: 800px) {
+    margin: 10px 0px;
+  }
 `;
 
 export const ContainerDate = styled.div`
@@ -186,6 +194,12 @@ export const ContainerDate = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 1100px) {
+    margin: 20px 0px;
+  }
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 export const Count = styled.h2`
@@ -193,4 +207,3 @@ export const Count = styled.h2`
   font-weight: 900;
   font-size: 25px;
 `;
-
