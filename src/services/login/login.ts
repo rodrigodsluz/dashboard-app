@@ -39,3 +39,21 @@ export async function getInfoUser(info) {
     return false;
   }
 }
+
+export async function getUserPhoto(info) {
+  const options = {
+    url: `${API}/User/${info.keyUser}/image`,
+    headers: {
+      authorization: `Bearer ${info.token}`,
+    },
+  };
+
+  console.log(options.url);
+
+  try {
+    const { data } = await axios({ method: 'GET', ...options });
+    return data;
+  } catch (error) {
+    return false;
+  }
+}

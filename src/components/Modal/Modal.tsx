@@ -6,15 +6,15 @@ import {
   Select,
   Spacing,
 } from '@d1.cx/components';
-import { ModalContainer, Image, UploadFile, File } from './styled';
+import { ModalContainer, UploadFile, File } from './styled';
 import { HomeDataContext } from '@src/context/HomeDataContext';
+import Services from '../../services';
 
 export const UserModal = (): JSX.Element => {
   const {
     name,
     open,
     openModal,
-    urlImg,
     configureUsername,
     configureOcupation,
     ocupation,
@@ -25,7 +25,6 @@ export const UserModal = (): JSX.Element => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
 
-  console.log(ocupation);
   const switchOcupation = useCallback(() => {
     switch (ocupation) {
       case 'Visitante':
@@ -41,19 +40,32 @@ export const UserModal = (): JSX.Element => {
     }
   }, [ocupation]);
 
+  const handleSubmit = useCallback(async () => {
+    try {
+      let user = {
+        name,
+        ocupation,
+      };
+      console.log(user);
+      let response = await Services.user.uploadUser(user);
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [name, ocupation]);
+
   return (
     <Modal open={open} title="Atualizar informações">
       <ModalContainer>
-        {urlImg ? (
-          <Image src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png" />
-        ) : (
-          <UploadFile style={{ backgroundImage: `url(${preview})` }}>
-            <File
-              type="file"
-              onChange={(e) => setThumbnail(e.target.files[0])}
-            />
-          </UploadFile>
-        )}
+        <UploadFile
+          style={{
+            backgroundImage: preview
+              ? `url(${preview})`
+              : 'url(https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png)',
+          }}
+        >
+          <File type="file" onChange={(e) => setThumbnail(e.target.files[0])} />
+        </UploadFile>
 
         <Input
           placeholder="Atualizar nome"
@@ -72,7 +84,6 @@ export const UserModal = (): JSX.Element => {
             { id: '4', name: 'Implementação' },
           ]}
           onChange={({ target }) => {
-            console.log(target.value);
             configureOcupation(target.value);
           }}
         />
@@ -81,7 +92,9 @@ export const UserModal = (): JSX.Element => {
           secondary
           handleClick={() => {}}
           onClick={() => {
+            handleSubmit();
             openModal();
+            setThumbnail(null);
           }}
         >
           Atualizar

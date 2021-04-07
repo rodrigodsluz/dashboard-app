@@ -24,10 +24,12 @@ export const UploadFile = styled.label`
   background-size: cover;
   cursor: pointer;
   height: 160px;
-
+  width: 160px;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: center;
 `;
 
 export const File = styled.input`

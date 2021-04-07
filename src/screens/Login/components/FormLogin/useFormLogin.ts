@@ -111,6 +111,8 @@ const useFormLogin = (): UseFormLoginTypes => {
       await configureOcupation(res.ocupacao);
       await configureURLImg(res.imagem);
       await configureUsername(res.nome);
+      //const resPhoto = await Services.login.getUserPhoto(response.data);
+      // console.log(resPhoto);
       redirect(routes.home);
     },
     []

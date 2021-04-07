@@ -20,6 +20,7 @@ import { ReactComponent as ChartPie } from '../../../public/sidebarIcons/chart-p
 import { ReactComponent as Rocket } from '../../../public/sidebarIcons/rocket.svg';
 import { ReactComponent as SignOut } from '../../../public/sidebarIcons/sign-out-alt.svg';
 import { ReactComponent as User } from '../../../public/sidebarIcons/user-friends.svg';
+import { ReactComponent as Settings } from '../../../public/sidebarIcons/tools.svg';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 
 const TooltipArrow = withStyles((theme: Theme) => ({
@@ -79,9 +80,16 @@ const Sidebar = () => {
             <ExpandIconClick>
               <TooltipArrow title="User" placement="left" arrow>
                 <IconWrapper>
-                  <User
-                    fill={open ? '#117eff' : 'white'}
-                  />
+                  <User fill={open ? '#117eff' : 'white'} />
+                </IconWrapper>
+              </TooltipArrow>
+            </ExpandIconClick>
+          </ModalButton>
+          <ModalButton onClick={openModal}>
+            <ExpandIconClick>
+              <TooltipArrow title="Settings" placement="left" arrow>
+                <IconWrapper>
+                  <Settings fill={open ? '#117eff' : 'white'} />
                 </IconWrapper>
               </TooltipArrow>
             </ExpandIconClick>
