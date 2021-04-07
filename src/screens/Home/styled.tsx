@@ -33,6 +33,7 @@ export const TableContainer = styled.div`
     flex-direction: column;
     align-items: center;
     text-align: center;
+    background-color: red;
   }
 
   @media screen and (max-width: 500px) {
@@ -49,6 +50,11 @@ export const TableContent = styled.div`
   }
 `;
 
+export const Content = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+`;
 export const CardContainer = styled.div`
   display: flex;
   justify-content: space-around;
@@ -166,11 +172,12 @@ export const TopMenu = styled.div`
 `;
 
 export const SearchBar = styled.input`
-  width: 30%;
+  width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
   outline: none;
+  margin: 10px 0px;
 `;
 
 export const DateInput = styled.input`
@@ -193,4 +200,3 @@ export const Count = styled.h2`
   font-weight: 900;
   font-size: 25px;
 `;
-

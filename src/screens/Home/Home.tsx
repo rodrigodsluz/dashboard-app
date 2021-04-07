@@ -27,6 +27,7 @@ import {
   GraphicContainer,
   TableContent,
   GraphicWrapper,
+  Content,
   Info,
   InfoBtn,
   ModalContainer,
@@ -146,15 +147,16 @@ export const HomeScreen = (): JSX.Element => {
 
       <TableContainer>
         <TableContent>
-          <Menu loading={loading} submit={handleSubmit} />
-          <SearchBar
-            name="searchBarData"
-            value={filter.searchBarData}
-            type="search"
-            placeholder="O que você está procurando?"
-            onChange={handleSearchBarChange}
-          />
-
+          <Content>
+            <Menu loading={loading} submit={handleSubmit} />
+            <SearchBar
+              name="searchBarData"
+              value={filter.searchBarData}
+              type="search"
+              placeholder="O que você está procurando?"
+              onChange={handleSearchBarChange}
+            />
+          </Content>
           <Spacing vertical="10px" />
           {homeData.processes.length > 0 ? (
             <HomeTable data={homeData} filter={filter} />
