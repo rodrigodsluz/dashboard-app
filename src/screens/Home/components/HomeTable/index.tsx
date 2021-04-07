@@ -147,9 +147,9 @@ export default function HomeTable({ data: { processes }, filter }) {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              {columns.map((column) => (
+              {columns.map((column, index) => (
                 <TableCell
-                  key={column.id}
+                  key={index}
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
                 >
@@ -193,12 +193,12 @@ export default function HomeTable({ data: { processes }, filter }) {
                   </>
                 ))
             ) : (
-              <div>Busca não encontrada</div>
+              <div style={{ padding: 20 }}>Busca não encontrada</div>
             )}
             <Modal open={open} title={modalTitle[index]}>
               <Container>
                 <TabsPanel data={processes[index]} />
-                <Spacing vertical="10px"/>
+                <Spacing vertical="10px" />
                 <OutlineButton
                   secondary
                   handleClick={() => {}}

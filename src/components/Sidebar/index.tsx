@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -9,12 +11,17 @@ import {
   Logo,
   IconWrapper,
   ExpandIconClick,
+  Name,
+  ModalButton,
   ContainerLogo,
 } from './styled';
 
 import { ReactComponent as ChartPie } from '../../../public/sidebarIcons/chart-pie.svg';
 import { ReactComponent as Rocket } from '../../../public/sidebarIcons/rocket.svg';
 import { ReactComponent as SignOut } from '../../../public/sidebarIcons/sign-out-alt.svg';
+import { ReactComponent as User } from '../../../public/sidebarIcons/user-friends.svg';
+import { ReactComponent as Settings } from '../../../public/sidebarIcons/tools.svg';
+import { HomeDataContext } from '@src/context/HomeDataContext';
 
 const TooltipArrow = withStyles((theme: Theme) => ({
   arrow: {
@@ -32,7 +39,7 @@ const TooltipArrow = withStyles((theme: Theme) => ({
 
 const Sidebar = () => {
   const router = useRouter();
-
+  const { name, open, openModal } = useContext(HomeDataContext);
   return (
     <>
       <Border position="top" />
@@ -69,6 +76,20 @@ const Sidebar = () => {
               </TooltipArrow>
             </ExpandIconClick>
           </Link>
+          <ExpandIconClick onClick={openModal}>
+            <TooltipArrow title="User" placement="left" arrow>
+              <IconWrapper>
+                <User fill={open ? '#117eff' : 'white'} />
+              </IconWrapper>
+            </TooltipArrow>
+          </ExpandIconClick>
+          <ExpandIconClick onClick={openModal}>
+            <TooltipArrow title="Settings" placement="left" arrow>
+              <IconWrapper>
+                <Settings fill={open ? '#117eff' : 'white'} />
+              </IconWrapper>
+            </TooltipArrow>
+          </ExpandIconClick>
         </ContainerIcons>
 
         <ContainerIcons />
