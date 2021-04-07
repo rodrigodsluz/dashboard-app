@@ -119,15 +119,16 @@ export const IconWrapper = styled.div<Props>`
     `}
 `;
 
-export const ExpandIconClick = styled.div`
+export const ExpandIconClick = styled.button`
   width: 100%;
   display: flex;
-
   justify-content: center;
+  background-color: transparent;
+  height: 40%;
+  border: none;
 `;
 
 export const ModalButton = styled.button`
   border: none;
   outline: none;
-  background-color: transparent;
 `;

@@ -23,12 +23,11 @@ export const TableContainer = styled.div`
   width: 100vw;
   height: 100vh;
   padding: 20px 40px;
+
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 4px;
   margin: 0 0 0 50px;
   display: flex;
-  justify-content: space-between;
-
   @media screen and (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
@@ -41,9 +40,8 @@ export const TableContainer = styled.div`
 `;
 
 export const TableContent = styled.div`
-  width: 80%;
-  height: 80vh;
-
+  width: 90%;
+  height: 100vh;
   @media screen and (max-width: 1000px) {
     width: 100%;
   }
@@ -114,23 +112,13 @@ export const GraphicContainer = styled.div`
   padding: 0px 20px;
   display: flex;
   flex-direction: column;
-
-  @media screen and (max-width: 600px) {
-    margin-top: 460px;
-  }
-
-  @media screen and (min-width: 700px) and (max-width: 1024px) {
-    margin-top: 200px;
-    flex-direction: row;
-  }
+  width: 250px;
 `;
 
 export const GraphicWrapper = styled.div`
   border-radius: 7px;
   border: 1px solid #ccc;
-  margin-top: 20px;
   text-align: center;
-
   @media screen and (min-width: 700px) and (max-width: 1024px) {
     margin: 10px;
   }

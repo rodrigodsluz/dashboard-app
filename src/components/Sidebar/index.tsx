@@ -76,24 +76,20 @@ const Sidebar = () => {
               </TooltipArrow>
             </ExpandIconClick>
           </Link>
-          <ModalButton onClick={openModal}>
-            <ExpandIconClick>
-              <TooltipArrow title="User" placement="left" arrow>
-                <IconWrapper>
-                  <User fill={open ? '#117eff' : 'white'} />
-                </IconWrapper>
-              </TooltipArrow>
-            </ExpandIconClick>
-          </ModalButton>
-          <ModalButton onClick={openModal}>
-            <ExpandIconClick>
-              <TooltipArrow title="Settings" placement="left" arrow>
-                <IconWrapper>
-                  <Settings fill={open ? '#117eff' : 'white'} />
-                </IconWrapper>
-              </TooltipArrow>
-            </ExpandIconClick>
-          </ModalButton>
+          <ExpandIconClick onClick={openModal}>
+            <TooltipArrow title="User" placement="left" arrow>
+              <IconWrapper>
+                <User fill={open ? '#117eff' : 'white'} />
+              </IconWrapper>
+            </TooltipArrow>
+          </ExpandIconClick>
+          <ExpandIconClick onClick={openModal}>
+            <TooltipArrow title="Settings" placement="left" arrow>
+              <IconWrapper>
+                <Settings fill={open ? '#117eff' : 'white'} />
+              </IconWrapper>
+            </TooltipArrow>
+          </ExpandIconClick>
         </ContainerIcons>
 
         <ContainerIcons />
