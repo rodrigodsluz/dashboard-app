@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useMemo, useState } from 'react';
 import {
   Input,
   Modal,
@@ -25,6 +25,22 @@ export const UserModal = (): JSX.Element => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
 
+  console.log(ocupation);
+  const switchOcupation = useCallback(() => {
+    switch (ocupation) {
+      case 'Visitante':
+        return '1';
+      case 'Suporte':
+        return '2';
+      case 'Processamento':
+        return '3';
+      case 'Implementação':
+        return '4';
+      default:
+        return '0';
+    }
+  }, [ocupation]);
+
   return (
     <Modal open={open} title="Atualizar informações">
       <ModalContainer>
@@ -47,15 +63,16 @@ export const UserModal = (): JSX.Element => {
           value={name}
         />
         <Select
-          value={ocupation}
+          value={switchOcupation()}
           data={[
             { id: '0', name: 'Área de atuação' },
-            { id: '2', name: 'Visitante' },
-            { id: '3', name: 'Suporte' },
-            { id: '4', name: 'Processamento' },
-            { id: '5', name: 'Implementação' },
+            { id: '1', name: 'Visitante' },
+            { id: '2', name: 'Suporte' },
+            { id: '3', name: 'Processamento' },
+            { id: '4', name: 'Implementação' },
           ]}
           onChange={({ target }) => {
+            console.log(target.value);
             configureOcupation(target.value);
           }}
         />
