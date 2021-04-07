@@ -41,7 +41,7 @@ export const SidebarContainer = styled.nav`
   height: 100%;
   width: 70px;
   display: grid;
-  grid-template-rows: 100px 3fr 1fr 2fr;
+  grid-template-rows: 100px 1fr 1fr 2fr;
   z-index: 1;
 
   @media screen and (max-width: 500px) {
@@ -111,12 +111,6 @@ export const IconWrapper = styled.div<Props>`
   @media screen and (max-width: 500px) {
     margin: 10px 3px;
   }
-
-  ${(props) =>
-    props.icon === 'signout' &&
-    css`
-      margin-top: 160px;
-    `}
 `;
 
 export const ExpandIconClick = styled.button`
@@ -124,7 +118,7 @@ export const ExpandIconClick = styled.button`
   display: flex;
   justify-content: center;
   background-color: transparent;
-  height: 40%;
+  height: 50px;
   border: none;
 `;
 
