@@ -55,7 +55,7 @@ export const HomeScreen = (): JSX.Element => {
    * @description
    * Responsavel por fazer a requisição na api
    */
-  
+
   const getData = useCallback(async (start: string, end: string) => {
     try {
       let processes = await Services.home.getProcesses(start, end);
@@ -82,6 +82,15 @@ export const HomeScreen = (): JSX.Element => {
     handleSubmit();
   }, []);
 
+  /**
+   * @function
+   * @name handleSubmit
+   *
+   * @description
+   * Responsavel por pegar a data do dia atual e fazer a request.
+   * Caso exista a data selecionada nos datepicker, ela que é utilizada
+   */
+
   const handleSubmit = useCallback(async () => {
     setLoading(true);
     var today = new Date();
@@ -105,10 +114,26 @@ export const HomeScreen = (): JSX.Element => {
     }
   }, [startDate, endDate]);
 
+  /**
+   * @function
+   * @name handleFormatDate
+   *
+   * @description
+   * Responsavel por formatar a data atual caso seja menor que o dia ou mês 10, adicionando um 0 antes
+   */
+
   const handleFormatDate = (date: number) => {
     let formatDate = date < 10 ? '0' + date : date;
     return formatDate.toString();
   };
+
+  /**
+   * @function
+   * @name handleClick
+   *
+   * @description
+   * Responsavel por setar o state do filtro de busca
+   */
 
   const handleClick = (status) => () => {
     setFilter({
@@ -116,6 +141,14 @@ export const HomeScreen = (): JSX.Element => {
       searchBarData: '',
     });
   };
+
+  /**
+   * @function
+   * @name handleSearchBarChange
+   *
+   * @description
+   * Responsavel por pegar o valor digitado na barra de busca
+   */
 
   const handleSearchBarChange = (e) => {
     setFilter({
