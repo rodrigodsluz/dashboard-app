@@ -14,7 +14,6 @@ import Services from '../../services';
 import {
   Container,
   TableContainer,
-  GraphicContainer,
   TableContent,
   GraphicWrapper,
   Content,
@@ -185,19 +184,14 @@ export const HomeScreen = (): JSX.Element => {
           />
           <AlertContent data={homeData.stoppedAmount} homeData={homeData} />
         </TableContent>
-
-        {homeData.graphic && (
-          <GraphicContainer>
-            <GraphicWrapper>
-              <Spacing vertical="5px" />
-              <Typography htmlTag="strong" fontSize="16px">
-                {' '}
-                SLA em atraso
-              </Typography>
-              <Graphic data={homeData.graphic} />
-            </GraphicWrapper>
-          </GraphicContainer>
-        )}
+        <GraphicWrapper>
+          <Spacing vertical="5px" />
+          <Typography htmlTag="strong" fontSize="16px">
+            {' '}
+            SLA em atraso
+          </Typography>
+          {homeData.graphic ? <Graphic data={homeData.graphic} /> : null}
+        </GraphicWrapper>
       </TableContainer>
     </Container>
   );
