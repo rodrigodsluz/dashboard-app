@@ -2,8 +2,6 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import { Typography, Spacing, MenuFilterLoading } from '@d1.cx/components';
 
-import { Theme, withStyles } from '@material-ui/core/styles';
-import Tooltip from '@material-ui/core/Tooltip';
 import Sidebar from '../../components/Sidebar';
 import HomeTable from './components/HomeTable';
 import Graphic from './components/PieChart';
@@ -23,13 +21,15 @@ import {
   SearchBar,
 } from './styled';
 import { AlertContent } from './components/Alert/Alert';
+
 /**
  * @export
  * @component
  * @name HomeScreen
  *
  * @description
- * Responsável por montar a tela de Home. Exibindo a tabela com os processos, gráfico dos mesmos e filtro por status.
+ * Responsável por montar a tela de Home. Exibindo a tabela com os processos,
+ * gráfico dos mesmos e filtro por status.
  */
 
 export const HomeScreen = (): JSX.Element => {
@@ -47,6 +47,15 @@ export const HomeScreen = (): JSX.Element => {
   });
 
   const [loading, setLoading] = useState(false);
+
+  /**
+   * @function
+   * @name getData
+   *
+   * @description
+   * Responsavel por fazer a requisição na api
+   */
+  
   const getData = useCallback(async (start: string, end: string) => {
     try {
       let processes = await Services.home.getProcesses(start, end);
