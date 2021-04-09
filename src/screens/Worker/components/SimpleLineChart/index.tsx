@@ -11,46 +11,39 @@ import {
 
 const data = [
   {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
+    name: 'Dia 1',
+    jobs: 4000,
+    machines: 2400,
   },
   {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
+    name: 'Dia 2',
+    jobs: 3000,
+    machines: 1398,
   },
   {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
+    name: 'Dia 3',
+    jobs: 2000,
+    machines: 9800,
   },
   {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
+    name: 'Dia 4',
+    jobs: 2780,
+    machines: 3908,
   },
   {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
+    name: 'Dia 5',
+    jobs: 1890,
+    machines: 4800,
   },
   {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
+    name: 'Dia 6',
+    jobs: 2390,
+    machines: 3800,
   },
   {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
+    name: 'Dia 7',
+    jobs: 3490,
+    machines: 4300,
   },
 ];
 
@@ -91,11 +84,11 @@ const SimpleLineChart: React.FC = () => {
       <Legend />
       <Line
         type="monotone"
-        dataKey="pv"
-        stroke="#8884d8"
+        dataKey="jobs"
+        stroke="#ea4335"
         activeDot={{ r: 8 }}
       />
-      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+      <Line type="monotone" dataKey="machines" stroke="#34a853" />
     </LineChart>
   );
 };

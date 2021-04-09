@@ -5,12 +5,12 @@ import { HomeDataContext } from '@src/context/HomeDataContext';
 
 import { TopMenu, DateInput, ContainerDate } from './styled';
 
-export const Menu = ({ loading, submit }): JSX.Element => {
+export const Menu = ({ loading, submit, title }): JSX.Element => {
   const { configureStartDate, configureEndDate } = useContext(HomeDataContext);
   return (
     <TopMenu>
       <Typography htmlTag="strong" fontSize="32px">
-        Conference
+        {title}
       </Typography>
       <ContainerDate>
         <Typography fontSize="16px">Inicio:</Typography>

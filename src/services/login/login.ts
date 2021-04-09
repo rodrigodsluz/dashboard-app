@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API } from '../home/API';
+import { API } from '../API';
 
 /**
  * @async

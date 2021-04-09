@@ -33,6 +33,8 @@ import { AlertContent } from './components/Alert/Alert';
 
 export const HomeScreen = (): JSX.Element => {
   const { startDate, endDate } = useContext(HomeDataContext);
+  const [loading, setLoading] = useState(false);
+
   const [homeData, setHomeData] = useState({
     processes: [],
     graphic: [],
@@ -44,8 +46,6 @@ export const HomeScreen = (): JSX.Element => {
     btnStatus: '',
     searchBarData: '',
   });
-
-  const [loading, setLoading] = useState(false);
 
   /**
    * @function
@@ -163,7 +163,7 @@ export const HomeScreen = (): JSX.Element => {
       <TableContainer>
         <TableContent>
           <Content>
-            <Menu loading={loading} submit={handleSubmit} />
+            <Menu title="Conference" loading={loading} submit={handleSubmit} />
             <SearchBar
               name="searchBarData"
               value={filter.searchBarData}

@@ -39,6 +39,7 @@ export const TableContainer = styled.div`
 export const TableContent = styled.div`
   width: 100%;
   height: 100%;
+  
 `;
 export const SubTitle = styled.p`
   font-size: 16px;
@@ -97,7 +98,7 @@ export const ContainerStatus = styled.div`
 `;
 
 export const StatusCard = styled.div`
-  width: 200px;
+  width: 230px;
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px;
