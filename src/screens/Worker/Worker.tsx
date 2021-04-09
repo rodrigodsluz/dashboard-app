@@ -8,6 +8,8 @@ import { StatusCircle } from './components/StatusCircle';
 import { Menu } from '../Home/components/TopMenu/TopMenu';
 import { Content, SearchBar } from '../Home/styled';
 import { HomeDataContext } from '@src/context/HomeDataContext';
+import services from '@src/services';
+
 import {
   Container,
   TableContainer,
@@ -16,7 +18,6 @@ import {
   JobsContainer,
   StatusCard,
 } from './styled';
-import services from '@src/services';
 
 /**
  * @export
@@ -86,10 +87,11 @@ export const WorkerScreen = (): JSX.Element => {
     try {
       let data = await services.worker.getDataWorker(start, end);
       let generetedJobs = await services.worker.getGeneretedJobs(start, end);
+      let lineGraph = await services.worker.getLineGraph();
       setWorkerData({
         data: data.data,
         cards: generetedJobs.data,
-        graph: [],
+        graph: lineGraph.data,
         jobs: 0,
         machines: 0,
       });
@@ -132,11 +134,10 @@ export const WorkerScreen = (): JSX.Element => {
     }
   }, [startDate, endDate]);
 
-  console.log(workerData.cards);
+  console.log(workerData.graph);
   const formatStatus = useCallback(
     (status) => {
       let splitText = status.split(' ')[1];
-      console.log(splitText);
       return splitText;
     },
     [workerData.cards]
@@ -171,7 +172,9 @@ export const WorkerScreen = (): JSX.Element => {
                   color="#34a853"
                   status="Executando"
                   number={
-                    workerData.cards[1] ? formatStatus(workerData.cards[1]) : ''
+                    workerData.cards && workerData.cards[1]
+                      ? formatStatus(workerData.cards[1])
+                      : ''
                   }
                 />
               </StatusCard>
@@ -181,7 +184,9 @@ export const WorkerScreen = (): JSX.Element => {
                   color="#fbbc05"
                   status="Aguardando"
                   number={
-                    workerData.cards[0] ? formatStatus(workerData.cards[0]) : ''
+                    workerData.cards && workerData.cards[0]
+                      ? formatStatus(workerData.cards[0])
+                      : ''
                   }
                 />
               </StatusCard>
@@ -190,7 +195,9 @@ export const WorkerScreen = (): JSX.Element => {
                   color="#4285f4"
                   status="Finalizado"
                   number={
-                    workerData.cards[2] ? formatStatus(workerData.cards[2]) : ''
+                    workerData.cards && workerData.cards[2]
+                      ? formatStatus(workerData.cards[2])
+                      : ''
                   }
                 />
               </StatusCard>
@@ -199,7 +206,9 @@ export const WorkerScreen = (): JSX.Element => {
                   color="#ea4335"
                   status="Erros"
                   number={
-                    workerData.cards[3] ? formatStatus(workerData.cards[3]) : ''
+                    workerData.cards && workerData.cards[3]
+                      ? formatStatus(workerData.cards[3])
+                      : ''
                   }
                 />
               </StatusCard>
@@ -208,7 +217,9 @@ export const WorkerScreen = (): JSX.Element => {
                   color="#4907D9"
                   status="Suspensos"
                   number={
-                    workerData.cards[4] ? formatStatus(workerData.cards[4]) : ''
+                    workerData.cards && workerData.cards[4]
+                      ? formatStatus(workerData.cards[4])
+                      : ''
                   }
                 />
               </StatusCard>
@@ -217,7 +228,9 @@ export const WorkerScreen = (): JSX.Element => {
                   color="#242540"
                   status="Documentos"
                   number={
-                    workerData.cards[5] ? formatStatus(workerData.cards[5]) : ''
+                    workerData.cards && workerData.cards[5]
+                      ? formatStatus(workerData.cards[5])
+                      : ''
                   }
                 />
               </StatusCard>
@@ -226,14 +239,16 @@ export const WorkerScreen = (): JSX.Element => {
                   color="#0B8C68"
                   status="Jobs Ativos"
                   number={
-                    workerData.cards[6] ? formatStatus(workerData.cards[6]) : ''
+                    workerData.cards && workerData.cards[6]
+                      ? formatStatus(workerData.cards[6])
+                      : ''
                   }
                 />
               </StatusCard>
             </JobsContainer>
 
             <ChartContainer>
-              <Chart />
+              <Chart data={workerData.graph} />
             </ChartContainer>
           </TableContent>
         </TableContainer>

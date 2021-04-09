@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   LineChart,
   Line,
@@ -47,10 +47,13 @@ const data = [
   },
 ];
 
-const SimpleLineChart: React.FC = () => {
+export const SimpleLineChart = ({ data }): JSX.Element => {
+  const [allItems, setAllItems] = useState([]);
+
   const useWidth = () => {
-    const [width, setWidth] = useState(1350); // default width, detect on server.
+    const [width, setWidth] = useState(1350);
     const handleResize = () => setWidth(window.innerWidth);
+
     useEffect(() => {
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
@@ -65,6 +68,22 @@ const SimpleLineChart: React.FC = () => {
     mobileSize = 290;
   }
 
+  const getData = useCallback((data) => {
+    data.forEach((element) => {
+      console.log(element);
+      let formatItem = {
+        hour: element[0],
+        jobs: element[1],
+        machines: element[2],
+      };
+      setAllItems([...allItems, formatItem]);
+    });
+  }, []);
+
+  useEffect(() => {
+    getData(data);
+  }, []);
+
   return (
     <LineChart
       width={useWidth() <= 1024 ? mobileSize : 1350}
@@ -78,7 +97,7 @@ const SimpleLineChart: React.FC = () => {
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
+      <XAxis dataKey="hour" />
       <YAxis />
       <Tooltip />
       <Legend />
@@ -92,5 +111,3 @@ const SimpleLineChart: React.FC = () => {
     </LineChart>
   );
 };
-
-export default SimpleLineChart;

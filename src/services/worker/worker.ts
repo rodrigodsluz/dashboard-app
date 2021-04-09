@@ -62,7 +62,7 @@ export async function getDataWorker(start: string, end: string) {
  * @description
  * Responsável por enviar os dados da comunicação.
  */
- export async function getGeneretedJobs(start: string, end: string) {
+export async function getGeneretedJobs(start: string, end: string) {
   const token = localStorage.getItem('token');
 
   const options = {
@@ -80,3 +80,29 @@ export async function getDataWorker(start: string, end: string) {
   }
 }
 
+/**
+ * @async
+ * @export
+ * @function
+ * @name getLineGraph
+ *
+ * @description
+ * Responsável por enviar os dados da comunicação.
+ */
+export async function getLineGraph() {
+  const token = localStorage.getItem('token');
+
+  const options = {
+    url: `${API}/Worker/GetLineGraph`,
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await axios({ method: 'GET', ...options });
+    return { error: false, data: response.data };
+  } catch (error) {
+    return { error: true };
+  }
+}
