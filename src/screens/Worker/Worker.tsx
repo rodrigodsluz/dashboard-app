@@ -1,10 +1,12 @@
-import { Typography, Spacing } from '@d1.cx/components';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import StickyHeadTable from './components/WorkerTable';
 import Sidebar from '../../components/Sidebar';
 import Chart from './components/SimpleLineChart';
 import { StatusCircle } from './components/StatusCircle';
+import { Menu } from '../Home/components/TopMenu/TopMenu';
+import { Content, SearchBar } from '../Home/styled';
+import { HomeDataContext } from '@src/context/HomeDataContext';
 import {
   Container,
   TableContainer,
@@ -13,9 +15,7 @@ import {
   JobsContainer,
   StatusCard,
 } from './styled';
-import { Menu } from '../Home/components/TopMenu/TopMenu';
-import { Content, SearchBar } from '../Home/styled';
-import { HomeDataContext } from '@src/context/HomeDataContext';
+import services from '@src/services';
 
 /**
  * @export
@@ -25,10 +25,17 @@ import { HomeDataContext } from '@src/context/HomeDataContext';
  * @description
  * Componente que contem os dados da tela de Worker.
  */
+
 export const WorkerScreen = (): JSX.Element => {
   const { startDate, endDate } = useContext(HomeDataContext);
   const [loading, setLoading] = useState(false);
-
+  const [workerData, setWorkerData] = useState({
+    data: [],
+    jobs: 0,
+    machines: 0,
+    graph: [],
+    cards: [],
+  });
   const [filter, setFilter] = useState({
     btnStatus: '',
     searchBarData: '',
@@ -76,7 +83,12 @@ export const WorkerScreen = (): JSX.Element => {
 
   const getData = useCallback(async (start: string, end: string) => {
     try {
-      // let processes = await Services.home.getProcesses(start, end);
+      let data = await services.worker.getDataWorker(start, end);
+      setWorkerData({
+        ...workerData,
+        data: data.data,
+      });
+      console.log(workerData);
 
       setLoading(false);
     } catch (e) {
@@ -93,6 +105,7 @@ export const WorkerScreen = (): JSX.Element => {
    * Caso exista a data selecionada nos datepicker, ela que é utilizada
    */
 
+  console.log(startDate, endDate);
   const handleSubmit = useCallback(async () => {
     setLoading(true);
     var today = new Date();

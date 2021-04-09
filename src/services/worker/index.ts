@@ -1,3 +1,3 @@
-import { send } from './worker';
+import { getDataWorker } from './worker';
 
-export default { send };
+export default { getDataWorker };
