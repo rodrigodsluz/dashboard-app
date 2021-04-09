@@ -47,7 +47,7 @@ const data = [
   },
 ];
 
-export const SimpleLineChart = ({ data }): JSX.Element => {
+export const Chart = ({ data }): JSX.Element => {
   const [allItems, setAllItems] = useState([]);
 
   const useWidth = () => {

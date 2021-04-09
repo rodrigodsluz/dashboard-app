@@ -3,7 +3,7 @@ import { MenuFilterLoading } from '@d1.cx/components';
 
 import StickyHeadTable from './components/WorkerTable';
 import Sidebar from '../../components/Sidebar';
-import Chart from './components/SimpleLineChart';
+import { Chart } from './components/SimpleLineChart';
 import { StatusCircle } from './components/StatusCircle';
 import { Menu } from '../Home/components/TopMenu/TopMenu';
 import { Content, SearchBar } from '../Home/styled';
