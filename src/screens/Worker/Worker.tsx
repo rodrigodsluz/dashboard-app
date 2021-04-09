@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { MenuFilterLoading } from '@d1.cx/components';
 
 import StickyHeadTable from './components/WorkerTable';
 import Sidebar from '../../components/Sidebar';
@@ -31,10 +32,10 @@ export const WorkerScreen = (): JSX.Element => {
   const [loading, setLoading] = useState(false);
   const [workerData, setWorkerData] = useState({
     data: [],
-    jobs: 0,
-    machines: 0,
     graph: [],
     cards: [],
+    jobs: 0,
+    machines: 0,
   });
   const [filter, setFilter] = useState({
     btnStatus: '',
@@ -84,11 +85,14 @@ export const WorkerScreen = (): JSX.Element => {
   const getData = useCallback(async (start: string, end: string) => {
     try {
       let data = await services.worker.getDataWorker(start, end);
+      let generetedJobs = await services.worker.getGeneretedJobs(start, end);
       setWorkerData({
-        ...workerData,
         data: data.data,
+        cards: generetedJobs.data,
+        graph: [],
+        jobs: 0,
+        machines: 0,
       });
-      console.log(workerData);
 
       setLoading(false);
     } catch (e) {
@@ -105,7 +109,6 @@ export const WorkerScreen = (): JSX.Element => {
    * Caso exista a data selecionada nos datepicker, ela que é utilizada
    */
 
-  console.log(startDate, endDate);
   const handleSubmit = useCallback(async () => {
     setLoading(true);
     var today = new Date();
@@ -129,6 +132,16 @@ export const WorkerScreen = (): JSX.Element => {
     }
   }, [startDate, endDate]);
 
+  console.log(workerData.cards);
+  const formatStatus = useCallback(
+    (status) => {
+      let splitText = status.split(' ')[1];
+      console.log(splitText);
+      return splitText;
+    },
+    [workerData.cards]
+  );
+
   return (
     <>
       <Container>
@@ -146,32 +159,76 @@ export const WorkerScreen = (): JSX.Element => {
                 onChange={handleSearchBarChange}
               />
             </Content>
-            <StickyHeadTable />
+            {workerData.data ? (
+              <StickyHeadTable data={workerData.data} filter={filter} />
+            ) : (
+              <MenuFilterLoading />
+            )}
 
             <JobsContainer>
               <StatusCard>
-                <StatusCircle color="#34a853" status="Executando" number="1" />
+                <StatusCircle
+                  color="#34a853"
+                  status="Executando"
+                  number={
+                    workerData.cards[1] ? formatStatus(workerData.cards[1]) : ''
+                  }
+                />
               </StatusCard>
 
               <StatusCard>
                 <StatusCircle
                   color="#fbbc05"
                   status="Aguardando"
-                  number="420"
+                  number={
+                    workerData.cards[0] ? formatStatus(workerData.cards[0]) : ''
+                  }
                 />
               </StatusCard>
               <StatusCard>
                 <StatusCircle
                   color="#4285f4"
                   status="Finalizado"
-                  number="4110"
+                  number={
+                    workerData.cards[2] ? formatStatus(workerData.cards[2]) : ''
+                  }
                 />
               </StatusCard>
               <StatusCard>
-                <StatusCircle color="#ea4335" status="Parados" number="340" />
+                <StatusCircle
+                  color="#ea4335"
+                  status="Erros"
+                  number={
+                    workerData.cards[3] ? formatStatus(workerData.cards[3]) : ''
+                  }
+                />
               </StatusCard>
               <StatusCard>
-                <StatusCircle color="darkgrey" status="Abortado" number="410" />
+                <StatusCircle
+                  color="#4907D9"
+                  status="Suspensos"
+                  number={
+                    workerData.cards[4] ? formatStatus(workerData.cards[4]) : ''
+                  }
+                />
+              </StatusCard>
+              <StatusCard>
+                <StatusCircle
+                  color="#242540"
+                  status="Documentos"
+                  number={
+                    workerData.cards[5] ? formatStatus(workerData.cards[5]) : ''
+                  }
+                />
+              </StatusCard>
+              <StatusCard>
+                <StatusCircle
+                  color="#0B8C68"
+                  status="Jobs Ativos"
+                  number={
+                    workerData.cards[6] ? formatStatus(workerData.cards[6]) : ''
+                  }
+                />
               </StatusCard>
             </JobsContainer>
 

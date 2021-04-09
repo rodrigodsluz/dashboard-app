@@ -30,7 +30,7 @@ export async function send(payload: any, token: string) {
  * @async
  * @export
  * @function
- * @name send
+ * @name getDataWorker
  *
  * @description
  * Responsável por enviar os dados da comunicação.
@@ -52,3 +52,31 @@ export async function getDataWorker(start: string, end: string) {
     return { error: true };
   }
 }
+
+/**
+ * @async
+ * @export
+ * @function
+ * @name getGeneretedJobs
+ *
+ * @description
+ * Responsável por enviar os dados da comunicação.
+ */
+ export async function getGeneretedJobs(start: string, end: string) {
+  const token = localStorage.getItem('token');
+
+  const options = {
+    url: `${API}/Worker/GetGenerationJobs/?date1=${start}&date2=${end}`,
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await axios({ method: 'GET', ...options });
+    return { error: false, data: response.data };
+  } catch (error) {
+    return { error: true };
+  }
+}
+

@@ -1,3 +1,3 @@
-import { getDataWorker } from './worker';
+import { getDataWorker, getGeneretedJobs } from './worker';
 
-export default { getDataWorker };
+export default { getDataWorker, getGeneretedJobs };
