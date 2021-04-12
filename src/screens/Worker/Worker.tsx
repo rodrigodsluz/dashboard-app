@@ -134,7 +134,6 @@ export const WorkerScreen = (): JSX.Element => {
     }
   }, [startDate, endDate]);
 
-  console.log(workerData.graph);
   const formatStatus = useCallback(
     (status) => {
       let splitText = status.split(' ')[1];

@@ -9,7 +9,7 @@ import {
   Legend,
 } from 'recharts';
 
-const data = [
+const teste = [
   {
     name: 'Dia 1',
     jobs: 4000,
@@ -68,27 +68,36 @@ export const Chart = ({ data }): JSX.Element => {
     mobileSize = 290;
   }
 
-  const getData = useCallback((data) => {
-    data.forEach((element) => {
-      console.log(element);
-      let formatItem = {
-        hour: element[0],
-        jobs: element[1],
-        machines: element[2],
-      };
-      setAllItems([...allItems, formatItem]);
-    });
-  }, []);
+  const getData = useCallback(
+    (data) => {
+      let items = [];
+      data.forEach((element) => {
+        let formatItem = {
+          hour: element[0],
+          jobs: splitText(element[1]),
+          machines: splitText(element[2]),
+        };
+        items.push(formatItem);
+      });
+      setAllItems(items);
+    },
+    [data]
+  );
 
+  console.log(allItems, teste);
   useEffect(() => {
     getData(data);
   }, []);
+
+  const splitText = (text: string) => {
+    return text.split(' ')[1];
+  };
 
   return (
     <LineChart
       width={useWidth() <= 1024 ? mobileSize : 1350}
       height={240}
-      data={data}
+      data={allItems}
       margin={{
         top: 5,
         right: 30,
