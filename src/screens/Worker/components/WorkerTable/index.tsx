@@ -91,7 +91,7 @@ function createData(
   SmsSend: number,
   PrintSend: number,
   WebSend: number,
-  Pending: number,
+  Pending: number
 ): Data {
   return {
     time,
@@ -116,7 +116,7 @@ const rows = [
     0,
     0,
     0,
-    59,
+    59
   ),
   createData(
     '2021-02-01 17:30:15',
@@ -127,7 +127,7 @@ const rows = [
     0,
     3,
     0,
-    1744,
+    1744
   ),
   createData(
     '2021-02-01 16:40:18',
@@ -138,7 +138,7 @@ const rows = [
     0,
     65,
     0,
-    492,
+    492
   ),
   createData(
     '2021-02-01 16:40:17',
@@ -149,7 +149,7 @@ const rows = [
     262,
     0,
     0,
-    262,
+    262
   ),
   createData(
     '2021-02-01 13:30:42',
@@ -160,7 +160,7 @@ const rows = [
     0,
     0,
     5643,
-    0,
+    0
   ),
   createData(
     '2021-02-01 13:30:32',
@@ -171,7 +171,7 @@ const rows = [
     5,
     0,
     11739,
-    0,
+    0
   ),
   createData(
     '2021-02-01 13:30:31',
@@ -182,7 +182,7 @@ const rows = [
     0,
     0,
     311,
-    0,
+    0
   ),
   createData(
     '2021-02-01 13:30:27',
@@ -193,7 +193,7 @@ const rows = [
     11714,
     0,
     527,
-    0,
+    0
   ),
   createData(
     '2021-02-01 13:30:25',
@@ -204,7 +204,7 @@ const rows = [
     6932,
     0,
     19,
-    13242,
+    13242
   ),
   createData(
     '2021-02-01 13:30:25',
@@ -215,7 +215,7 @@ const rows = [
     20,
     0,
     1387,
-    0,
+    0
   ),
   createData(
     '2021-02-01 13:30:23',
@@ -226,7 +226,7 @@ const rows = [
     290,
     0,
     3,
-    0,
+    0
   ),
   createData(
     '2021-02-01 13:30:20',
@@ -237,7 +237,7 @@ const rows = [
     0,
     0,
     562,
-    0,
+    0
   ),
   createData(
     '2021-02-01 13:30:19',
@@ -248,7 +248,7 @@ const rows = [
     11,
     0,
     0,
-    11,
+    11
   ),
   createData(
     '2021-02-01 13:30:16',
@@ -259,7 +259,7 @@ const rows = [
     0,
     0,
     852,
-    0,
+    0
   ),
 ];
 
@@ -272,23 +272,54 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StickyHeadTable() {
+export default function StickyHeadTable({ data, filter }) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(20);
   const [open, setOpen] = React.useState(false);
   const [index, setIndex] = React.useState(0);
+  const [filteredData, setFilteredData] = React.useState([]);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  useEffect(() => {
+    const results =
+      filter.searchBarData !== ''
+        ? data.filter(
+            (v) =>
+              v[0].toLowerCase().includes(filter.searchBarData) ||
+              v[1].toLowerCase().includes(filter.searchBarData) ||
+              v[2].toLowerCase().includes(filter.searchBarData) ||
+              v[3].toLowerCase().includes(filter.searchBarData) ||
+              v[4].toString().toLowerCase().includes(filter.searchBarData) ||
+              v[5].toString().toLowerCase().includes(filter.searchBarData) ||
+              v[6].toLowerCase().includes(filter.searchBarData) ||
+              v[7].toLowerCase().includes(filter.searchBarData) ||
+              v[8].toString().toLowerCase().includes(filter.searchBarData) ||
+              v[9].toString().toLowerCase().includes(filter.searchBarData)
+          )
+        : data.filter((v) => v.status === filter.btnStatus);
+
+    setFilteredData(results);
+  }, [data, filter]);
+
+  const createTableData = (data) => {
+    return data.map((d) =>
+      createData(d[0], d[1], d[2], d[3], d[4], d[5], d[7], d[8], d[9])
+    );
+  };
+  const rows =
+    filter.btnStatus !== '' || filter.searchBarData !== ''
+      ? createTableData(filteredData)
+      : createTableData(data);
 
   return (
     <Paper className={classes.root}>
@@ -296,7 +327,7 @@ export default function StickyHeadTable() {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              {columns.map(column => (
+              {columns.map((column) => (
                 <TableCell
                   key={column.id}
                   align={column.align}

@@ -2,8 +2,6 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import { Typography, Spacing, MenuFilterLoading } from '@d1.cx/components';
 
-import { Theme, withStyles } from '@material-ui/core/styles';
-import Tooltip from '@material-ui/core/Tooltip';
 import Sidebar from '../../components/Sidebar';
 import HomeTable from './components/HomeTable';
 import Graphic from './components/PieChart';
@@ -16,24 +14,27 @@ import Services from '../../services';
 import {
   Container,
   TableContainer,
-  GraphicContainer,
   TableContent,
   GraphicWrapper,
   Content,
   SearchBar,
 } from './styled';
 import { AlertContent } from './components/Alert/Alert';
+
 /**
  * @export
  * @component
  * @name HomeScreen
  *
  * @description
- * Responsável por montar a tela de Home. Exibindo a tabela com os processos, gráfico dos mesmos e filtro por status.
+ * Responsável por montar a tela de Home. Exibindo a tabela com os processos,
+ * gráfico dos mesmos e filtro por status.
  */
 
 export const HomeScreen = (): JSX.Element => {
   const { startDate, endDate } = useContext(HomeDataContext);
+  const [loading, setLoading] = useState(false);
+
   const [homeData, setHomeData] = useState({
     processes: [],
     graphic: [],
@@ -46,7 +47,14 @@ export const HomeScreen = (): JSX.Element => {
     searchBarData: '',
   });
 
-  const [loading, setLoading] = useState(false);
+  /**
+   * @function
+   * @name getData
+   *
+   * @description
+   * Responsavel por fazer a requisição na api
+   */
+
   const getData = useCallback(async (start: string, end: string) => {
     try {
       let processes = await Services.home.getProcesses(start, end);
@@ -73,6 +81,15 @@ export const HomeScreen = (): JSX.Element => {
     handleSubmit();
   }, []);
 
+  /**
+   * @function
+   * @name handleSubmit
+   *
+   * @description
+   * Responsavel por pegar a data do dia atual e fazer a request.
+   * Caso exista a data selecionada nos datepicker, ela que é utilizada
+   */
+
   const handleSubmit = useCallback(async () => {
     setLoading(true);
     var today = new Date();
@@ -96,10 +113,26 @@ export const HomeScreen = (): JSX.Element => {
     }
   }, [startDate, endDate]);
 
+  /**
+   * @function
+   * @name handleFormatDate
+   *
+   * @description
+   * Responsavel por formatar a data atual caso seja menor que o dia ou mês 10, adicionando um 0 antes
+   */
+
   const handleFormatDate = (date: number) => {
     let formatDate = date < 10 ? '0' + date : date;
     return formatDate.toString();
   };
+
+  /**
+   * @function
+   * @name handleClick
+   *
+   * @description
+   * Responsavel por setar o state do filtro de busca
+   */
 
   const handleClick = (status) => () => {
     setFilter({
@@ -107,6 +140,14 @@ export const HomeScreen = (): JSX.Element => {
       searchBarData: '',
     });
   };
+
+  /**
+   * @function
+   * @name handleSearchBarChange
+   *
+   * @description
+   * Responsavel por pegar o valor digitado na barra de busca
+   */
 
   const handleSearchBarChange = (e) => {
     setFilter({
@@ -122,7 +163,7 @@ export const HomeScreen = (): JSX.Element => {
       <TableContainer>
         <TableContent>
           <Content>
-            <Menu loading={loading} submit={handleSubmit} />
+            <Menu title="Conference" loading={loading} submit={handleSubmit} />
             <SearchBar
               name="searchBarData"
               value={filter.searchBarData}
@@ -143,19 +184,14 @@ export const HomeScreen = (): JSX.Element => {
           />
           <AlertContent data={homeData.stoppedAmount} homeData={homeData} />
         </TableContent>
-
-        {homeData.graphic && (
-          <GraphicContainer>
-            <GraphicWrapper>
-              <Spacing vertical="5px" />
-              <Typography htmlTag="strong" fontSize="16px">
-                {' '}
-                SLA em atraso
-              </Typography>
-              <Graphic data={homeData.graphic} />
-            </GraphicWrapper>
-          </GraphicContainer>
-        )}
+        <GraphicWrapper>
+          <Spacing vertical="5px" />
+          <Typography htmlTag="strong" fontSize="16px">
+            {' '}
+            SLA em atraso
+          </Typography>
+          {homeData.graphic ? <Graphic data={homeData.graphic} /> : null}
+        </GraphicWrapper>
       </TableContainer>
     </Container>
   );

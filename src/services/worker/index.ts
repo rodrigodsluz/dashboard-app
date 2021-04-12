@@ -1,3 +1,3 @@
-import { send } from './communication';
+import { getDataWorker, getGeneretedJobs, getLineGraph } from './worker';
 
-export default { send };
+export default { getDataWorker, getGeneretedJobs, getLineGraph };

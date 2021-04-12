@@ -19,11 +19,9 @@ export const SendingScreen = (): JSX.Element => (
 
       <TableContainer>
         <TableContent>
+          <Spacing vertical="10px" />
           <Typography htmlTag="strong" fontSize="32px">
             Sending Events
-            <SubTitle>
-              The .table-bordered class adds borders to a table:
-            </SubTitle>
           </Typography>
           <Spacing vertical="10px" />
           <StickyHeadTable />

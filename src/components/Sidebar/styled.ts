@@ -120,6 +120,7 @@ export const ExpandIconClick = styled.button`
   background-color: transparent;
   height: 50px;
   border: none;
+  outline: none;
 `;
 
 export const ModalButton = styled.button`

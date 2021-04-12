@@ -190,7 +190,6 @@ export const DateInput = styled.input`
 `;
 
 export const ContainerDate = styled.div`
-  width: 550px;
   display: flex;
   justify-content: center;
   align-items: center;
