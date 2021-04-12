@@ -290,23 +290,26 @@ export default function StickyHeadTable({ data, filter }) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  useEffect(() => {
+    const results =
+      filter.searchBarData !== ''
+        ? data.filter(
+            (v) =>
+              v[0].toLowerCase().includes(filter.searchBarData) ||
+              v[1].toLowerCase().includes(filter.searchBarData) ||
+              v[2].toLowerCase().includes(filter.searchBarData) ||
+              v[3].toLowerCase().includes(filter.searchBarData) ||
+              v[4].toString().toLowerCase().includes(filter.searchBarData) ||
+              v[5].toString().toLowerCase().includes(filter.searchBarData) ||
+              v[6].toLowerCase().includes(filter.searchBarData) ||
+              v[7].toLowerCase().includes(filter.searchBarData) ||
+              v[8].toString().toLowerCase().includes(filter.searchBarData) ||
+              v[9].toString().toLowerCase().includes(filter.searchBarData)
+          )
+        : data.filter((v) => v.status === filter.btnStatus);
 
-  // useEffect(() => {
-  //   const results =
-  //     filter.searchBarData !== ''
-  //       ? data.filter(
-  //           (v) =>
-  //             v.tenant.toLowerCase().includes(filter.searchBarData) ||
-  //             v.datamov.toLowerCase().includes(filter.searchBarData) ||
-  //             v.lote.toLowerCase().includes(filter.searchBarData) ||
-  //             v.produto.toLowerCase().includes(filter.searchBarData) ||
-  //             v.sla.toLowerCase().includes(filter.searchBarData) ||
-  //             v.status.toLowerCase().includes(filter.searchBarData)
-  //         )
-  //       : data.filter((v) => v.status === filter.btnStatus);
-
-  //   setFilteredData(results);
-  // }, [data, filter]);
+    setFilteredData(results);
+  }, [data, filter]);
 
   const createTableData = (data) => {
     return data.map((d) =>

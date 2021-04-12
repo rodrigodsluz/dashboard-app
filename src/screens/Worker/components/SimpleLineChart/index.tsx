@@ -47,11 +47,7 @@ const teste = [
   },
 ];
 
-type ArrayData = {
-  data: [];
-};
-
-export const Chart = ({ data }: ArrayData): JSX.Element => {
+export const Chart = ({ data }): JSX.Element => {
   const [allItems, setAllItems] = useState([]);
 
   const useWidth = () => {
@@ -69,7 +65,7 @@ export const Chart = ({ data }: ArrayData): JSX.Element => {
   if (mobileSize > 767) {
     mobileSize = 650;
   } else {
-    mobileSize = 290;
+    mobileSize = 350;
   }
 
   const getData = useCallback(
