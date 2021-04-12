@@ -39,7 +39,6 @@ export const TableContainer = styled.div`
 export const TableContent = styled.div`
   width: 100%;
   height: 100%;
-  
 `;
 export const SubTitle = styled.p`
   font-size: 16px;
@@ -103,4 +102,12 @@ export const StatusCard = styled.div`
   padding: 10px;
   margin: 10px;
   border-radius: 4px;
+`;
+
+export const ContainerGraph = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  @media screen and (max-width: 930px) {
+    flex-direction: column;
+  }
 `;

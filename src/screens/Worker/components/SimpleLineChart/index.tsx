@@ -51,7 +51,7 @@ export const Chart = ({ data }): JSX.Element => {
   const [allItems, setAllItems] = useState([]);
 
   const useWidth = () => {
-    const [width, setWidth] = useState(1350);
+    const [width, setWidth] = useState(1150);
     const handleResize = () => setWidth(window.innerWidth);
 
     useEffect(() => {
@@ -94,7 +94,7 @@ export const Chart = ({ data }): JSX.Element => {
 
   return (
     <LineChart
-      width={useWidth() <= 1024 ? mobileSize : 1350}
+      width={useWidth() <= 1024 ? mobileSize : 1150}
       height={240}
       data={allItems}
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}

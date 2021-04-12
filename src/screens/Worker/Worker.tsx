@@ -17,7 +17,9 @@ import {
   ChartContainer,
   JobsContainer,
   StatusCard,
+  ContainerGraph,
 } from './styled';
+import { ConfigurationCard } from './components/ConfigurationCard/ConfigurationCard';
 
 /**
  * @export
@@ -168,18 +170,6 @@ export const WorkerScreen = (): JSX.Element => {
             <JobsContainer>
               <StatusCard>
                 <StatusCircle
-                  color="#34a853"
-                  status="Executando"
-                  number={
-                    workerData.cards && workerData.cards[1]
-                      ? formatStatus(workerData.cards[1])
-                      : ''
-                  }
-                />
-              </StatusCard>
-
-              <StatusCard>
-                <StatusCircle
                   color="#fbbc05"
                   status="Aguardando"
                   number={
@@ -246,9 +236,33 @@ export const WorkerScreen = (): JSX.Element => {
               </StatusCard>
             </JobsContainer>
             {workerData.graph ? (
-              <ChartContainer>
-                <Chart data={workerData.graph} />
-              </ChartContainer>
+              <ContainerGraph>
+                <ChartContainer>
+                  <Chart data={workerData.graph} />
+                </ChartContainer>
+                <StatusCard>
+                  <ConfigurationCard
+                    color="#0B8C68"
+                    status="Jobs Ativos"
+                    number={
+                      workerData.cards && workerData.cards[6]
+                        ? formatStatus(workerData.cards[6])
+                        : ''
+                    }
+                  />
+                </StatusCard>
+                <StatusCard>
+                  <ConfigurationCard
+                    color="#0B8C68"
+                    status="Jobs Ativos"
+                    number={
+                      workerData.cards && workerData.cards[6]
+                        ? formatStatus(workerData.cards[6])
+                        : ''
+                    }
+                  />
+                </StatusCard>
+              </ContainerGraph>
             ) : null}
           </TableContent>
         </TableContainer>
