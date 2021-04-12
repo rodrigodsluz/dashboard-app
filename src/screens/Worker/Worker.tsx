@@ -245,10 +245,11 @@ export const WorkerScreen = (): JSX.Element => {
                 />
               </StatusCard>
             </JobsContainer>
-
-            <ChartContainer>
-              <Chart data={workerData.graph} />
-            </ChartContainer>
+            {workerData.graph ? (
+              <ChartContainer>
+                <Chart data={workerData.graph} />
+              </ChartContainer>
+            ) : null}
           </TableContent>
         </TableContainer>
       </Container>

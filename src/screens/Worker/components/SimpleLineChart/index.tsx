@@ -47,7 +47,11 @@ const teste = [
   },
 ];
 
-export const Chart = ({ data }): JSX.Element => {
+type ArrayData = {
+  data: [];
+};
+
+export const Chart = ({ data }: ArrayData): JSX.Element => {
   const [allItems, setAllItems] = useState([]);
 
   const useWidth = () => {
@@ -69,7 +73,7 @@ export const Chart = ({ data }): JSX.Element => {
   }
 
   const getData = useCallback(
-    (data) => {
+    (data: []) => {
       let items = [];
       data.forEach((element) => {
         let formatItem = {
@@ -84,10 +88,9 @@ export const Chart = ({ data }): JSX.Element => {
     [data]
   );
 
-  console.log(allItems, teste);
   useEffect(() => {
     getData(data);
-  }, []);
+  }, [data]);
 
   const splitText = (text: string) => {
     return text.split(' ')[1];
@@ -98,18 +101,13 @@ export const Chart = ({ data }): JSX.Element => {
       width={useWidth() <= 1024 ? mobileSize : 1350}
       height={240}
       data={allItems}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5,
-      }}
+      margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="hour" />
       <YAxis />
       <Tooltip />
-      <Legend />
+      <Legend verticalAlign="top" height={36} />
       <Line
         type="monotone"
         dataKey="jobs"
