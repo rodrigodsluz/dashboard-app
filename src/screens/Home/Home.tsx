@@ -7,15 +7,15 @@ import React, {
 } from 'react';
 
 import { Typography, Spacing, MenuFilterLoading } from '@d1.cx/components';
+import { Menu } from '../../components/TopMenu/TopMenu';
+import { AlertContent } from './components/Alert/Alert';
+import { CardContent } from './components/Cards/Card';
+import { HomeDataContext } from '@src/context/HomeDataContext';
 
 import Sidebar from '../../components/Sidebar';
 import HomeTable from './components/HomeTable';
 import Graphic from './components/PieChart';
-import { Menu } from './components/TopMenu/TopMenu';
-import { HomeDataContext } from '@src/context/HomeDataContext';
-import { CardContent } from './components/Cards/Card';
 import Services from '../../services';
-import { AlertContent } from './components/Alert/Alert';
 
 import {
   Container,

@@ -5,7 +5,7 @@ import StickyHeadTable from './components/WorkerTable';
 import Sidebar from '../../components/Sidebar';
 import { Chart } from './components/SimpleLineChart';
 import { StatusCircle } from './components/StatusCircle';
-import { Menu } from '../Home/components/TopMenu/TopMenu';
+import { Menu } from '../../components/TopMenu/TopMenu';
 import { Content, SearchBar } from '../Home/styled';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 import services from '@src/services';
