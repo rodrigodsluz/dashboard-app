@@ -1,8 +1,4 @@
-import styled, { css } from 'styled-components';
-
-interface Props {
-  status: string;
-}
+import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100vw;
@@ -53,68 +49,68 @@ export const Content = styled.div`
   width: 100%;
   flex-direction: column;
 `;
-export const CardContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 20px 0;
-  flex-wrap: wrap;
-`;
+// export const CardContainer = styled.div`
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+//   padding: 20px 0;
+//   flex-wrap: wrap;
+// `;
 
-export const PanelCard = styled.div`
-  text-align: center;
+// export const PanelCard = styled.div`
+//   text-align: center;
 
-  @media screen and (max-width: 1024px) {
-    padding: 10px;
-  }
-`;
+//   @media screen and (max-width: 1024px) {
+//     padding: 10px;
+//   }
+// `;
 
-export const Card = styled.button<Props>`
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 7px;
-  border: none;
-  width: 240px;
-  transition: 0.2s ease;
-  ${(props) =>
-    props.status === 'executando' &&
-    css`
-      background: #fbbc05;
+// export const Card = styled.button<Props>`
+//   cursor: pointer;
+//   padding: 10px;
+//   border-radius: 7px;
+//   border: none;
+//   width: 240px;
+//   transition: 0.2s ease;
+//   ${(props) =>
+//     props.status === 'executando' &&
+//     css`
+//       background: #fbbc05;
 
-      &:hover {
-        background-color: #242321;
-      }
-    `}
-  ${(props) =>
-    props.status === 'erros' &&
-    css`
-      background: #ea4335;
-      &:hover {
-        background-color: #242321;
-      }
-    `}
-    ${(props) =>
-    props.status === 'finalizados' &&
-    css`
-      background: #34a853;
-      &:hover {
-        background-color: #242321;
-      }
-    `};
-`;
+//       &:hover {
+//         background-color: #242321;
+//       }
+//     `}
+//   ${(props) =>
+//     props.status === 'erros' &&
+//     css`
+//       background: #ea4335;
+//       &:hover {
+//         background-color: #242321;
+//       }
+//     `}
+//     ${(props) =>
+//     props.status === 'finalizados' &&
+//     css`
+//       background: #34a853;
+//       &:hover {
+//         background-color: #242321;
+//       }
+//     `};
+// `;
 
-export const CardStatus = styled.h2`
-  margin: auto;
-  color: #fff;
-  font-size: 18px;
-`;
+// export const CardStatus = styled.h2`
+//   margin: auto;
+//   color: #fff;
+//   font-size: 18px;
+// `;
 
-export const GraphicContainer = styled.div`
-  padding: 0px 20px;
-  display: flex;
-  flex-direction: column;
-  width: 250px;
-`;
+// export const GraphicContainer = styled.div`
+//   padding: 0px 20px;
+//   display: flex;
+//   flex-direction: column;
+//   width: 250px;
+// `;
 
 export const GraphicWrapper = styled.div`
   border-radius: 7px;
@@ -130,39 +126,39 @@ export const GraphicWrapper = styled.div`
   }
 `;
 
-export const Info = styled.span`
-  font-size: 14px;
-  padding: 2px 7px;
-  border-radius: 50%;
-  background: #00e1ff;
+// export const Info = styled.span`
+//   font-size: 14px;
+//   padding: 2px 7px;
+//   border-radius: 50%;
+//   background: #00e1ff;
 
-  &:hover {
-    background: #577074;
-  }
-`;
+//   &:hover {
+//     background: #577074;
+//   }
+// `;
 
-export const InfoBtn = styled.button`
-  border: none;
-  outline: none;
-  text-decoration: none;
-  cursor: pointer;
+// export const InfoBtn = styled.button`
+//   border: none;
+//   outline: none;
+//   text-decoration: none;
+//   cursor: pointer;
 
-  &:hover {
-    color: white;
-  }
-`;
+//   &:hover {
+//     color: white;
+//   }
+// `;
 
-export const ModalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-`;
+// export const ModalContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   padding: 20px;
+// `;
 
-export const TopMenu = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+// export const TopMenu = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// `;
 
 export const SearchBar = styled.input`
   width: 100%;
@@ -173,23 +169,23 @@ export const SearchBar = styled.input`
   margin: 10px 0px;
 `;
 
-export const DateInput = styled.input`
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
-  margin: 0px 10px;
-  outline: none;
-`;
+// export const DateInput = styled.input`
+//   border: 1px solid #ccc;
+//   padding: 10px;
+//   border-radius: 5px;
+//   margin: 0px 10px;
+//   outline: none;
+// `;
 
-export const ContainerDate = styled.div`
-  width: 550px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+// export const ContainerDate = styled.div`
+//   width: 550px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
-export const Count = styled.h2`
-  color: #fff;
-  font-weight: 900;
-  font-size: 25px;
-`;
+// export const Count = styled.h2`
+//   color: #fff;
+//   font-weight: 900;
+//   font-size: 25px;
+// `;

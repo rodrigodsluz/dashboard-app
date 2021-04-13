@@ -5,9 +5,9 @@ import StickyHeadTable from './components/WorkerTable';
 import Sidebar from '../../components/Sidebar';
 import { Chart } from './components/SimpleLineChart';
 import { StatusCircle } from './components/StatusCircle';
-import { Menu } from '../Home/components/TopMenu/TopMenu';
-import { Content, SearchBar } from '../Home/styled';
 import { HomeDataContext } from '@src/context/HomeDataContext';
+import { ConfigurationCard } from './components/ConfigurationCard/ConfigurationCard';
+
 import services from '@src/services';
 
 import {
@@ -16,8 +16,14 @@ import {
   TableContent,
   ChartContainer,
   JobsContainer,
+  Content,
+  SearchBar,
   StatusCard,
+  ContainerGraph,
+  ContentContainerGraph,
+  ContainerConfigurationCards,
 } from './styled';
+import { Menu } from '@src/components/TopMenu/TopMenu';
 
 /**
  * @export
@@ -35,7 +41,7 @@ export const WorkerScreen = (): JSX.Element => {
     data: [],
     graph: [],
     cards: [],
-    jobs: 0,
+    jobs: [],
     machines: 0,
   });
   const [filter, setFilter] = useState({
@@ -88,17 +94,21 @@ export const WorkerScreen = (): JSX.Element => {
       let data = await services.worker.getDataWorker(start, end);
       let generetedJobs = await services.worker.getGeneretedJobs(start, end);
       let lineGraph = await services.worker.getLineGraph();
+      let machines = await services.worker.getMachines();
+      let jobs = await services.worker.GetJobsRunning(start, end);
+      let allJobs = formatArrayJobs(jobs.data);
+
       setWorkerData({
         data: data.data,
         cards: generetedJobs.data,
         graph: lineGraph.data,
-        jobs: 0,
-        machines: 0,
+        jobs: allJobs,
+        machines: machines.data,
       });
 
       setLoading(false);
     } catch (e) {
-      throw new Error(e);
+      console.log(e);
     }
   }, []);
 
@@ -142,6 +152,16 @@ export const WorkerScreen = (): JSX.Element => {
     [workerData.cards]
   );
 
+  const formatArrayJobs = (array: Array<string>) => {
+    let format = [];
+    if (array.length > 0) {
+      array.forEach((element) => {
+        let newItem = element + ', ';
+        format.push(newItem);
+      });
+    }
+    return format;
+  };
   return (
     <>
       <Container>
@@ -159,97 +179,96 @@ export const WorkerScreen = (): JSX.Element => {
                 onChange={handleSearchBarChange}
               />
             </Content>
-            {workerData.data ? (
+            {workerData.data.length > 0 ? (
               <StickyHeadTable data={workerData.data} filter={filter} />
             ) : (
               <MenuFilterLoading />
             )}
-
-            <JobsContainer>
-              <StatusCard>
-                <StatusCircle
-                  color="#34a853"
-                  status="Executando"
-                  number={
-                    workerData.cards && workerData.cards[1]
-                      ? formatStatus(workerData.cards[1])
-                      : ''
-                  }
-                />
-              </StatusCard>
-
-              <StatusCard>
-                <StatusCircle
-                  color="#fbbc05"
-                  status="Aguardando"
-                  number={
-                    workerData.cards && workerData.cards[0]
-                      ? formatStatus(workerData.cards[0])
-                      : ''
-                  }
-                />
-              </StatusCard>
-              <StatusCard>
-                <StatusCircle
-                  color="#4285f4"
-                  status="Finalizado"
-                  number={
-                    workerData.cards && workerData.cards[2]
-                      ? formatStatus(workerData.cards[2])
-                      : ''
-                  }
-                />
-              </StatusCard>
-              <StatusCard>
-                <StatusCircle
-                  color="#ea4335"
-                  status="Erros"
-                  number={
-                    workerData.cards && workerData.cards[3]
-                      ? formatStatus(workerData.cards[3])
-                      : ''
-                  }
-                />
-              </StatusCard>
-              <StatusCard>
-                <StatusCircle
-                  color="#4907D9"
-                  status="Suspensos"
-                  number={
-                    workerData.cards && workerData.cards[4]
-                      ? formatStatus(workerData.cards[4])
-                      : ''
-                  }
-                />
-              </StatusCard>
-              <StatusCard>
-                <StatusCircle
-                  color="#242540"
-                  status="Documentos"
-                  number={
-                    workerData.cards && workerData.cards[5]
-                      ? formatStatus(workerData.cards[5])
-                      : ''
-                  }
-                />
-              </StatusCard>
-              <StatusCard>
-                <StatusCircle
-                  color="#0B8C68"
-                  status="Jobs Ativos"
-                  number={
-                    workerData.cards && workerData.cards[6]
-                      ? formatStatus(workerData.cards[6])
-                      : ''
-                  }
-                />
-              </StatusCard>
-            </JobsContainer>
-            {workerData.graph ? (
-              <ChartContainer>
-                <Chart data={workerData.graph} />
-              </ChartContainer>
-            ) : null}
+            <ContentContainerGraph>
+              <JobsContainer>
+                <StatusCard>
+                  <StatusCircle
+                    color="#fbbc05"
+                    status="Aguardando"
+                    number={
+                      workerData.cards && workerData.cards[0]
+                        ? formatStatus(workerData.cards[0])
+                        : ''
+                    }
+                  />
+                </StatusCard>
+                <StatusCard>
+                  <StatusCircle
+                    color="#4285f4"
+                    status="Finalizado"
+                    number={
+                      workerData.cards && workerData.cards[2]
+                        ? formatStatus(workerData.cards[2])
+                        : ''
+                    }
+                  />
+                </StatusCard>
+                <StatusCard>
+                  <StatusCircle
+                    color="#ea4335"
+                    status="Erros"
+                    number={
+                      workerData.cards && workerData.cards[3]
+                        ? formatStatus(workerData.cards[3])
+                        : ''
+                    }
+                  />
+                </StatusCard>
+                <StatusCard>
+                  <StatusCircle
+                    color="#4907D9"
+                    status="Suspensos"
+                    number={
+                      workerData.cards && workerData.cards[4]
+                        ? formatStatus(workerData.cards[4])
+                        : ''
+                    }
+                  />
+                </StatusCard>
+                <StatusCard>
+                  <StatusCircle
+                    color="#242540"
+                    status="Documentos"
+                    number={
+                      workerData.cards && workerData.cards[5]
+                        ? formatStatus(workerData.cards[5])
+                        : ''
+                    }
+                  />
+                </StatusCard>
+              </JobsContainer>
+              {workerData.graph.length > 0 ? (
+                <ContainerGraph>
+                  <ChartContainer>
+                    <Chart data={workerData.graph} />
+                  </ChartContainer>
+                  <ContainerConfigurationCards>
+                    <ConfigurationCard
+                      jobs={workerData.jobs}
+                      status="Jobs Ativos"
+                      number={
+                        workerData.cards && workerData.cards[6]
+                          ? formatStatus(workerData.cards[6])
+                          : ''
+                      }
+                    />
+                    <ConfigurationCard
+                      status="Maquinas"
+                      number={
+                        workerData.machines && workerData.machines
+                          ? workerData.machines
+                          : ''
+                      }
+                    />
+                  </ContainerConfigurationCards>
+                </ContainerGraph>
+              ) : null}
+            </ContentContainerGraph>
           </TableContent>
         </TableContainer>
       </Container>

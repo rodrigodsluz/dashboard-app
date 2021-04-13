@@ -15,11 +15,17 @@ interface Column {
     | 'tenent'
     | 'DataMov'
     | 'Lote'
-    | 'EmailSend'
-    | 'SmsSend'
-    | 'PrintSend'
-    | 'WebSend'
-    | 'Pending';
+    | 'PID'
+    | 'register'
+    | 'action'
+    | 'duration'
+    | 'running'
+    | 'waiting'
+    | 'finishing'
+    | 'failed'
+    | 'suspended'
+    | 'aborted'
+    | 'analysis';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -38,33 +44,69 @@ const columns: Column[] = [
     align: 'right',
   },
   {
-    id: 'EmailSend',
-    label: 'Email Send',
+    id: 'PID',
+    label: 'PID',
     minWidth: 150,
     align: 'right',
   },
   {
-    id: 'SmsSend',
-    label: 'SMS Send',
+    id: 'register',
+    label: 'Registro',
     minWidth: 150,
     align: 'right',
   },
 
   {
-    id: 'PrintSend',
-    label: 'Print Send',
+    id: 'action',
+    label: 'Ação',
     minWidth: 150,
     align: 'right',
   },
   {
-    id: 'WebSend',
-    label: 'Web Send',
+    id: 'duration',
+    label: 'Duração',
     minWidth: 150,
     align: 'right',
   },
   {
-    id: 'Pending',
-    label: 'Pending',
+    id: 'running',
+    label: 'Executando',
+    minWidth: 150,
+    align: 'right',
+  },
+  {
+    id: 'waiting',
+    label: 'Aguardando',
+    minWidth: 150,
+    align: 'right',
+  },
+  {
+    id: 'finishing',
+    label: 'Finalizado',
+    minWidth: 150,
+    align: 'right',
+  },
+  {
+    id: 'failed',
+    label: 'Pendente',
+    minWidth: 150,
+    align: 'right',
+  },
+  {
+    id: 'suspended',
+    label: 'Suspenso',
+    minWidth: 150,
+    align: 'right',
+  },
+  {
+    id: 'aborted',
+    label: 'Abertado',
+    minWidth: 150,
+    align: 'right',
+  },
+  {
+    id: 'analysis',
+    label: 'Analise',
     minWidth: 150,
     align: 'right',
   },
@@ -75,11 +117,17 @@ interface Data {
   tenent: string;
   DataMov: string;
   Lote: string;
-  EmailSend: number;
-  SmsSend: number;
-  PrintSend: number;
-  WebSend: number;
-  Pending: number;
+  PID: number;
+  register: number;
+  action: string;
+  duration: string;
+  running: number;
+  waiting: number;
+  finishing: number;
+  failed: number;
+  suspended: number;
+  aborted: number;
+  analysis: number;
 }
 
 function createData(
@@ -87,181 +135,36 @@ function createData(
   tenent: string,
   DataMov: string,
   Lote: string,
-  EmailSend: number,
-  SmsSend: number,
-  PrintSend: number,
-  WebSend: number,
-  Pending: number
+  PID: number,
+  register: number,
+  action: string,
+  duration: string,
+  running: number,
+  waiting: number,
+  finishing: number,
+  failed: number,
+  suspended: number,
+  aborted: number,
+  analysis: number
 ): Data {
   return {
     time,
     tenent,
     DataMov,
     Lote,
-    EmailSend,
-    SmsSend,
-    PrintSend,
-    WebSend,
-    Pending,
+    PID,
+    register,
+    action,
+    duration,
+    running,
+    waiting,
+    finishing,
+    failed,
+    suspended,
+    aborted,
+    analysis,
   };
 }
-
-const rows = [
-  createData(
-    '2021-02-01 17:36:16',
-    'SOMPOSEGUROS',
-    '01022021',
-    '00675',
-    59,
-    0,
-    0,
-    0,
-    59
-  ),
-  createData(
-    '2021-02-01 17:30:15',
-    'SOMPOSEGUROS',
-    '1403500365',
-    '00674',
-    1741,
-    0,
-    3,
-    0,
-    1744
-  ),
-  createData(
-    '2021-02-01 16:40:18',
-    'SOMPOSEGUROS',
-    '30012021',
-    '00672',
-    427,
-    0,
-    65,
-    0,
-    492
-  ),
-  createData(
-    '2021-02-01 16:40:17',
-    'SOROCRED',
-    '01022021',
-    '00061',
-    0,
-    262,
-    0,
-    0,
-    262
-  ),
-  createData(
-    '2021-02-01 13:30:42',
-    'VOXCRED',
-    '01022021',
-    '02306',
-    21780,
-    0,
-    0,
-    5643,
-    0
-  ),
-  createData(
-    '2021-02-01 13:30:32',
-    'DB_SUPERMERCADOS',
-    '01022021',
-    '01519',
-    5150,
-    5,
-    0,
-    11739,
-    0
-  ),
-  createData(
-    '2021-02-01 13:30:31',
-    'SINDCONVENIOS',
-    '01022021',
-    '00081',
-    378,
-    0,
-    0,
-    311,
-    0
-  ),
-  createData(
-    '2021-02-01 13:30:27',
-    'CATTAN',
-    '01022021',
-    '02020',
-    0,
-    11714,
-    0,
-    527,
-    0
-  ),
-  createData(
-    '2021-02-01 13:30:25',
-    'ANITA',
-    '01022021',
-    '01221',
-    6291,
-    6932,
-    0,
-    19,
-    13242
-  ),
-  createData(
-    '2021-02-01 13:30:25',
-    'CAMPELO',
-    '01022021',
-    '01722',
-    302,
-    20,
-    0,
-    1387,
-    0
-  ),
-  createData(
-    '2021-02-01 13:30:23',
-    'SAO_JOAO',
-    '01022021',
-    '00123',
-    15,
-    290,
-    0,
-    3,
-    0
-  ),
-  createData(
-    '2021-02-01 13:30:20',
-    'BAHAMAS',
-    '01022021',
-    '00042',
-    8236,
-    0,
-    0,
-    562,
-    0
-  ),
-  createData(
-    '2021-02-01 13:30:19',
-    'BANCOBARI',
-    '01022021',
-    '00102',
-    0,
-    11,
-    0,
-    0,
-    11
-  ),
-  createData(
-    '2021-02-01 13:30:16',
-    'BANDCARD',
-    '01022021',
-    '01320',
-    619,
-    0,
-    0,
-    852,
-    0
-  ),
-];
 
 const useStyles = makeStyles({
   root: {
@@ -271,6 +174,15 @@ const useStyles = makeStyles({
     height: '30vh',
   },
 });
+
+/**
+ * @export
+ * @component
+ * @name StickyHeadTable
+ *
+ * @description
+ *  Responsável por montar a tabela do worker
+ */
 
 export default function StickyHeadTable({ data, filter }) {
   const classes = useStyles();
@@ -313,7 +225,23 @@ export default function StickyHeadTable({ data, filter }) {
 
   const createTableData = (data) => {
     return data.map((d) =>
-      createData(d[0], d[1], d[2], d[3], d[4], d[5], d[7], d[8], d[9])
+      createData(
+        d[0],
+        d[1],
+        d[2],
+        d[3],
+        d[4],
+        d[5],
+        d[6],
+        d[7],
+        d[8],
+        d[9],
+        d[10],
+        d[11],
+        d[12],
+        d[13],
+        d[14]
+      )
     );
   };
   const rows =

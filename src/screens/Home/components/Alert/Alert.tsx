@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { Modal, OutlineButton, Typography } from '@d1.cx/components';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import Tooltip from '@material-ui/core/Tooltip';
 import { Theme, withStyles } from '@material-ui/core';
 
-import { Info, InfoBtn, ModalContainer } from './styled';
-import { Modal, OutlineButton, Typography } from '@d1.cx/components';
+import Tooltip from '@material-ui/core/Tooltip';
 import StoppedMovementsTable from '../StoppedMovementsTable';
+
+import { Info, InfoBtn, ModalContainer } from './styled';
 
 const TooltipArrow = withStyles((theme: Theme) => ({
   arrow: {
@@ -20,6 +21,16 @@ const TooltipArrow = withStyles((theme: Theme) => ({
     fontSize: '14px',
   },
 }))(Tooltip);
+
+  /**
+   * @export
+   * @component
+   * @name AlertContent
+   *
+   * @description
+   * Responsavel por exibir a mensagem abaixo do gráfico
+   */
+
 
 export const AlertContent = ({ data, homeData }): JSX.Element => {
   const [open, setOpen] = useState(false);

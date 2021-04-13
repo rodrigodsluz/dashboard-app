@@ -1,4 +1,4 @@
-import React, { useEffect, createRef } from 'react';
+import React from 'react';
 import {
   FlexContent,
   Input,
@@ -38,10 +38,6 @@ export const FormLogin = () => {
     handleResetForm,
     loadingButton,
   } = useFormLogin();
-  /**
-   * @todo
-   * Temporario
-   */
 
   return (
     <form onSubmit={handleFormLogin}>

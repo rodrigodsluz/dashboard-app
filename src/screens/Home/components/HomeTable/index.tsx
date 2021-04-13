@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from 'react';
+import { Modal, OutlineButton, Spacing } from '@d1.cx/components';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -7,8 +9,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import { Modal, OutlineButton, Spacing } from '@d1.cx/components';
-import React, { useEffect, useState } from 'react';
 import TabsPanel from '../TabsPanel';
 import Status from '../Status/Status';
 
@@ -92,6 +92,15 @@ const useStyles = makeStyles({
 });
 
 const STATUS = ['RUNNING', 'FINISHED', 'ERROR'];
+
+/**
+ * @export
+ * @component
+ * @name HomeTable
+ *
+ * @description
+ * Responsavel por exibir a tabela na página home
+ */
 export default function HomeTable({ data: { processes }, filter }) {
   const classes = useStyles();
   const [page, setPage] = useState(0);

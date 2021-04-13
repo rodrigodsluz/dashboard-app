@@ -9,49 +9,21 @@ import {
   Legend,
 } from 'recharts';
 
-const teste = [
-  {
-    name: 'Dia 1',
-    jobs: 4000,
-    machines: 2400,
-  },
-  {
-    name: 'Dia 2',
-    jobs: 3000,
-    machines: 1398,
-  },
-  {
-    name: 'Dia 3',
-    jobs: 2000,
-    machines: 9800,
-  },
-  {
-    name: 'Dia 4',
-    jobs: 2780,
-    machines: 3908,
-  },
-  {
-    name: 'Dia 5',
-    jobs: 1890,
-    machines: 4800,
-  },
-  {
-    name: 'Dia 6',
-    jobs: 2390,
-    machines: 3800,
-  },
-  {
-    name: 'Dia 7',
-    jobs: 3490,
-    machines: 4300,
-  },
-];
+/**
+ * @export
+ * @component
+ * @name Chart
+ *
+ * @description
+ * Retorna o gráfico de linha de maquinas x jobs
+ */
+
 
 export const Chart = ({ data }): JSX.Element => {
   const [allItems, setAllItems] = useState([]);
 
   const useWidth = () => {
-    const [width, setWidth] = useState(1350);
+    const [width, setWidth] = useState(1150);
     const handleResize = () => setWidth(window.innerWidth);
 
     useEffect(() => {
@@ -81,7 +53,7 @@ export const Chart = ({ data }): JSX.Element => {
       });
       setAllItems(items);
     },
-    [data]
+    [data, allItems]
   );
 
   useEffect(() => {
@@ -94,21 +66,21 @@ export const Chart = ({ data }): JSX.Element => {
 
   return (
     <LineChart
-      width={useWidth() <= 1024 ? mobileSize : 1350}
-      height={240}
+      width={useWidth() <= 1024 ? mobileSize : 1090}
+      height={230}
       data={allItems}
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="hour" />
-      <YAxis />
+      <YAxis domain={[0, 'dataMax + 1000']} allowDataOverflow={true}  />
       <Tooltip />
       <Legend verticalAlign="top" height={36} />
       <Line
         type="monotone"
         dataKey="jobs"
         stroke="#ea4335"
-        activeDot={{ r: 8 }}
+        activeDot={{ r: 4 }}
       />
       <Line type="monotone" dataKey="machines" stroke="#34a853" />
     </LineChart>

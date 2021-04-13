@@ -28,6 +28,15 @@ interface TabPanelProps {
   value: any;
 }
 
+/**
+ * @export
+ * @component
+ * @name TabPanel
+ *
+ * @description
+ * Responsavel por retornar o componente de tab
+ */
+
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 

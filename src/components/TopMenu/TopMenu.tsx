@@ -6,7 +6,12 @@ import { HomeDataContext } from '@src/context/HomeDataContext';
 import { TopMenu, DateInput, ContainerDate } from './styled';
 
 export const Menu = ({ loading, submit, title }): JSX.Element => {
-  const { configureStartDate, configureEndDate } = useContext(HomeDataContext);
+  const {
+    configureStartDate,
+    configureEndDate,
+    startDate,
+    endDate,
+  } = useContext(HomeDataContext);
   return (
     <TopMenu>
       <Typography htmlTag="strong" fontSize="32px">
@@ -17,6 +22,7 @@ export const Menu = ({ loading, submit, title }): JSX.Element => {
         <DateInput
           type="date"
           placeholder="Set the date"
+          defaultValue={startDate}
           onChange={({ target }) => {
             configureStartDate(target.value);
           }}
@@ -26,6 +32,7 @@ export const Menu = ({ loading, submit, title }): JSX.Element => {
         <DateInput
           type="date"
           placeholder="Set the date"
+          defaultValue={endDate}
           onChange={({ target }) => {
             configureEndDate(target.value);
           }}
@@ -42,5 +49,3 @@ export const Menu = ({ loading, submit, title }): JSX.Element => {
     </TopMenu>
   );
 };
-
-export default Menu;

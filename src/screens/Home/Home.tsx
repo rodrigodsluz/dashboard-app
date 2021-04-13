@@ -1,14 +1,18 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 import { Typography, Spacing, MenuFilterLoading } from '@d1.cx/components';
+import { AlertContent } from './components/Alert/Alert';
+import { HomeDataContext } from '@src/context/HomeDataContext';
 
 import Sidebar from '../../components/Sidebar';
 import HomeTable from './components/HomeTable';
 import Graphic from './components/PieChart';
-import { Menu } from './components/TopMenu/TopMenu';
-import { HomeDataContext } from '@src/context/HomeDataContext';
-import { CardContent } from './components/Cards/Card';
-
 import Services from '../../services';
 
 import {
@@ -19,7 +23,8 @@ import {
   Content,
   SearchBar,
 } from './styled';
-import { AlertContent } from './components/Alert/Alert';
+import { Menu } from '@src/components/TopMenu/TopMenu';
+import { CardContent } from './components/Cards/Card';
 
 /**
  * @export
@@ -73,7 +78,7 @@ export const HomeScreen = (): JSX.Element => {
 
       setLoading(false);
     } catch (e) {
-      throw new Error(e);
+      throw new Error('Erro!' + e);
     }
   }, []);
 
@@ -134,7 +139,7 @@ export const HomeScreen = (): JSX.Element => {
    * Responsavel por setar o state do filtro de busca
    */
 
-  const handleClick = (status) => () => {
+  const handleClick = (status: string) => () => {
     setFilter({
       btnStatus: status,
       searchBarData: '',
@@ -149,7 +154,7 @@ export const HomeScreen = (): JSX.Element => {
    * Responsavel por pegar o valor digitado na barra de busca
    */
 
-  const handleSearchBarChange = (e) => {
+  const handleSearchBarChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFilter({
       searchBarData: e.target.value.toLowerCase(),
       btnStatus: '',

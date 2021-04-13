@@ -1,6 +1,15 @@
-import { CardBody, CardHeader } from '@d1.cx/components';
 import React from 'react';
+import { CardBody, CardHeader } from '@d1.cx/components';
 import { CardContainer, PanelCard, Card, CardStatus, Count } from './styled';
+
+/**
+ * @export
+ * @component
+ * @name CardContent
+ *
+ * @description
+ * Responsavel por exibir os cards que filtram por status
+ */
 
 export const CardContent = ({ setStatus, data }): JSX.Element => {
   return (
@@ -33,4 +42,3 @@ export const CardContent = ({ setStatus, data }): JSX.Element => {
   );
 };
 
-export default CardContent;

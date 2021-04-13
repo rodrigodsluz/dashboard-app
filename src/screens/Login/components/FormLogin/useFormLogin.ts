@@ -7,7 +7,7 @@ import {
 } from 'react';
 
 import { redirect } from '@utils/redirect';
-import { checkEmailValid, checkEmpty } from '@utils/validation';
+import { checkEmpty } from '@utils/validation';
 import { setCookie } from '@utils/cookie';
 import Services from '@src/services';
 import { routes } from '@src/routes';
@@ -83,10 +83,7 @@ const useFormLogin = (): UseFormLoginTypes => {
         setErrorLogin(true);
         return;
       }
-      // if (!checkEmailValid(email)) {
-      //   setErrorLogin(true);
-      //   return;
-      // }
+
       const password = event.target.password.value;
 
       if (checkEmpty(password)) {
