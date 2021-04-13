@@ -29,15 +29,15 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
-  function configureUsername(username) {
+  function configureUsername(username: string) {
     setName(username);
   }
 
-  const configureURLImg = (url) => {
+  const configureURLImg = (url: string) => {
     setUrlImg(url);
   };
 
-  const configureOcupation = (ocupation) => {
+  const configureOcupation = (ocupation: string) => {
     setOcupation(ocupation);
   };
   const openModal = () => {
@@ -51,8 +51,6 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   const configureEndDate = (end: string) => {
     setEndDate(end);
   };
-
-  console.log('inicio', startDate, 'fim', endDate);
 
   return (
     <HomeDataContext.Provider

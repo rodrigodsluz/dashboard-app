@@ -49,5 +49,3 @@ export const Menu = ({ loading, submit, title }): JSX.Element => {
     </TopMenu>
   );
 };
-
-export default Menu;

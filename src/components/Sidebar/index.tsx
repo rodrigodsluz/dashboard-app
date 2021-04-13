@@ -4,6 +4,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Theme, withStyles } from '@material-ui/core';
+
+import { ReactComponent as ChartPie } from '../../../public/sidebarIcons/chart-pie.svg';
+import { ReactComponent as Rocket } from '../../../public/sidebarIcons/rocket.svg';
+import { ReactComponent as SignOut } from '../../../public/sidebarIcons/sign-out-alt.svg';
+import { ReactComponent as User } from '../../../public/sidebarIcons/user-friends.svg';
+import { ReactComponent as Settings } from '../../../public/sidebarIcons/tools.svg';
+import { HomeDataContext } from '@src/context/HomeDataContext';
+
 import {
   Border,
   SidebarContainer,
@@ -13,13 +21,6 @@ import {
   ExpandIconClick,
   ContainerLogo,
 } from './styled';
-
-import { ReactComponent as ChartPie } from '../../../public/sidebarIcons/chart-pie.svg';
-import { ReactComponent as Rocket } from '../../../public/sidebarIcons/rocket.svg';
-import { ReactComponent as SignOut } from '../../../public/sidebarIcons/sign-out-alt.svg';
-import { ReactComponent as User } from '../../../public/sidebarIcons/user-friends.svg';
-import { ReactComponent as Settings } from '../../../public/sidebarIcons/tools.svg';
-import { HomeDataContext } from '@src/context/HomeDataContext';
 
 const TooltipArrow = withStyles((theme: Theme) => ({
   arrow: {
@@ -37,7 +38,7 @@ const TooltipArrow = withStyles((theme: Theme) => ({
 
 const Sidebar = () => {
   const router = useRouter();
-  const { name, open, openModal } = useContext(HomeDataContext);
+  const { open, openModal } = useContext(HomeDataContext);
   return (
     <>
       <Border position="top" />

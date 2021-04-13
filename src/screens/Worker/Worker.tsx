@@ -5,8 +5,9 @@ import StickyHeadTable from './components/WorkerTable';
 import Sidebar from '../../components/Sidebar';
 import { Chart } from './components/SimpleLineChart';
 import { StatusCircle } from './components/StatusCircle';
-import { Menu } from '../../components/TopMenu/TopMenu';
 import { HomeDataContext } from '@src/context/HomeDataContext';
+import { ConfigurationCard } from './components/ConfigurationCard/ConfigurationCard';
+
 import services from '@src/services';
 
 import {
@@ -20,7 +21,7 @@ import {
   StatusCard,
   ContainerGraph,
 } from './styled';
-import { ConfigurationCard } from './components/ConfigurationCard/ConfigurationCard';
+import { Menu } from '@src/components/TopMenu/TopMenu';
 
 /**
  * @export
@@ -105,7 +106,7 @@ export const WorkerScreen = (): JSX.Element => {
 
       setLoading(false);
     } catch (e) {
-      throw new Error(e);
+      console.log(e);
     }
   }, []);
 
@@ -176,7 +177,7 @@ export const WorkerScreen = (): JSX.Element => {
                 onChange={handleSearchBarChange}
               />
             </Content>
-            {workerData.data ? (
+            {workerData.data.length > 0 ? (
               <StickyHeadTable data={workerData.data} filter={filter} />
             ) : (
               <MenuFilterLoading />
@@ -239,7 +240,7 @@ export const WorkerScreen = (): JSX.Element => {
                 />
               </StatusCard>
             </JobsContainer>
-            {workerData.graph ? (
+            {workerData.graph.length > 0 ? (
               <ContainerGraph>
                 <ChartContainer>
                   <Chart data={workerData.graph} />

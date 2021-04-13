@@ -1,3 +1,3 @@
-import { LOGIN_ROUTE, FORM_ROUTE } from './Routes';
+import { LOGIN_ROUTE, HOME, WORKER } from './Routes';
 
-export { LOGIN_ROUTE, FORM_ROUTE };
+export { LOGIN_ROUTE, HOME, WORKER };

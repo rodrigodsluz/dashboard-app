@@ -6,9 +6,9 @@ import {
   Select,
   Spacing,
 } from '@d1.cx/components';
-import { ModalContainer, UploadFile, File } from './styled';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 import Services from '../../services';
+import { ModalContainer, UploadFile, File } from './styled';
 
 export const UserModal = (): JSX.Element => {
   const {
@@ -46,11 +46,9 @@ export const UserModal = (): JSX.Element => {
         name,
         ocupation,
       };
-      console.log(user);
       let response = await Services.user.uploadUser(user);
-      console.log(response);
     } catch (e) {
-      console.log(e);
+      throw e;
     }
   }, [name, ocupation]);
 
@@ -103,5 +101,3 @@ export const UserModal = (): JSX.Element => {
     </Modal>
   );
 };
-
-export default UserModal;

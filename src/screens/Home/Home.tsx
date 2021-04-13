@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 
 import { Typography, Spacing, MenuFilterLoading } from '@d1.cx/components';
-import { Menu } from '../../components/TopMenu/TopMenu';
 import { AlertContent } from './components/Alert/Alert';
 import { CardContent } from './components/Cards/Card';
 import { HomeDataContext } from '@src/context/HomeDataContext';
@@ -25,6 +24,7 @@ import {
   Content,
   SearchBar,
 } from './styled';
+import { Menu } from '@src/components/TopMenu/TopMenu';
 
 /**
  * @export
@@ -78,7 +78,7 @@ export const HomeScreen = (): JSX.Element => {
 
       setLoading(false);
     } catch (e) {
-      throw new Error(e);
+      throw new Error('Erro!' + e);
     }
   }, []);
 
