@@ -1,5 +1,6 @@
-import { Tachometer } from '@d1.cx/icons';
-import { Circle, Container, Status } from './style';
+import { Typography } from '@d1.cx/components';
+import { Tachometer, CcmCloud } from '@d1.cx/icons';
+import { Container } from './style';
 /**
  * @export
  * @component
@@ -11,10 +12,13 @@ import { Circle, Container, Status } from './style';
 export const ConfigurationCard = ({ color, status, number }): JSX.Element => {
   return (
     <Container>
-       <Tachometer width="60px" color="#000"  /> 
-      <Status>
-        {status}: {number}
-      </Status>
+      {status === 'Jobs Ativos' ? (
+        <Tachometer width="60px" color="#ea4335" />
+      ) : (
+        <CcmCloud width="60px" color="#34a853" />
+      )}
+      <Typography fontSize="20px">{status}</Typography>
+      <Typography fontSize="40px" vertical="40px">{number}</Typography>
     </Container>
   );
 };

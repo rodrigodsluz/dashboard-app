@@ -37,7 +37,7 @@ export const WorkerScreen = (): JSX.Element => {
     data: [],
     graph: [],
     cards: [],
-    jobs: 0,
+    jobs: [],
     machines: 0,
   });
   const [filter, setFilter] = useState({
@@ -90,12 +90,14 @@ export const WorkerScreen = (): JSX.Element => {
       let data = await services.worker.getDataWorker(start, end);
       let generetedJobs = await services.worker.getGeneretedJobs(start, end);
       let lineGraph = await services.worker.getLineGraph();
+      let machines = await services.worker.getMachines();
+      console.log(machines);
       setWorkerData({
         data: data.data,
         cards: generetedJobs.data,
         graph: lineGraph.data,
-        jobs: 0,
-        machines: 0,
+        jobs: [],
+        machines: machines.data,
       });
 
       setLoading(false);
@@ -223,8 +225,13 @@ export const WorkerScreen = (): JSX.Element => {
                   }
                 />
               </StatusCard>
-              <StatusCard>
-                <StatusCircle
+            </JobsContainer>
+            {workerData.graph ? (
+              <ContainerGraph>
+                <ChartContainer>
+                  <Chart data={workerData.graph} />
+                </ChartContainer>
+                <ConfigurationCard
                   color="#0B8C68"
                   status="Jobs Ativos"
                   number={
@@ -233,35 +240,15 @@ export const WorkerScreen = (): JSX.Element => {
                       : ''
                   }
                 />
-              </StatusCard>
-            </JobsContainer>
-            {workerData.graph ? (
-              <ContainerGraph>
-                <ChartContainer>
-                  <Chart data={workerData.graph} />
-                </ChartContainer>
-                <StatusCard>
-                  <ConfigurationCard
-                    color="#0B8C68"
-                    status="Jobs Ativos"
-                    number={
-                      workerData.cards && workerData.cards[6]
-                        ? formatStatus(workerData.cards[6])
-                        : ''
-                    }
-                  />
-                </StatusCard>
-                <StatusCard>
-                  <ConfigurationCard
-                    color="#0B8C68"
-                    status="Jobs Ativos"
-                    number={
-                      workerData.cards && workerData.cards[6]
-                        ? formatStatus(workerData.cards[6])
-                        : ''
-                    }
-                  />
-                </StatusCard>
+                <ConfigurationCard
+                  color="#0B8C68"
+                  status="Maquinas"
+                  number={
+                    workerData.machines && workerData.machines
+                      ? workerData.machines
+                      : ''
+                  }
+                />
               </ContainerGraph>
             ) : null}
           </TableContent>

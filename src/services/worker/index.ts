@@ -1,3 +1,8 @@
-import { getDataWorker, getGeneretedJobs, getLineGraph } from './worker';
+import {
+  getDataWorker,
+  getGeneretedJobs,
+  getLineGraph,
+  getMachines,
+} from './worker';
 
-export default { getDataWorker, getGeneretedJobs, getLineGraph };
+export default { getDataWorker, getGeneretedJobs, getLineGraph, getMachines };

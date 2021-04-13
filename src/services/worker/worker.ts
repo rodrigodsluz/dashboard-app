@@ -106,3 +106,30 @@ export async function getLineGraph() {
     return { error: true };
   }
 }
+
+/**
+ * @async
+ * @export
+ * @function
+ * @name getMachines
+ *
+ * @description
+ * Responsável por enviar os dados da comunicação.
+ */
+ export async function getMachines() {
+  const token = localStorage.getItem('token');
+
+  const options = {
+    url: `${API}/Worker/GetMachines`,
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await axios({ method: 'GET', ...options });
+    return { error: false, data: response.data };
+  } catch (error) {
+    return { error: true };
+  }
+}

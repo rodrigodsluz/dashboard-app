@@ -9,43 +9,6 @@ import {
   Legend,
 } from 'recharts';
 
-const teste = [
-  {
-    name: 'Dia 1',
-    jobs: 4000,
-    machines: 2400,
-  },
-  {
-    name: 'Dia 2',
-    jobs: 3000,
-    machines: 1398,
-  },
-  {
-    name: 'Dia 3',
-    jobs: 2000,
-    machines: 9800,
-  },
-  {
-    name: 'Dia 4',
-    jobs: 2780,
-    machines: 3908,
-  },
-  {
-    name: 'Dia 5',
-    jobs: 1890,
-    machines: 4800,
-  },
-  {
-    name: 'Dia 6',
-    jobs: 2390,
-    machines: 3800,
-  },
-  {
-    name: 'Dia 7',
-    jobs: 3490,
-    machines: 4300,
-  },
-];
 
 export const Chart = ({ data }): JSX.Element => {
   const [allItems, setAllItems] = useState([]);
@@ -81,7 +44,7 @@ export const Chart = ({ data }): JSX.Element => {
       });
       setAllItems(items);
     },
-    [data]
+    [data, allItems]
   );
 
   useEffect(() => {
@@ -101,14 +64,14 @@ export const Chart = ({ data }): JSX.Element => {
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="hour" />
-      <YAxis />
+      <YAxis domain={[0, 'dataMax + 1000']} allowDataOverflow={true}  />
       <Tooltip />
       <Legend verticalAlign="top" height={36} />
       <Line
         type="monotone"
         dataKey="jobs"
         stroke="#ea4335"
-        activeDot={{ r: 8 }}
+        activeDot={{ r: 4 }}
       />
       <Line type="monotone" dataKey="machines" stroke="#34a853" />
     </LineChart>
