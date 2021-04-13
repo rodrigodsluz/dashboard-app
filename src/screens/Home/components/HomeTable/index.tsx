@@ -92,6 +92,15 @@ const useStyles = makeStyles({
 });
 
 const STATUS = ['RUNNING', 'FINISHED', 'ERROR'];
+
+/**
+ * @export
+ * @component
+ * @name HomeTable
+ *
+ * @description
+ * Responsavel por exibir a tabela na página home
+ */
 export default function HomeTable({ data: { processes }, filter }) {
   const classes = useStyles();
   const [page, setPage] = useState(0);

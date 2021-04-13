@@ -102,13 +102,30 @@ const useStyles = makeStyles({
   },
 });
 
+/**
+ * @export
+ * @component
+ * @name StoppedMovementsTable
+ *
+ * @description
+ * Responsavel por retonar a tabela com tabs ao clicar em algum item da tabela na home
+ */
+
 export default function StoppedMovementsTable({ data: { stoppedMovements } }) {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);
 
   const rows = stoppedMovements.map((d) =>
-    createData(d.created, d.tenant, d.datamov, d.lote, d.status, d.step, d.timer_processing)
+    createData(
+      d.created,
+      d.tenant,
+      d.datamov,
+      d.lote,
+      d.status,
+      d.step,
+      d.timer_processing
+    )
   );
 
   const handleChangePage = (event: unknown, newPage: number) => {

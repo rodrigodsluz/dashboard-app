@@ -8,7 +8,6 @@ import React, {
 
 import { Typography, Spacing, MenuFilterLoading } from '@d1.cx/components';
 import { AlertContent } from './components/Alert/Alert';
-import { CardContent } from './components/Cards/Card';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 
 import Sidebar from '../../components/Sidebar';
@@ -25,6 +24,7 @@ import {
   SearchBar,
 } from './styled';
 import { Menu } from '@src/components/TopMenu/TopMenu';
+import { CardContent } from './components/Cards/Card';
 
 /**
  * @export

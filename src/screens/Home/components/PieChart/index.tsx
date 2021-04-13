@@ -37,7 +37,14 @@ const renderCustomizedLabel = ({
 type Props = {
   data: {};
 };
-
+/**
+ * @export
+ * @component
+ * @name Graphic
+ *
+ * @description
+ * Responsavel por montar o grafico de pizza na home
+ */
 export default class Graphic extends PureComponent<Props> {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/c9pL8k61/';
 
