@@ -1,5 +1,5 @@
-import { CardBody, CardHeader } from '@d1.cx/components';
 import React from 'react';
+import { CardBody, CardHeader } from '@d1.cx/components';
 import { CardContainer, PanelCard, Card, CardStatus, Count } from './styled';
 
 export const CardContent = ({ setStatus, data }): JSX.Element => {

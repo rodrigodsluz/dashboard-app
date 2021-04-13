@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 import { Typography, Spacing, MenuFilterLoading } from '@d1.cx/components';
 
@@ -8,8 +14,8 @@ import Graphic from './components/PieChart';
 import { Menu } from './components/TopMenu/TopMenu';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 import { CardContent } from './components/Cards/Card';
-
 import Services from '../../services';
+import { AlertContent } from './components/Alert/Alert';
 
 import {
   Container,
@@ -19,7 +25,6 @@ import {
   Content,
   SearchBar,
 } from './styled';
-import { AlertContent } from './components/Alert/Alert';
 
 /**
  * @export
@@ -134,7 +139,7 @@ export const HomeScreen = (): JSX.Element => {
    * Responsavel por setar o state do filtro de busca
    */
 
-  const handleClick = (status) => () => {
+  const handleClick = (status: string) => () => {
     setFilter({
       btnStatus: status,
       searchBarData: '',
@@ -149,7 +154,7 @@ export const HomeScreen = (): JSX.Element => {
    * Responsavel por pegar o valor digitado na barra de busca
    */
 
-  const handleSearchBarChange = (e) => {
+  const handleSearchBarChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFilter({
       searchBarData: e.target.value.toLowerCase(),
       btnStatus: '',
