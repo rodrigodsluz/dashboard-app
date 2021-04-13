@@ -13,12 +13,12 @@ export const ConfigurationCard = ({ color, status, number }): JSX.Element => {
   return (
     <Container>
       {status === 'Jobs Ativos' ? (
-        <Tachometer width="60px" color="#ea4335" />
+        <Tachometer width="40px" color="#ea4335" />
       ) : (
-        <CcmCloud width="60px" color="#34a853" />
+        <CcmCloud width="40px" color="#34a853" />
       )}
-      <Typography fontSize="20px">{status}</Typography>
-      <Typography fontSize="40px" vertical="40px">{number}</Typography>
+      <Typography fontSize="16px">{status}</Typography>
+      <Typography fontSize="30px" vertical="10px">{number}</Typography>
     </Container>
   );
 };

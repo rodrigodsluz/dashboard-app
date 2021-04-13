@@ -231,24 +231,34 @@ export const WorkerScreen = (): JSX.Element => {
                 <ChartContainer>
                   <Chart data={workerData.graph} />
                 </ChartContainer>
-                <ConfigurationCard
-                  color="#0B8C68"
-                  status="Jobs Ativos"
-                  number={
-                    workerData.cards && workerData.cards[6]
-                      ? formatStatus(workerData.cards[6])
-                      : ''
-                  }
-                />
-                <ConfigurationCard
-                  color="#0B8C68"
-                  status="Maquinas"
-                  number={
-                    workerData.machines && workerData.machines
-                      ? workerData.machines
-                      : ''
-                  }
-                />
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 200,
+                    justifyContent: 'center',
+                    marginTop: 22,
+                  }}
+                >
+                  <ConfigurationCard
+                    color="#0B8C68"
+                    status="Jobs Ativos"
+                    number={
+                      workerData.cards && workerData.cards[6]
+                        ? formatStatus(workerData.cards[6])
+                        : ''
+                    }
+                  />
+                  <ConfigurationCard
+                    color="#0B8C68"
+                    status="Maquinas"
+                    number={
+                      workerData.machines && workerData.machines
+                        ? workerData.machines
+                        : ''
+                    }
+                  />
+                </div>
               </ContainerGraph>
             ) : null}
           </TableContent>

@@ -105,7 +105,10 @@ export const StatusCard = styled.div`
 `;
 
 export const ContainerGraph = styled.div`
+  margin: 0px;
   display: flex;
+  align-content: center;
+  justify-content: center;
   flex-wrap: wrap;
   @media screen and (max-width: 930px) {
     flex-direction: column;
