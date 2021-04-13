@@ -1,14 +1,39 @@
 import React, { useCallback, useContext, useMemo, useState } from 'react';
-import {
-  Input,
-  Modal,
-  OutlineButton,
-  Select,
-  Spacing,
-} from '@d1.cx/components';
+import { Modal } from '@material-ui/core';
+
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { Input, OutlineButton, Select, Spacing } from '@d1.cx/components';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 import Services from '../../services';
 import { ModalContainer, UploadFile, File } from './styled';
+
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 50 + rand();
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    paper: {
+      position: 'absolute',
+      maxWidth: 330,
+      backgroundColor: theme.palette.background.paper,
+      border: '1px solid #ccc',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
+  })
+);
 
 export const UserModal = (): JSX.Element => {
   const {
@@ -18,7 +43,10 @@ export const UserModal = (): JSX.Element => {
     configureUsername,
     configureOcupation,
     ocupation,
+    closeModal,
   } = useContext(HomeDataContext);
+  const classes = useStyles();
+  const [modalStyle] = React.useState(getModalStyle);
   const [thumbnail, setThumbnail] = useState(null);
 
   const preview = useMemo(() => {
@@ -52,52 +80,66 @@ export const UserModal = (): JSX.Element => {
     }
   }, [name, ocupation]);
 
-  return (
-    <Modal open={open} title="Atualizar informações">
-      <ModalContainer>
-        <UploadFile
-          style={{
-            backgroundImage: preview
-              ? `url(${preview})`
-              : 'url(https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png)',
-          }}
-        >
-          <File type="file" onChange={(e) => setThumbnail(e.target.files[0])} />
-        </UploadFile>
+  const handleClose = () => {
+    closeModal();
+  };
 
-        <Input
-          placeholder="Atualizar nome"
-          handleChange={({ target }) => {
-            configureUsername(target.value);
-          }}
-          value={name}
-        />
-        <Select
-          value={switchOcupation()}
-          data={[
-            { id: '0', name: 'Área de atuação' },
-            { id: '1', name: 'Visitante' },
-            { id: '2', name: 'Suporte' },
-            { id: '3', name: 'Processamento' },
-            { id: '4', name: 'Implementação' },
-          ]}
-          onChange={({ target }) => {
-            configureOcupation(target.value);
-          }}
-        />
-        <Spacing vertical="10px" />
-        <OutlineButton
-          secondary
-          handleClick={() => {}}
-          onClick={() => {
-            handleSubmit();
-            openModal();
-            setThumbnail(null);
-          }}
-        >
-          Atualizar
-        </OutlineButton>
-      </ModalContainer>
+  return (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="simple-modal-title"
+      aria-describedby="simple-modal-description"
+    >
+      <div style={modalStyle} className={classes.paper}>
+        <ModalContainer>
+          <UploadFile
+            style={{
+              backgroundImage: preview
+                ? `url(${preview})`
+                : 'url(https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png)',
+            }}
+          >
+            <File
+              type="file"
+              onChange={(e) => setThumbnail(e.target.files[0])}
+            />
+          </UploadFile>
+
+          <Input
+            placeholder="Atualizar nome"
+            handleChange={({ target }) => {
+              configureUsername(target.value);
+            }}
+            value={name}
+          />
+          <Select
+            value={switchOcupation()}
+            data={[
+              { id: '0', name: 'Área de atuação' },
+              { id: '1', name: 'Visitante' },
+              { id: '2', name: 'Suporte' },
+              { id: '3', name: 'Processamento' },
+              { id: '4', name: 'Implementação' },
+            ]}
+            onChange={({ target }) => {
+              configureOcupation(target.value);
+            }}
+          />
+          <Spacing vertical="10px" />
+          <OutlineButton
+            secondary
+            handleClick={() => {}}
+            onClick={() => {
+              handleSubmit();
+              openModal();
+              setThumbnail(null);
+            }}
+          >
+            Atualizar
+          </OutlineButton>
+        </ModalContainer>
+      </div>
     </Modal>
   );
 };

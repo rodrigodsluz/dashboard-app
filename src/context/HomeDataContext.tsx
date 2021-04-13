@@ -8,7 +8,7 @@ type Type = {
   configureURLImg?: (url: string) => void;
   configureOcupation?: (ocupation: string) => void;
   openModal?: () => void;
-
+  closeModal?: () => any;
   startDate?: string;
   endDate?: string;
   configureStartDate?: (start: string) => void;
@@ -44,6 +44,10 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
     setOpen(!open);
   };
 
+  const closeModal = () => {
+    setOpen(false);
+  };
+
   const configureStartDate = (start: string) => {
     setStartDate(start);
   };
@@ -67,6 +71,7 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
         open,
         configureEndDate,
         configureStartDate,
+        closeModal
       }}
     >
       {children}
