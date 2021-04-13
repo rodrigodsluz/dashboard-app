@@ -22,6 +22,16 @@ const TooltipArrow = withStyles((theme: Theme) => ({
   },
 }))(Tooltip);
 
+  /**
+   * @export
+   * @component
+   * @name AlertContent
+   *
+   * @description
+   * Responsavel por exibir a mensagem abaixo do gráfico
+   */
+
+
 export const AlertContent = ({ data, homeData }): JSX.Element => {
   const [open, setOpen] = useState(false);
   return (
