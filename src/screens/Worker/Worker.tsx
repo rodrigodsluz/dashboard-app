@@ -91,12 +91,14 @@ export const WorkerScreen = (): JSX.Element => {
       let generetedJobs = await services.worker.getGeneretedJobs(start, end);
       let lineGraph = await services.worker.getLineGraph();
       let machines = await services.worker.getMachines();
-      console.log(machines);
+      let jobs = await services.worker.GetJobsRunning(start, end);
+      let allJobs = formatArrayJobs(jobs.data);
+
       setWorkerData({
         data: data.data,
         cards: generetedJobs.data,
         graph: lineGraph.data,
-        jobs: [],
+        jobs: allJobs,
         machines: machines.data,
       });
 
@@ -146,6 +148,16 @@ export const WorkerScreen = (): JSX.Element => {
     [workerData.cards]
   );
 
+  const formatArrayJobs = (array: Array<string>) => {
+    let format = [];
+    if (array.length > 0) {
+      array.forEach((element) => {
+        let newItem = element + ', ';
+        format.push(newItem);
+      });
+    }
+    return format;
+  };
   return (
     <>
       <Container>
@@ -241,7 +253,7 @@ export const WorkerScreen = (): JSX.Element => {
                   }}
                 >
                   <ConfigurationCard
-                    jobs={['Azul,', 'Teste']}
+                    jobs={workerData.jobs}
                     status="Jobs Ativos"
                     number={
                       workerData.cards && workerData.cards[6]

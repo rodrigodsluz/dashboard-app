@@ -133,3 +133,31 @@ export async function getLineGraph() {
     return { error: true };
   }
 }
+
+
+/**
+ * @async
+ * @export
+ * @function
+ * @name GetJobsRunning
+ *
+ * @description
+ * Responsável por enviar os dados da comunicação.
+ */
+ export async function GetJobsRunning(start: string, end: string) {
+  const token = localStorage.getItem('token');
+
+  const options = {
+    url: `${API}/Worker/GetJobsRunning/?date1=${start}&date2=${end}`,
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await axios({ method: 'GET', ...options });
+    return { error: false, data: response.data };
+  } catch (error) {
+    return { error: true };
+  }
+}

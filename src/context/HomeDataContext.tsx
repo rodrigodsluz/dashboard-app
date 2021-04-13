@@ -52,7 +52,7 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
     setEndDate(end);
   };
 
-  console.log(startDate);
+  console.log('inicio', startDate, 'fim', endDate);
 
   return (
     <HomeDataContext.Provider
