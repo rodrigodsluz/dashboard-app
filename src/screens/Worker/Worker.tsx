@@ -235,13 +235,13 @@ export const WorkerScreen = (): JSX.Element => {
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 200,
-                    justifyContent: 'center',
+                    height: 210,
+                    justifyContent: 'space-between',
                     marginTop: 22,
                   }}
                 >
                   <ConfigurationCard
-                    color="#0B8C68"
+                    jobs={['Azul,', 'Teste']}
                     status="Jobs Ativos"
                     number={
                       workerData.cards && workerData.cards[6]
@@ -250,7 +250,6 @@ export const WorkerScreen = (): JSX.Element => {
                     }
                   />
                   <ConfigurationCard
-                    color="#0B8C68"
                     status="Maquinas"
                     number={
                       workerData.machines && workerData.machines

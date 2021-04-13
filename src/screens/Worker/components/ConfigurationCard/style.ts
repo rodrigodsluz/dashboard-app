@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+type Props = {
+  jobs?: boolean;
+};
+
+export const Container = styled.button<Props>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width:300px;
+  width: 190px;
   margin-left: 5px;
-  height:50%;
+  background-color: #fff;
+  outline: none;
+  cursor: ${(props) => (props.jobs ? 'pointer' : 'unset')};
 `;

@@ -57,8 +57,8 @@ export const Chart = ({ data }): JSX.Element => {
 
   return (
     <LineChart
-      width={useWidth() <= 1024 ? mobileSize : 1150}
-      height={240}
+      width={useWidth() <= 1024 ? mobileSize : 1090}
+      height={230}
       data={allItems}
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
     >

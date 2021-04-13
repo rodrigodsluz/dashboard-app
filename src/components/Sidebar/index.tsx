@@ -11,8 +11,6 @@ import {
   Logo,
   IconWrapper,
   ExpandIconClick,
-  Name,
-  ModalButton,
   ContainerLogo,
 } from './styled';
 
