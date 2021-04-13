@@ -9,6 +9,15 @@ import {
   Legend,
 } from 'recharts';
 
+/**
+ * @export
+ * @component
+ * @name Chart
+ *
+ * @description
+ * Retorna o gráfico de linha de maquinas x jobs
+ */
+
 
 export const Chart = ({ data }): JSX.Element => {
   const [allItems, setAllItems] = useState([]);

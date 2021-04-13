@@ -4,15 +4,18 @@ import { Theme, withStyles } from '@material-ui/core';
 import { Typography } from '@d1.cx/components';
 import { Tachometer, CcmCloud } from '@d1.cx/icons';
 import { Container } from './style';
-import { NONAME } from 'dns';
+
+
 /**
  * @export
  * @component
- * @name LineHeader
+ * @name ConfigurationCard
  *
  * @description
- * Linha degrade exibida no começo de toda página
+ * Retorna o número de máquinas e jobs ativos
  */
+
+
 const JOBS = 'Jobs Ativos';
 
 const TooltipArrow = withStyles((theme: Theme) => ({

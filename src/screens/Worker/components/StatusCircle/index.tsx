@@ -2,10 +2,10 @@ import { Circle, Container, Status } from './style';
 /**
  * @export
  * @component
- * @name LineHeader
+ * @name StatusCircle
  *
  * @description
- * Linha degrade exibida no começo de toda página
+ *  Responsável por montar os cards de status indicando quantos estão exucutando, com erros e afins...
  */
 export const StatusCircle = ({ color, status, number }): JSX.Element => {
   return (

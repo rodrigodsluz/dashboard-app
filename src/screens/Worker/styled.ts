@@ -59,6 +59,7 @@ export const ChartContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  margin-left: -60px;
 `;
 
 export const JobsContainer = styled.div`
@@ -87,5 +88,24 @@ export const ContainerGraph = styled.div`
   width: 100%;
   @media screen and (max-width: 930px) {
     flex-direction: column;
+  }
+`;
+
+export const ContentContainerGraph = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
+export const ContainerConfigurationCards = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 210px;
+  justify-content: space-between;
+  margin-top: 22px;
+  @media screen and (max-width: 930px) {
+    align-items: center;
+    margin-bottom:10px;
   }
 `;

@@ -175,6 +175,15 @@ const useStyles = makeStyles({
   },
 });
 
+/**
+ * @export
+ * @component
+ * @name StickyHeadTable
+ *
+ * @description
+ *  Responsável por montar a tabela do worker
+ */
+
 export default function StickyHeadTable({ data, filter }) {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
