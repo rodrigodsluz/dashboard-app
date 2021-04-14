@@ -16,6 +16,23 @@ export const ModalContainer = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  width: 330px;
+`;
+
+export const CenterModal = styled.div`
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 0;
+  text-align: center;
+  height: 330px;
+  width: 330px;
+  z-index: 10;
 `;
 
 export const UploadFile = styled.label`

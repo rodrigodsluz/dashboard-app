@@ -34,7 +34,7 @@ const columns: Column[] = [
   },
   {
     id: 'Produto',
-    label: 'Produto\u00a0(km\u00b2)',
+    label: 'Produto',
     minWidth: 170,
     align: 'right',
     format: (value: number) => value.toLocaleString('en-US'),

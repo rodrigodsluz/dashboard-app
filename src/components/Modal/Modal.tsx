@@ -5,35 +5,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Input, OutlineButton, Select, Spacing } from '@d1.cx/components';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 import Services from '../../services';
-import { ModalContainer, UploadFile, File } from './styled';
-
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      position: 'absolute',
-      maxWidth: 330,
-      backgroundColor: theme.palette.background.paper,
-      border: '1px solid #ccc',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
-  })
-);
+import { ModalContainer, UploadFile, File, CenterModal } from './styled';
 
 export const UserModal = (): JSX.Element => {
   const {
@@ -45,8 +17,6 @@ export const UserModal = (): JSX.Element => {
     ocupation,
     closeModal,
   } = useContext(HomeDataContext);
-  const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
   const [thumbnail, setThumbnail] = useState(null);
 
   const preview = useMemo(() => {
@@ -91,7 +61,7 @@ export const UserModal = (): JSX.Element => {
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
     >
-      <div style={modalStyle} className={classes.paper}>
+      <CenterModal>
         <ModalContainer>
           <UploadFile
             style={{
@@ -139,7 +109,7 @@ export const UserModal = (): JSX.Element => {
             Atualizar
           </OutlineButton>
         </ModalContainer>
-      </div>
+      </CenterModal>
     </Modal>
   );
 };
