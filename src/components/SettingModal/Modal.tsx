@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Modal } from '@material-ui/core';
-
-import { Input, OutlineButton, Spacing } from '@d1.cx/components';
+import { GripLines } from '@d1.cx/icons';
+import { OutlineButton, Spacing, Typography } from '@d1.cx/components';
 import { HomeDataContext } from '@src/context/HomeDataContext';
-import { ModalContainer, CenterModal } from './styled';
+import { ModalContainer, CenterModal, Icon } from './styled';
 
 export const SettingModal = (): JSX.Element => {
   const { configureCloseSettingModal, openSettingModal } = useContext(
@@ -23,6 +23,11 @@ export const SettingModal = (): JSX.Element => {
     >
       <CenterModal>
         <ModalContainer>
+          <Icon>
+            <GripLines color="#000" width="30px" />
+            <Typography>Erros</Typography>
+          </Icon>
+
           <Spacing vertical="10px" />
           <OutlineButton
             secondary

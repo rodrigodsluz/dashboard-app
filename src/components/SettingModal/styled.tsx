@@ -1,16 +1,4 @@
-import styled, { css } from 'styled-components';
-
-export const Image = styled.img`
-  margin-bottom: 20px;
-  border: 1px dashed #ddd;
-  background-size: cover;
-  cursor: pointer;
-  height: 160px;
-  width: 160px;
-  border-radius: 50%;
-  display: flex;
-  align-self: center;
-`;
+import styled from 'styled-components';
 
 export const ModalContainer = styled.div`
   padding: 20px;
@@ -18,7 +6,7 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   background-color: #fff;
   width: 330px;
-  outline:none;
+  outline: none;
 `;
 
 export const CenterModal = styled.div`
@@ -34,23 +22,24 @@ export const CenterModal = styled.div`
   height: 330px;
   width: 330px;
   z-index: 10;
-  outline:none;
+  outline: none;
 `;
 
-export const UploadFile = styled.label`
-  margin-bottom: 20px;
-  border: 1px dashed #ddd;
-  background-size: cover;
-  cursor: pointer;
-  height: 160px;
-  width: 160px;
-  border-radius: 50%;
+export const Icon = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
   align-self: center;
-`;
-
-export const File = styled.input`
-  display: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  transition: 0.2s ease-in;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #9196ab;
+  }
 `;
