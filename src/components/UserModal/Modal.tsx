@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useMemo, useState } from 'react';
 import { Modal } from '@material-ui/core';
 
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Input, OutlineButton, Select, Spacing } from '@d1.cx/components';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 import Services from '../../services';

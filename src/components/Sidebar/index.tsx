@@ -38,7 +38,12 @@ const TooltipArrow = withStyles((theme: Theme) => ({
 
 const Sidebar = () => {
   const router = useRouter();
-  const { open, openModal } = useContext(HomeDataContext);
+  const {
+    open,
+    openModal,
+    openSettingModal,
+    configureOpenSettingModal,
+  } = useContext(HomeDataContext);
   return (
     <>
       <Border position="top" />
@@ -82,10 +87,10 @@ const Sidebar = () => {
               </IconWrapper>
             </TooltipArrow>
           </ExpandIconClick>
-          <ExpandIconClick onClick={openModal}>
+          <ExpandIconClick onClick={configureOpenSettingModal}>
             <TooltipArrow title="Settings" placement="left" arrow>
               <IconWrapper>
-                <Settings fill={open ? '#117eff' : 'white'} />
+                <Settings fill={openSettingModal ? '#117eff' : 'white'} />
               </IconWrapper>
             </TooltipArrow>
           </ExpandIconClick>

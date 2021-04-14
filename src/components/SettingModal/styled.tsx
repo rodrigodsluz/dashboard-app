@@ -18,6 +18,7 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   background-color: #fff;
   width: 330px;
+  outline:none;
 `;
 
 export const CenterModal = styled.div`
@@ -33,6 +34,7 @@ export const CenterModal = styled.div`
   height: 330px;
   width: 330px;
   z-index: 10;
+  outline:none;
 `;
 
 export const UploadFile = styled.label`

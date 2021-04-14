@@ -8,11 +8,14 @@ type Type = {
   configureURLImg?: (url: string) => void;
   configureOcupation?: (ocupation: string) => void;
   openModal?: () => void;
-  closeModal?: () => any;
+  closeModal?: () => void;
   startDate?: string;
   endDate?: string;
   configureStartDate?: (start: string) => void;
   configureEndDate?: (end: string) => void;
+  openSettingModal?: boolean;
+  configureOpenSettingModal?: () => void;
+  configureCloseSettingModal?: () => void;
 };
 
 type Props = {
@@ -28,6 +31,8 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
 
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+
+  const [openSettingModal, setOpenSettingModal] = useState(false);
 
   function configureUsername(username: string) {
     setName(username);
@@ -56,6 +61,14 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
     setEndDate(end);
   };
 
+  const configureOpenSettingModal = () => {
+    setOpenSettingModal(!open);
+  };
+
+  const configureCloseSettingModal = () => {
+    setOpenSettingModal(false);
+  };
+
   return (
     <HomeDataContext.Provider
       value={{
@@ -71,7 +84,10 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
         open,
         configureEndDate,
         configureStartDate,
-        closeModal
+        closeModal,
+        configureOpenSettingModal,
+        configureCloseSettingModal,
+        openSettingModal
       }}
     >
       {children}
