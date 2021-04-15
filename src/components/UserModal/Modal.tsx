@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { Modal } from '@material-ui/core';
 
 import { Input, OutlineButton, Select, Spacing } from '@d1.cx/components';
@@ -15,9 +21,10 @@ export const UserModal = (): JSX.Element => {
     configureOcupation,
     ocupation,
     closeModal,
+    keyUser,
   } = useContext(HomeDataContext);
   const [thumbnail, setThumbnail] = useState(null);
-
+  const [image, setImagem] = useState('');
   const preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
@@ -53,6 +60,16 @@ export const UserModal = (): JSX.Element => {
     closeModal();
   };
 
+  useEffect(() => {
+    console.log('aqui');
+    getPhoto();
+  }, [keyUser]);
+
+  const getPhoto = useCallback(async () => {
+    let resPhoto = await Services.user.getUserPhoto(keyUser);
+    console.log('photo', resPhoto);
+  }, [keyUser]);
+
   return (
     <Modal
       open={open}
@@ -64,9 +81,7 @@ export const UserModal = (): JSX.Element => {
         <ModalContainer>
           <UploadFile
             style={{
-              backgroundImage: preview
-                ? `url(${preview})`
-                : 'url(https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png)',
+              backgroundImage: preview ? `url(${preview})` : `url(${image})`,
             }}
           >
             <File

@@ -25,6 +25,8 @@ import {
 } from './styled';
 import { Menu } from '@src/components/TopMenu/TopMenu';
 import { CardContent } from './components/Cards/Card';
+import { redirect } from '@src/utils/redirect';
+import { routes } from '@src/routes';
 
 /**
  * @export
@@ -40,7 +42,7 @@ export const HomeScreen = (): JSX.Element => {
   const { startDate, endDate } = useContext(HomeDataContext);
   const [loading, setLoading] = useState(false);
 
-  const [homeData, setHomeData] = useState({
+  const [homeData, setHomeData] = useState<Home>({
     processes: [],
     graphic: [],
     stoppedAmount: 0,
@@ -51,7 +53,6 @@ export const HomeScreen = (): JSX.Element => {
     btnStatus: '',
     searchBarData: '',
   });
-
   /**
    * @function
    * @name getData
@@ -70,15 +71,19 @@ export const HomeScreen = (): JSX.Element => {
 
       setHomeData({
         processes,
-        graphic,
+        graphic: graphic,
         stoppedAmount: amount,
         stoppedMovements: movements,
         btnNotification: notifications,
       });
-
+      if (!processes && !graphic) {
+        redirect(routes.login);
+        console.log('agora vai');
+        return;
+      }
       setLoading(false);
     } catch (e) {
-      throw new Error('Erro!' + e);
+      console.error(e);
     }
   }, []);
 

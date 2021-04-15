@@ -5,7 +5,7 @@ type RoutesType = {
 };
 
 export const routes: RoutesType = {
-  login: '/login',
+  login: '/',
   home: '/home',
   worker: '/worker',
 };

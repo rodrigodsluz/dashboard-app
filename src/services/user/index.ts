@@ -1,5 +1,6 @@
-import { uploadUser } from './user';
+import { uploadUser, getUserPhoto } from './user';
 
 export default {
   uploadUser,
+  getUserPhoto,
 };

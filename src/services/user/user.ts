@@ -37,3 +37,22 @@ export async function uploadUser(user: User) {
     return false;
   }
 }
+
+export async function getUserPhoto(info) {
+  const token = localStorage.getItem('token');
+  const options = {
+    url: `${API}/User/${info}/image`,
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const data = await axios({ method: 'GET', ...options });
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    return false;
+  }
+}

@@ -19,6 +19,8 @@ type Type = {
   openErrorModal?: boolean;
   configureOpenErrorsModal?: () => void;
   configureCloseErrorsModal?: () => void;
+  keyUser?: string;
+  configureKeyUser?: (key: string) => void;
 };
 
 type Props = {
@@ -29,6 +31,7 @@ export const HomeDataContext = createContext<Type>({});
 const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   const [name, setName] = useState('Leo');
   const [urlImg, setUrlImg] = useState('');
+  const [keyUser, setKeyUser] = useState('');
   const [open, setOpen] = useState(false);
   const [ocupation, setOcupation] = useState('');
 
@@ -181,6 +184,19 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
     setErrorModal(false);
   };
 
+  /**
+   * @function
+   * @component
+   * @name configureKeyUser
+   *
+   * @description
+   *  Fecha o modal de configurações
+   */
+
+  const configureKeyUser = (key: string) => {
+    setKeyUser(key);
+  };
+
   return (
     <HomeDataContext.Provider
       value={{
@@ -203,6 +219,8 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
         configureCloseErrorsModal,
         configureOpenErrorsModal,
         openErrorModal,
+        configureKeyUser,
+        keyUser,
       }}
     >
       {children}
