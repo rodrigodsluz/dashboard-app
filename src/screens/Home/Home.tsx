@@ -78,7 +78,6 @@ export const HomeScreen = (): JSX.Element => {
       });
       if (!processes && !graphic) {
         redirect(routes.login);
-        console.log('agora vai');
         return;
       }
       setLoading(false);

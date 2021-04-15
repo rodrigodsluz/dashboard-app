@@ -24,6 +24,8 @@ import {
   ContainerConfigurationCards,
 } from './styled';
 import { Menu } from '@src/components/TopMenu/TopMenu';
+import { routes } from '@src/routes';
+import { redirect } from '@src/utils/redirect';
 
 /**
  * @export
@@ -105,10 +107,14 @@ export const WorkerScreen = (): JSX.Element => {
         jobs: allJobs,
         machines: machines.data,
       });
+      if (!data && !generetedJobs) {
+        redirect(routes.login);
+        return;
+      }
 
       setLoading(false);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }, []);
 

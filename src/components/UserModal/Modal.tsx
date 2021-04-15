@@ -63,12 +63,12 @@ export const UserModal = (): JSX.Element => {
   useEffect(() => {
     console.log('aqui');
     getPhoto();
-  }, [keyUser]);
+  }, [open]);
 
   const getPhoto = useCallback(async () => {
     let resPhoto = await Services.user.getUserPhoto(keyUser);
-    console.log('photo', resPhoto);
-  }, [keyUser]);
+    console.log(resPhoto);
+  }, [open]);
 
   return (
     <Modal

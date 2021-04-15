@@ -5,8 +5,8 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  width: 730px;
-  height:800px;
+  width: 100%;
+  height: 100vh;
   outline: none;
 `;
 
@@ -22,6 +22,10 @@ export const CenterModal = styled.div`
   text-align: center;
   z-index: 10;
   outline: none;
+`;
+
+export const Row = styled.div`
+  display: flex;
 `;
 
 export const Icon = styled.button`
@@ -40,5 +44,17 @@ export const Icon = styled.button`
   cursor: pointer;
   &:hover {
     background-color: #9196ab;
+  }
+`;
+
+export const BackButtuon = styled.button`
+  background-color: #fff;
+  border: none;
+  outline: none;
+  align-self: flex-start;
+
+  &:hover {
+    border-radius: 50%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
 `;

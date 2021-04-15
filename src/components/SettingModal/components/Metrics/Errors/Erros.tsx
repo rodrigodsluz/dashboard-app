@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { Modal } from '@material-ui/core';
-import { OutlineButton, Spacing } from '@d1.cx/components';
+import { Spacing } from '@d1.cx/components';
+import { ArrowLeft } from '@d1.cx/icons';
 import { HomeDataContext } from '@src/context/HomeDataContext';
-import { ModalContainer, CenterModal } from './styled';
+import { ModalContainer, CenterModal, Row, BackButtuon } from './styled';
 import PieGraph from '@src/components/PieGraph/PieGraph';
+import SimpleTable from '../../Table/Table';
 
 export const ErrosModal = ({ open }): JSX.Element => {
   const { configureCloseErrorsModal } = useContext(HomeDataContext);
@@ -20,11 +22,14 @@ export const ErrosModal = ({ open }): JSX.Element => {
     >
       <CenterModal>
         <ModalContainer>
-          <PieGraph />
+          <BackButtuon onClick={handleOpenErroModal}>
+            <ArrowLeft width="45px" color="#000" />
+          </BackButtuon>
+          <Row>
+            <PieGraph />
+            <SimpleTable />
+          </Row>
           <Spacing vertical="10px" />
-          <OutlineButton secondary handleClick={handleOpenErroModal}>
-            Voltar
-          </OutlineButton>
         </ModalContainer>
       </CenterModal>
     </Modal>
