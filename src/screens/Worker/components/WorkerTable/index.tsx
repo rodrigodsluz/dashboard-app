@@ -33,9 +33,9 @@ interface Column {
 }
 
 const columns: Column[] = [
-  { id: 'time', label: 'Time', minWidth: 150 },
+  { id: 'time', label: 'Data', minWidth: 150 },
 
-  { id: 'tenent', label: 'Tenent', minWidth: 150 },
+  { id: 'tenent', label: 'Client', minWidth: 150 },
   { id: 'DataMov', label: 'DataMov', minWidth: 100 },
   {
     id: 'Lote',
@@ -88,7 +88,7 @@ const columns: Column[] = [
   },
   {
     id: 'failed',
-    label: 'Pendente',
+    label: 'Falhou',
     minWidth: 150,
     align: 'right',
   },
@@ -100,7 +100,7 @@ const columns: Column[] = [
   },
   {
     id: 'aborted',
-    label: 'Abertado',
+    label: 'Abortado',
     minWidth: 150,
     align: 'right',
   },

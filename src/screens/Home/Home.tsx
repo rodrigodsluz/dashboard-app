@@ -22,9 +22,12 @@ import {
   GraphicWrapper,
   Content,
   SearchBar,
+  Wrapper,
 } from './styled';
 import { Menu } from '@src/components/TopMenu/TopMenu';
 import { CardContent } from './components/Cards/Card';
+import { redirect } from '@src/utils/redirect';
+import { routes } from '@src/routes';
 
 /**
  * @export
@@ -51,7 +54,6 @@ export const HomeScreen = (): JSX.Element => {
     btnStatus: '',
     searchBarData: '',
   });
-
   /**
    * @function
    * @name getData
@@ -67,18 +69,20 @@ export const HomeScreen = (): JSX.Element => {
       let amount = await Services.home.getStoppedMovementsAmount(start, end);
       let movements = await Services.home.getStoppedMovements(start, end);
       let notifications = await Services.home.getBtnNotification(start, end);
-
       setHomeData({
         processes,
-        graphic,
+        graphic: graphic,
         stoppedAmount: amount,
         stoppedMovements: movements,
         btnNotification: notifications,
       });
-
+      if (!processes && !graphic) {
+        redirect(routes.login);
+        return;
+      }
       setLoading(false);
     } catch (e) {
-      throw new Error('Erro!' + e);
+      console.error(e);
     }
   }, []);
 
@@ -164,40 +168,41 @@ export const HomeScreen = (): JSX.Element => {
   return (
     <Container>
       <Sidebar />
-
-      <TableContainer>
-        <TableContent>
-          <Content>
-            <Menu title="Conference" loading={loading} submit={handleSubmit} />
-            <SearchBar
-              name="searchBarData"
-              value={filter.searchBarData}
-              type="search"
-              placeholder="O que você está procurando?"
-              onChange={handleSearchBarChange}
-            />
-          </Content>
-          <Spacing vertical="10px" />
-          {homeData.processes.length > 0 ? (
-            <HomeTable data={homeData} filter={filter} />
-          ) : (
-            <MenuFilterLoading />
-          )}
-          <CardContent
-            setStatus={handleClick}
-            data={homeData.btnNotification}
+      <Wrapper>
+        <Content>
+          <Menu title="Conference" loading={loading} submit={handleSubmit} />
+          <SearchBar
+            name="searchBarData"
+            value={filter.searchBarData}
+            type="search"
+            placeholder="O que você está procurando?"
+            onChange={handleSearchBarChange}
           />
-          <AlertContent data={homeData.stoppedAmount} homeData={homeData} />
-        </TableContent>
-        <GraphicWrapper>
-          <Spacing vertical="5px" />
-          <Typography htmlTag="strong" fontSize="16px">
-            {' '}
-            SLA em atraso
-          </Typography>
-          {homeData.graphic ? <Graphic data={homeData.graphic} /> : null}
-        </GraphicWrapper>
-      </TableContainer>
+        </Content>
+        <TableContainer>
+          <TableContent>
+            <Spacing vertical="10px" />
+            {homeData.processes.length > 0 ? (
+              <HomeTable data={homeData} filter={filter} />
+            ) : (
+              <MenuFilterLoading />
+            )}
+            <CardContent
+              setStatus={handleClick}
+              data={homeData.btnNotification}
+            />
+            <AlertContent data={homeData.stoppedAmount} homeData={homeData} />
+          </TableContent>
+          <GraphicWrapper>
+            <Spacing vertical="5px" />
+            <Typography htmlTag="strong" fontSize="16px">
+              {' '}
+              SLA em atraso
+            </Typography>
+            {homeData.graphic ? <Graphic data={homeData.graphic} /> : null}
+          </GraphicWrapper>
+        </TableContainer>
+      </Wrapper>
     </Container>
   );
 };

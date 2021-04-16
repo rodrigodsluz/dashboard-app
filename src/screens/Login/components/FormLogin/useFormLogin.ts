@@ -42,9 +42,12 @@ type UseFormLoginTypes = {
  * Responsável por conter todos os estado e eventos do login.
  */
 const useFormLogin = (): UseFormLoginTypes => {
-  const { configureOcupation, configureURLImg, configureUsername } = useContext(
-    HomeDataContext
-  );
+  const {
+    configureOcupation,
+    configureURLImg,
+    configureUsername,
+    configureKeyUser,
+  } = useContext(HomeDataContext);
   const [openNotification, setOpenNotification] = useState<boolean>(false);
   const [inputLogin, setInputLogin] = useState<string>('');
   const [errorLogin, setErrorLogin] = useState<boolean>(false);
@@ -105,11 +108,11 @@ const useFormLogin = (): UseFormLoginTypes => {
       setCookie('token', response.data.access_token);
       localStorage.setItem('token', response.data.token);
       const res = await Services.login.getInfoUser(response.data);
+      await configureKeyUser(res.chave);
+
       await configureOcupation(res.ocupacao);
       await configureURLImg(res.imagem);
       await configureUsername(res.nome);
-      //const resPhoto = await Services.login.getUserPhoto(response.data);
-      // console.log(resPhoto);
       redirect(routes.home);
     },
     []

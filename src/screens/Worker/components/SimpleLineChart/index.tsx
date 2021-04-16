@@ -73,7 +73,7 @@ export const Chart = ({ data }): JSX.Element => {
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="hour" />
-      <YAxis domain={[0, 'dataMax + 1000']} allowDataOverflow={true}  />
+      <YAxis domain={[0, 'dataMax + 1500']} allowDataOverflow={true}  />
       <Tooltip />
       <Legend verticalAlign="top" height={36} />
       <Line

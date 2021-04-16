@@ -34,7 +34,7 @@ const columns: Column[] = [
   },
   {
     id: 'Produto',
-    label: 'Produto\u00a0(km\u00b2)',
+    label: 'Produto',
     minWidth: 170,
     align: 'right',
     format: (value: number) => value.toLocaleString('en-US'),
@@ -102,6 +102,7 @@ const STATUS = ['RUNNING', 'FINISHED', 'ERROR'];
  * Responsavel por exibir a tabela na página home
  */
 export default function HomeTable({ data: { processes }, filter }) {
+  console.log(processes);
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);
@@ -128,7 +129,7 @@ export default function HomeTable({ data: { processes }, filter }) {
 
   const createTableData = (data) => {
     return data.map((d) =>
-      createData(d.tenant, d.datamov, d.lote, d.produto, d.sla, d.status)
+      createData(d.tenant, d.datamov, d.lote, d.produto, d.run_timer, d.status)
     );
   };
 
@@ -206,7 +207,13 @@ export default function HomeTable({ data: { processes }, filter }) {
             )}
             <Modal open={open} title={modalTitle[index]}>
               <Container>
-                <TabsPanel data={processes[index]} />
+                <TabsPanel
+                  data={
+                    filteredData.length > 0
+                      ? filteredData[index]
+                      : processes[index]
+                  }
+                />
                 <Spacing vertical="10px" />
                 <OutlineButton
                   secondary

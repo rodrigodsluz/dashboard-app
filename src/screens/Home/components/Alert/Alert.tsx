@@ -37,7 +37,7 @@ export const AlertContent = ({ data, homeData }): JSX.Element => {
   return (
     <Alert severity="warning">
       <AlertTitle>Atenção</AlertTitle>
-      Existe(m) {data ? <strong>{data} processos executando</strong> : '_'}
+      Existe(m) {data ? <strong>{data} </strong> : '_'}
       processamento(s) com mais de 24hs.{' '}
       <InfoBtn onClick={() => setOpen(!open)}>
         <TooltipArrow

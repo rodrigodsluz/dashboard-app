@@ -6,6 +6,9 @@ type User = {
   ocupation?: string;
 };
 
+type Data = {
+  data: string;
+};
 /**
  * @async
  * @export
@@ -31,7 +34,23 @@ export async function uploadUser(user: User) {
 
   try {
     const { data } = await axios({ method: 'POST', ...options });
-    console.log(data);
+    return data;
+  } catch (error) {
+    return false;
+  }
+}
+
+export async function getUserPhoto(info) {
+  const token = localStorage.getItem('token');
+  const options = {
+    url: `${API}/User/${123}/image`,
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const { data }: Data = await axios({ method: 'GET', ...options });
     return data;
   } catch (error) {
     return false;
