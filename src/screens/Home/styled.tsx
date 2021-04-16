@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 100vw;
   display: flex;
   flex-direction: row;
   overflow-x: hidden;
@@ -14,14 +13,11 @@ export const Container = styled.div`
 
 export const TableContainer = styled.div`
   overflow: auto;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   padding: 20px 40px;
-
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  border-radius: 4px;
-  margin: 0 0 0 50px;
+  padding-top: 0px;
   display: flex;
+
   @media screen and (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
@@ -46,8 +42,9 @@ export const TableContent = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  width: 100%;
+  width: 95%;
   flex-direction: column;
+  padding-top: 20px;
 `;
 
 export const GraphicWrapper = styled.div`
@@ -56,7 +53,7 @@ export const GraphicWrapper = styled.div`
   text-align: center;
   height: 300px;
   width: 200px;
-  margin: 0px 10px;
+  margin: 15px 0px 0px 10px;
   justify-content: center;
   align-items: center;
   @media screen and (max-width: 1100px) {
@@ -70,6 +67,25 @@ export const SearchBar = styled.input`
   border-radius: 5px;
   padding: 10px;
   outline: none;
-  margin: 10px 0px;
+  margin: 10px 0px 0px 5px;
+  @media screen and (max-width: 500px) {
+    margin-left:0px;
+  }
 `;
 
+export const Wrapper = styled.div`
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  margin: 0px;
+  padding: 0px;
+  margin-left: 50px;
+  @media screen and (max-width: 500px) {
+    margin-left: 0px;
+  }
+`;

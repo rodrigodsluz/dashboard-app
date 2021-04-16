@@ -22,6 +22,7 @@ import {
   GraphicWrapper,
   Content,
   SearchBar,
+  Wrapper,
 } from './styled';
 import { Menu } from '@src/components/TopMenu/TopMenu';
 import { CardContent } from './components/Cards/Card';
@@ -167,40 +168,41 @@ export const HomeScreen = (): JSX.Element => {
   return (
     <Container>
       <Sidebar />
-
-      <TableContainer>
-        <TableContent>
-          <Content>
-            <Menu title="Conference" loading={loading} submit={handleSubmit} />
-            <SearchBar
-              name="searchBarData"
-              value={filter.searchBarData}
-              type="search"
-              placeholder="O que você está procurando?"
-              onChange={handleSearchBarChange}
-            />
-          </Content>
-          <Spacing vertical="10px" />
-          {homeData.processes.length > 0 ? (
-            <HomeTable data={homeData} filter={filter} />
-          ) : (
-            <MenuFilterLoading />
-          )}
-          <CardContent
-            setStatus={handleClick}
-            data={homeData.btnNotification}
+      <Wrapper>
+        <Content>
+          <Menu title="Conference" loading={loading} submit={handleSubmit} />
+          <SearchBar
+            name="searchBarData"
+            value={filter.searchBarData}
+            type="search"
+            placeholder="O que você está procurando?"
+            onChange={handleSearchBarChange}
           />
-          <AlertContent data={homeData.stoppedAmount} homeData={homeData} />
-        </TableContent>
-        <GraphicWrapper>
-          <Spacing vertical="5px" />
-          <Typography htmlTag="strong" fontSize="16px">
-            {' '}
-            SLA em atraso
-          </Typography>
-          {homeData.graphic ? <Graphic data={homeData.graphic} /> : null}
-        </GraphicWrapper>
-      </TableContainer>
+        </Content>
+        <TableContainer>
+          <TableContent>
+            <Spacing vertical="10px" />
+            {homeData.processes.length > 0 ? (
+              <HomeTable data={homeData} filter={filter} />
+            ) : (
+              <MenuFilterLoading />
+            )}
+            <CardContent
+              setStatus={handleClick}
+              data={homeData.btnNotification}
+            />
+            <AlertContent data={homeData.stoppedAmount} homeData={homeData} />
+          </TableContent>
+          <GraphicWrapper>
+            <Spacing vertical="5px" />
+            <Typography htmlTag="strong" fontSize="16px">
+              {' '}
+              SLA em atraso
+            </Typography>
+            {homeData.graphic ? <Graphic data={homeData.graphic} /> : null}
+          </GraphicWrapper>
+        </TableContainer>
+      </Wrapper>
     </Container>
   );
 };
