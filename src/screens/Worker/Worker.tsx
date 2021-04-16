@@ -99,7 +99,6 @@ export const WorkerScreen = (): JSX.Element => {
       let machines = await services.worker.getMachines();
       let jobs = await services.worker.GetJobsRunning(start, end);
       let allJobs = formatArrayJobs(jobs.data);
-
       setWorkerData({
         data: data.data,
         cards: generetedJobs.data,
@@ -192,6 +191,17 @@ export const WorkerScreen = (): JSX.Element => {
             )}
             <ContentContainerGraph>
               <JobsContainer>
+              <StatusCard>
+                  <StatusCircle
+                    color="#85de94"
+                    status="Executando"
+                    number={
+                      workerData.cards && workerData.cards[1]
+                        ? formatStatus(workerData.cards[1])
+                        : ''
+                    }
+                  />
+                </StatusCard>
                 <StatusCard>
                   <StatusCircle
                     color="#fbbc05"
@@ -205,7 +215,7 @@ export const WorkerScreen = (): JSX.Element => {
                 </StatusCard>
                 <StatusCard>
                   <StatusCircle
-                    color="#4285f4"
+                    color="darkgreen"
                     status="Finalizado"
                     number={
                       workerData.cards && workerData.cards[2]
@@ -217,7 +227,7 @@ export const WorkerScreen = (): JSX.Element => {
                 <StatusCard>
                   <StatusCircle
                     color="#ea4335"
-                    status="Erros"
+                    status="Falhou"
                     number={
                       workerData.cards && workerData.cards[3]
                         ? formatStatus(workerData.cards[3])
@@ -227,8 +237,8 @@ export const WorkerScreen = (): JSX.Element => {
                 </StatusCard>
                 <StatusCard>
                   <StatusCircle
-                    color="#4907D9"
-                    status="Suspensos"
+                    color="crimson"
+                    status="Abortado"
                     number={
                       workerData.cards && workerData.cards[4]
                         ? formatStatus(workerData.cards[4])

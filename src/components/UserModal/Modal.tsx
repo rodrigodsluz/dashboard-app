@@ -24,7 +24,7 @@ export const UserModal = (): JSX.Element => {
     keyUser,
   } = useContext(HomeDataContext);
   const [thumbnail, setThumbnail] = useState(null);
-  const [image, setImagem] = useState('');
+  const [image, setImagem] = useState(null);
   const preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
@@ -61,14 +61,12 @@ export const UserModal = (): JSX.Element => {
   };
 
   useEffect(() => {
-    console.log('aqui');
     getPhoto();
   }, [open]);
 
   const getPhoto = useCallback(async () => {
     let resPhoto = await Services.user.getUserPhoto(keyUser);
-    console.log(resPhoto);
-    setImagem(resPhoto.data);
+    setImagem(resPhoto);
   }, [open, image]);
 
   return (

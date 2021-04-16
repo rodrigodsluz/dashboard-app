@@ -6,6 +6,9 @@ type User = {
   ocupation?: string;
 };
 
+type Data = {
+  data: string;
+};
 /**
  * @async
  * @export
@@ -31,7 +34,6 @@ export async function uploadUser(user: User) {
 
   try {
     const { data } = await axios({ method: 'POST', ...options });
-    console.log(data);
     return data;
   } catch (error) {
     return false;
@@ -48,9 +50,7 @@ export async function getUserPhoto(info) {
   };
 
   try {
-    const data = await axios({ method: 'GET', ...options });
-    console.log(data);
-
+    const { data }: Data = await axios({ method: 'GET', ...options });
     return data;
   } catch (error) {
     return false;

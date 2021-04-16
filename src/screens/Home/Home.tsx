@@ -42,7 +42,7 @@ export const HomeScreen = (): JSX.Element => {
   const { startDate, endDate } = useContext(HomeDataContext);
   const [loading, setLoading] = useState(false);
 
-  const [homeData, setHomeData] = useState<Home>({
+  const [homeData, setHomeData] = useState({
     processes: [],
     graphic: [],
     stoppedAmount: 0,
@@ -68,7 +68,6 @@ export const HomeScreen = (): JSX.Element => {
       let amount = await Services.home.getStoppedMovementsAmount(start, end);
       let movements = await Services.home.getStoppedMovements(start, end);
       let notifications = await Services.home.getBtnNotification(start, end);
-
       setHomeData({
         processes,
         graphic: graphic,
