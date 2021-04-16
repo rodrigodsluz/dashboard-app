@@ -68,7 +68,8 @@ export const UserModal = (): JSX.Element => {
   const getPhoto = useCallback(async () => {
     let resPhoto = await Services.user.getUserPhoto(keyUser);
     console.log(resPhoto);
-  }, [open]);
+    setImagem(resPhoto.data);
+  }, [open, image]);
 
   return (
     <Modal
@@ -81,7 +82,9 @@ export const UserModal = (): JSX.Element => {
         <ModalContainer>
           <UploadFile
             style={{
-              backgroundImage: preview ? `url(${preview})` : `url(${image})`,
+              backgroundImage: preview
+                ? `url(${preview})`
+                : `url(${`data:image/jpeg;base64,${image}`})`,
             }}
           >
             <File
