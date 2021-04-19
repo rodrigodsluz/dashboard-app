@@ -16,7 +16,11 @@ export const CardContent = ({ setStatus, data, selected }): JSX.Element => {
   return (
     <CardContainer>
       <PanelCard>
-        <Card onClick={setStatus('FINISHED')} status="finalizados">
+        <Card
+          onClick={setStatus('FINISHED')}
+          status="finalizados"
+          selected={selected.finished}
+        >
           <CardHeader>
             <CardStatus>Finalizados</CardStatus>
           </CardHeader>
@@ -24,7 +28,11 @@ export const CardContent = ({ setStatus, data, selected }): JSX.Element => {
         </Card>
       </PanelCard>
       <PanelCard>
-        <Card onClick={setStatus('RUNNING')} status="executando">
+        <Card
+          onClick={setStatus('RUNNING')}
+          status="executando"
+          selected={selected.running}
+        >
           <CardHeader>
             <CardStatus>Executando</CardStatus>
           </CardHeader>
@@ -32,7 +40,11 @@ export const CardContent = ({ setStatus, data, selected }): JSX.Element => {
         </Card>
       </PanelCard>
       <PanelCard>
-        <Card onClick={setStatus('ERROR')} status="erros">
+        <Card
+          onClick={setStatus('ERROR')}
+          status="erros"
+          selected={selected.error}
+        >
           <CardHeader>
             <CardStatus>Erros</CardStatus>
           </CardHeader>

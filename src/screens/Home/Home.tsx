@@ -153,7 +153,7 @@ export const HomeScreen = (): JSX.Element => {
     switch (status) {
       case 'FINISHED':
         setSelectedCard({
-          finished: true,
+          finished: !selectedCard.finished,
           running: false,
           error: false,
         });
@@ -161,7 +161,7 @@ export const HomeScreen = (): JSX.Element => {
       case 'RUNNING':
         setSelectedCard({
           finished: false,
-          running: true,
+          running: !selectedCard.running,
           error: false,
         });
         break;
@@ -169,7 +169,7 @@ export const HomeScreen = (): JSX.Element => {
         setSelectedCard({
           finished: false,
           running: false,
-          error: true,
+          error: !selectedCard.error,
         });
         break;
 

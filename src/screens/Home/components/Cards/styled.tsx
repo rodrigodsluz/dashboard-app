@@ -31,8 +31,7 @@ export const Card = styled.button<Props>`
   ${(props) =>
     props.status === 'executando' &&
     css`
-      background: #fbbc05;
-
+      background: ${(props: Props) => (props.selected ? '#000' : '#fbbc05')};
       &:hover {
         background-color: #242321;
       }
@@ -40,7 +39,7 @@ export const Card = styled.button<Props>`
   ${(props) =>
     props.status === 'erros' &&
     css`
-      background: #ea4335;
+      background: ${(props: Props) => (props.selected ? '#000' : '#ea4335')};
       &:hover {
         background-color: #242321;
       }
@@ -48,13 +47,11 @@ export const Card = styled.button<Props>`
     ${(props) =>
     props.status === 'finalizados' &&
     css`
-      background: #34a853;
+      background: ${(props: Props) => (props.selected ? '#000' : '#34a853')};
       &:hover {
         background-color: #242321;
       }
     `};
-
-  background-color: ${(props) => (props.selected ? '#242321' : null)};
 `;
 
 export const CardStatus = styled.h2`
