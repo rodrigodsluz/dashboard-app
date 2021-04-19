@@ -12,12 +12,11 @@ import { CardContainer, PanelCard, Card, CardStatus, Count } from './styled';
  */
 
 export const CardContent = ({ setStatus, data, selected }): JSX.Element => {
-  console.log(selected);
   return (
     <CardContainer>
       <PanelCard>
         <Card
-          onClick={setStatus('FINISHED')}
+          onClick={setStatus('FINISHED', !selected.finished)}
           status="finalizados"
           selected={selected.finished}
         >
@@ -29,7 +28,7 @@ export const CardContent = ({ setStatus, data, selected }): JSX.Element => {
       </PanelCard>
       <PanelCard>
         <Card
-          onClick={setStatus('RUNNING')}
+          onClick={setStatus('RUNNING', !selected.running)}
           status="executando"
           selected={selected.running}
         >
@@ -41,7 +40,7 @@ export const CardContent = ({ setStatus, data, selected }): JSX.Element => {
       </PanelCard>
       <PanelCard>
         <Card
-          onClick={setStatus('ERROR')}
+          onClick={setStatus('ERROR', !selected.error)}
           status="erros"
           selected={selected.error}
         >

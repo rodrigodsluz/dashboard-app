@@ -147,9 +147,18 @@ export const HomeScreen = (): JSX.Element => {
    * Responsavel por setar o state do filtro de busca
    */
 
-  const handleClick = (status: string) => () => {
-    console.log(status);
-
+  const handleClick = (status: string, selected?: boolean) => () => {
+    if (selected) {
+      setFilter({
+        btnStatus: status,
+        searchBarData: '',
+      });
+    } else {
+      setFilter({
+        btnStatus: '',
+        searchBarData: '',
+      });
+    }
     switch (status) {
       case 'FINISHED':
         setSelectedCard({
@@ -157,6 +166,7 @@ export const HomeScreen = (): JSX.Element => {
           running: false,
           error: false,
         });
+
         break;
       case 'RUNNING':
         setSelectedCard({
@@ -176,10 +186,6 @@ export const HomeScreen = (): JSX.Element => {
       default:
         break;
     }
-    setFilter({
-      btnStatus: status,
-      searchBarData: '',
-    });
   };
 
   /**
