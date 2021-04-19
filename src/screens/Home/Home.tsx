@@ -42,7 +42,11 @@ import { routes } from '@src/routes';
 export const HomeScreen = (): JSX.Element => {
   const { startDate, endDate } = useContext(HomeDataContext);
   const [loading, setLoading] = useState(false);
-
+  const [selectedCard, setSelectedCard] = useState({
+    finished: false,
+    running: false,
+    error: false,
+  });
   const [homeData, setHomeData] = useState({
     processes: [],
     graphic: [],
@@ -144,6 +148,34 @@ export const HomeScreen = (): JSX.Element => {
    */
 
   const handleClick = (status: string) => () => {
+    console.log(status);
+
+    switch (status) {
+      case 'FINISHED':
+        setSelectedCard({
+          finished: true,
+          running: false,
+          error: false,
+        });
+        break;
+      case 'RUNNING':
+        setSelectedCard({
+          finished: false,
+          running: true,
+          error: false,
+        });
+        break;
+      case 'ERROR':
+        setSelectedCard({
+          finished: false,
+          running: false,
+          error: true,
+        });
+        break;
+
+      default:
+        break;
+    }
     setFilter({
       btnStatus: status,
       searchBarData: '',
@@ -188,6 +220,7 @@ export const HomeScreen = (): JSX.Element => {
               <MenuFilterLoading />
             )}
             <CardContent
+              selected={selectedCard}
               setStatus={handleClick}
               data={homeData.btnNotification}
             />

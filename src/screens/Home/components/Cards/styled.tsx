@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface Props {
   status: string;
+  selected?: boolean;
 }
 
 export const CardContainer = styled.div`
@@ -52,6 +53,8 @@ export const Card = styled.button<Props>`
         background-color: #242321;
       }
     `};
+
+  background-color: ${(props) => (props.selected ? '#242321' : null)};
 `;
 
 export const CardStatus = styled.h2`
