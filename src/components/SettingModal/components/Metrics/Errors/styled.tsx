@@ -6,7 +6,7 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   background-color: #fff;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   outline: none;
 `;
 
@@ -15,7 +15,7 @@ export const CenterModal = styled.div`
   margin-left: auto;
   margin-right: auto;
   left: 0;
-  top: 40%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   bottom: 0;

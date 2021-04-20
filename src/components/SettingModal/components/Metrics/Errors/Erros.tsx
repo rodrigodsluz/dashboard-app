@@ -143,13 +143,13 @@ export const ErrosModal = ({ open }): JSX.Element => {
             <ArrowLeft width="45px" color="#000" />
           </BackButtuon>
           <Content>
-            <Menu title="Conference" loading={loading} submit={handleSubmit} />
+            <Menu title="Erros" loading={loading} submit={handleSubmit} />
           </Content>
-          <Row>
+          {/* <Row>
             {data.length > 0 ? <ErrosGraph data={erros} /> : null}
             <CustomPaginationActionsTable data={data} />
           </Row>
-          <Spacing vertical="10px" />
+          <Spacing vertical="10px" /> */}
         </ModalContainer>
       </CenterModal>
     </Modal>

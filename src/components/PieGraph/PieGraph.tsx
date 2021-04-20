@@ -5,6 +5,7 @@ type Props = {
 };
 
 export const ErrosGraph = ({ data }): JSX.Element => {
+  console.log(data);
   const [dataGraph, setDataGraph] = useState([]);
   const configureData = () => {
     let array = [];
@@ -18,7 +19,7 @@ export const ErrosGraph = ({ data }): JSX.Element => {
   useEffect(() => {
     console.log('teste');
     configureData();
-  }, []);
+  }, [data]);
 
   return (
     <Chart
@@ -28,7 +29,7 @@ export const ErrosGraph = ({ data }): JSX.Element => {
       loader={<div>Loading Chart</div>}
       data={dataGraph}
       options={{
-        title: 'Erros',
+        title: 'Tipo de erros',
         // Just add this option
         pieHole: 0.4,
       }}
