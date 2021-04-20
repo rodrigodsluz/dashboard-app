@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CardBody, CardHeader } from '@d1.cx/components';
 import { CardContainer, PanelCard, Card, CardStatus, Count } from './styled';
 
@@ -11,11 +11,15 @@ import { CardContainer, PanelCard, Card, CardStatus, Count } from './styled';
  * Responsavel por exibir os cards que filtram por status
  */
 
-export const CardContent = ({ setStatus, data }): JSX.Element => {
+export const CardContent = ({ setStatus, data, selected }): JSX.Element => {
   return (
     <CardContainer>
       <PanelCard>
-        <Card onClick={setStatus('FINISHED')} status="finalizados">
+        <Card
+          onClick={setStatus('FINISHED', !selected.finished)}
+          status="finalizados"
+          selected={selected.finished}
+        >
           <CardHeader>
             <CardStatus>Finalizados</CardStatus>
           </CardHeader>
@@ -23,7 +27,11 @@ export const CardContent = ({ setStatus, data }): JSX.Element => {
         </Card>
       </PanelCard>
       <PanelCard>
-        <Card onClick={setStatus('RUNNING')} status="executando">
+        <Card
+          onClick={setStatus('RUNNING', !selected.running)}
+          status="executando"
+          selected={selected.running}
+        >
           <CardHeader>
             <CardStatus>Executando</CardStatus>
           </CardHeader>
@@ -31,7 +39,11 @@ export const CardContent = ({ setStatus, data }): JSX.Element => {
         </Card>
       </PanelCard>
       <PanelCard>
-        <Card onClick={setStatus('ERROR')} status="erros">
+        <Card
+          onClick={setStatus('ERROR', !selected.error)}
+          status="erros"
+          selected={selected.error}
+        >
           <CardHeader>
             <CardStatus>Erros</CardStatus>
           </CardHeader>
@@ -41,4 +53,3 @@ export const CardContent = ({ setStatus, data }): JSX.Element => {
     </CardContainer>
   );
 };
-

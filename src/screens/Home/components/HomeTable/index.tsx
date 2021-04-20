@@ -102,7 +102,6 @@ const STATUS = ['RUNNING', 'FINISHED', 'ERROR'];
  * Responsavel por exibir a tabela na página home
  */
 export default function HomeTable({ data: { processes }, filter }) {
-  console.log(processes);
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);

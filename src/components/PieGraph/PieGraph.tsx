@@ -1,41 +1,33 @@
-import React, { PureComponent } from 'react';
+import React, { useEffect, useState } from 'react';
 import Chart from 'react-google-charts';
 
-export default class PieGraph extends PureComponent {
-  static demoUrl =
-    'https://codesandbox.io/s/pie-chart-with-customized-label-dlhhj';
+export const ErrosGraph = ({ data }): JSX.Element => {
+  const [dataGraph, setDataGraph] = useState([]);
+  const configureData = () => {
+    let array = [];
+    array.push(['Task', 'Hours per Day']);
+    data.forEach((element) => {
+      let newItem = [element[0], element[1]];
+      array = [...array, newItem];
+    });
+    setDataGraph(array);
+  };
+  useEffect(() => {
+    configureData();
+  }, [data]);
 
-  render() {
-    return (
-      <Chart
-        width={'700px'}
-        height={'700px'}
-        chartType="PieChart"
-        loader={<div>Loading Chart</div>}
-        data={[
-          ['Task', 'Hours per Day'],
-          ['Work', 11],
-          ['Eat', 2],
-          ['Commute', 2],
-          ['Watch TV', 2],
-          ['Sleep', 7],
-          ['Commute', 2],
-          ['Watch TV', 2],
-          ['Sleep', 7],
-          ['Commute', 2],
-          ['Watch TV', 2],
-          ['Sleep', 7],
-          ['Commute', 2],
-          ['Watch TV', 2],
-          ['Sleep', 7],
-        ]}
-        options={{
-          title: 'Erros',
-          // Just add this option
-          pieHole: 0.4,
-        }}
-        rootProps={{ 'data-testid': '3' }}
-      />
-    );
-  }
-}
+  return (
+    <Chart
+      width={'100%'}
+      height={'100%'}
+      chartType="PieChart"
+      loader={<div>Carregando...</div>}
+      data={dataGraph}
+      options={{
+        title: 'Tipo de erros',
+        pieHole: 0.4,
+      }}
+      rootProps={{ 'data-testid': '3' }}
+    />
+  );
+};

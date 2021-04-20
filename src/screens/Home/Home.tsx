@@ -42,7 +42,11 @@ import { routes } from '@src/routes';
 export const HomeScreen = (): JSX.Element => {
   const { startDate, endDate } = useContext(HomeDataContext);
   const [loading, setLoading] = useState(false);
-
+  const [selectedCard, setSelectedCard] = useState({
+    finished: false,
+    running: false,
+    error: false,
+  });
   const [homeData, setHomeData] = useState({
     processes: [],
     graphic: [],
@@ -143,11 +147,45 @@ export const HomeScreen = (): JSX.Element => {
    * Responsavel por setar o state do filtro de busca
    */
 
-  const handleClick = (status: string) => () => {
-    setFilter({
-      btnStatus: status,
-      searchBarData: '',
-    });
+  const handleClick = (status: string, selected?: boolean) => () => {
+    if (selected) {
+      setFilter({
+        btnStatus: status,
+        searchBarData: '',
+      });
+    } else {
+      setFilter({
+        btnStatus: '',
+        searchBarData: '',
+      });
+    }
+    switch (status) {
+      case 'FINISHED':
+        setSelectedCard({
+          finished: !selectedCard.finished,
+          running: false,
+          error: false,
+        });
+
+        break;
+      case 'RUNNING':
+        setSelectedCard({
+          finished: false,
+          running: !selectedCard.running,
+          error: false,
+        });
+        break;
+      case 'ERROR':
+        setSelectedCard({
+          finished: false,
+          running: false,
+          error: !selectedCard.error,
+        });
+        break;
+
+      default:
+        break;
+    }
   };
 
   /**
@@ -188,6 +226,7 @@ export const HomeScreen = (): JSX.Element => {
               <MenuFilterLoading />
             )}
             <CardContent
+              selected={selectedCard}
               setStatus={handleClick}
               data={homeData.btnNotification}
             />

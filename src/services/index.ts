@@ -3,6 +3,7 @@ import home from './home';
 import worker from './worker';
 import sending from './sending';
 import user from './user';
+import error from './erros';
 
 export default {
   login,
@@ -10,4 +11,5 @@ export default {
   worker,
   sending,
   user,
+  error,
 };

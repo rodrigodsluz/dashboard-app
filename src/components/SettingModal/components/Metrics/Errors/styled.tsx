@@ -5,8 +5,8 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  width: 100%;
-  height: 100vh;
+  width: 80vw;
+  height: 90vh;
   outline: none;
 `;
 
@@ -15,7 +15,7 @@ export const CenterModal = styled.div`
   margin-left: auto;
   margin-right: auto;
   left: 0;
-  top: 40%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   bottom: 0;
@@ -26,6 +26,14 @@ export const CenterModal = styled.div`
 
 export const Row = styled.div`
   display: flex;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  margin-top: 20px;
+  @media screen and (max-width: 1000px) {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
 `;
 
 export const Icon = styled.button`
@@ -52,9 +60,11 @@ export const BackButtuon = styled.button`
   border: none;
   outline: none;
   align-self: flex-start;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:hover {
-    border-radius: 50%;
+    border-radius: 30px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
 `;

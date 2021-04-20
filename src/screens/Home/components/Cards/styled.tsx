@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface Props {
   status: string;
+  selected?: boolean;
 }
 
 export const CardContainer = styled.div`
@@ -27,11 +28,11 @@ export const Card = styled.button<Props>`
   border: none;
   width: 240px;
   transition: 0.2s ease;
+  outline: none;
   ${(props) =>
     props.status === 'executando' &&
     css`
-      background: #fbbc05;
-
+      background: ${(props: Props) => (props.selected ? '#363636' : '#fbbc05')};
       &:hover {
         background-color: #242321;
       }
@@ -39,7 +40,7 @@ export const Card = styled.button<Props>`
   ${(props) =>
     props.status === 'erros' &&
     css`
-      background: #ea4335;
+      background: ${(props: Props) => (props.selected ? '#363636' : '#ea4335')};
       &:hover {
         background-color: #242321;
       }
@@ -47,7 +48,7 @@ export const Card = styled.button<Props>`
     ${(props) =>
     props.status === 'finalizados' &&
     css`
-      background: #34a853;
+      background: ${(props: Props) => (props.selected ? '#363636' : '#34a853')};
       &:hover {
         background-color: #242321;
       }

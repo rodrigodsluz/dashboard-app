@@ -33,7 +33,7 @@ export const SettingModal = (): JSX.Element => {
         <CenterModal>
           <ModalContainer>
             <Icon onClick={handleOpenErroModal}>
-              <GripLines color="#000" width="30px" />
+              <GripLines color="#9196ab" width="30px" />
               <Typography>Erros</Typography>
             </Icon>
 
