@@ -40,7 +40,11 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
         let quantity = handleFormatString(element[2]);
         array.push([client, quantity, element[1]]);
       });
-      setData(array);
+
+      let sortArray = array.sort((a, b) => {
+        return b[1] - a[1];
+      });
+      setData(sortArray);
       getAllErros(array);
     }
   }, []);
@@ -150,6 +154,8 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
         let quant = erros.filter((elem) => elem === element).length;
         filtered.push([element, quant]);
       });
+
+      
       setErros(filtered);
     },
     [data]
@@ -181,6 +187,7 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
             {data.length > 0 ? <ErrosGraph data={erros} /> : null}
             <CustomPaginationActionsTable data={data} />
           </Row>
+          <h2>Total de erros:</h2>
         </ModalContainer>
       </CenterModal>
     </Modal>

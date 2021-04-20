@@ -6,6 +6,7 @@ import {
   createStyles,
 } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
+import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -120,6 +121,7 @@ const useStyles2 = makeStyles({
 });
 
 export default function CustomPaginationActionsTable({ data }) {
+  console.log(data);
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -146,6 +148,12 @@ export default function CustomPaginationActionsTable({ data }) {
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Cliente</TableCell>
+            <TableCell>Quantidade</TableCell>
+          </TableRow>
+        </TableHead>
         <TableBody>
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -155,9 +163,9 @@ export default function CustomPaginationActionsTable({ data }) {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-         
+
               <TableCell style={{ width: 160 }} align="right">
-              {row.calories}
+                {row.calories}
               </TableCell>
             </TableRow>
           ))}
@@ -171,7 +179,7 @@ export default function CustomPaginationActionsTable({ data }) {
           <TableRow>
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
+              colSpan={2}
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}
