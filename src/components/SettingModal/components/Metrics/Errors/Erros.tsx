@@ -1,17 +1,20 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Modal } from '@material-ui/core';
-import { Spacing, Typography } from '@d1.cx/components';
+import { Typography } from '@d1.cx/components';
 import { ArrowLeft } from '@d1.cx/icons';
 import { HomeDataContext } from '@src/context/HomeDataContext';
-import { ModalContainer, CenterModal, Row, BackButtuon } from './styled';
-import SimpleTable from '../../Table/Table';
-import services from '@src/services';
-import { Content, SearchBar } from '@src/screens/Worker/styled';
 import { Menu } from '@src/components/TopMenu/TopMenu';
 import CustomPaginationActionsTable from '../../Table/Table';
 import { ErrosGraph } from '@src/components/PieGraph/PieGraph';
+import services from '@src/services';
+import { Content } from '@src/screens/Worker/styled';
+import { ModalContainer, CenterModal, Row, BackButtuon } from './styled';
 
-export const ErrosModal = ({ open }): JSX.Element => {
+type OpenProps = {
+  open: boolean;
+};
+
+export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
   const { configureCloseErrorsModal, startDate, endDate } = useContext(
     HomeDataContext
   );
@@ -21,7 +24,13 @@ export const ErrosModal = ({ open }): JSX.Element => {
   const handleOpenErroModal = () => {
     configureCloseErrorsModal();
   };
-
+  /**
+   * @function
+   * @name getData
+   *
+   * @description
+   * Responsável por fazer a chamada na API e organizar os dados para serem tratados
+   */
   const getData = useCallback(async (start: string, end: string) => {
     let array = [];
     let res = await services.error.getErros(start, end);
@@ -32,7 +41,7 @@ export const ErrosModal = ({ open }): JSX.Element => {
         array.push([client, quantity, element[1]]);
       });
       setData(array);
-      handleConfigureGraph(array);
+      getAllErros(array);
     }
   }, []);
 
@@ -82,13 +91,28 @@ export const ErrosModal = ({ open }): JSX.Element => {
     return formatDate.toString();
   };
 
+  /**
+   * @function
+   * @name handleFormatString
+   *
+   * @description
+   * Responsável por fazer o tratamento do array para retornar apenas o nome do cliente
+   */
+
   const handleFormatString = useCallback((value: string) => {
     if (value) {
       return value?.split(': ')[1];
     }
   }, []);
 
-  const handleConfigureGraph = useCallback(
+  /**
+   * @function
+   * @name getAllErros
+   *
+   * @description
+   * Responsável por listar todos os tipos de erros encontrados vindo na request
+   */
+  const getAllErros = useCallback(
     (data) => {
       let listErrors = [];
       if (data) {
@@ -98,12 +122,19 @@ export const ErrosModal = ({ open }): JSX.Element => {
           });
         });
       }
-      handleSetData(listErrors);
+      configureErrorsAndQuantity(listErrors);
     },
     [data]
   );
 
-  const handleSetData = useCallback(
+  /**
+   * @function
+   * @name configureErrorsAndQuantity
+   *
+   * @description
+   * Responsável por verificar quantos erros de cada tipo existem
+   */
+  const configureErrorsAndQuantity = useCallback(
     (erros) => {
       let errorsArray = [];
       let filtered = [];
@@ -114,14 +145,12 @@ export const ErrosModal = ({ open }): JSX.Element => {
           errorsArray.push(element);
         }
       });
-      // console.table(erros, errorsArray);
 
       errorsArray.forEach((element) => {
         let quant = erros.filter((elem) => elem === element).length;
         filtered.push([element, quant]);
       });
       setErros(filtered);
-      // console.log(filtered);
     },
     [data]
   );
@@ -140,8 +169,10 @@ export const ErrosModal = ({ open }): JSX.Element => {
       <CenterModal>
         <ModalContainer>
           <BackButtuon onClick={handleOpenErroModal}>
-            <ArrowLeft width="45px" color="#000" />
-            <Typography fontSize="16px">Voltar</Typography>
+            <ArrowLeft width="25px" color="#000" />
+            <Typography fontSize="16px" horizontal="4px">
+              Voltar
+            </Typography>
           </BackButtuon>
           <Content>
             <Menu title="" loading={loading} submit={handleSubmit} />
@@ -150,7 +181,6 @@ export const ErrosModal = ({ open }): JSX.Element => {
             {data.length > 0 ? <ErrosGraph data={erros} /> : null}
             <CustomPaginationActionsTable data={data} />
           </Row>
-          <Spacing vertical="10px" />
         </ModalContainer>
       </CenterModal>
     </Modal>
