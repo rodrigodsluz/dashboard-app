@@ -4,11 +4,12 @@ import { Spacing } from '@d1.cx/components';
 import { ArrowLeft } from '@d1.cx/icons';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 import { ModalContainer, CenterModal, Row, BackButtuon } from './styled';
-import PieGraph from '@src/components/PieGraph/PieGraph';
 import SimpleTable from '../../Table/Table';
 import services from '@src/services';
 import { Content, SearchBar } from '@src/screens/Worker/styled';
 import { Menu } from '@src/components/TopMenu/TopMenu';
+import CustomPaginationActionsTable from '../../Table/Table';
+import { ErrosGraph } from '@src/components/PieGraph/PieGraph';
 
 export const ErrosModal = ({ open }): JSX.Element => {
   const { configureCloseErrorsModal, startDate, endDate } = useContext(
@@ -87,37 +88,43 @@ export const ErrosModal = ({ open }): JSX.Element => {
     }
   }, []);
 
-  const handleConfigureGraph = useCallback((data) => {
-    let listErrors = [];
-    if (data) {
-      data.forEach((element) => {
-        element[2].forEach((errors) => {
-          listErrors.push(errors);
+  const handleConfigureGraph = useCallback(
+    (data) => {
+      let listErrors = [];
+      if (data) {
+        data.forEach((element) => {
+          element[2].forEach((errors) => {
+            listErrors.push(errors);
+          });
         });
-      });
-    }
-    handleSetData(listErrors);
-  }, []);
-
-  const handleSetData = useCallback((erros) => {
-    let errorsArray = [];
-    let filtered = [];
-    erros.forEach((element) => {
-      let filtered = errorsArray.includes(element);
-
-      if (!filtered) {
-        errorsArray.push(element);
       }
-    });
-    // console.table(erros, errorsArray);
+      handleSetData(listErrors);
+    },
+    [data]
+  );
 
-    errorsArray.forEach((element) => {
-      let quant = erros.filter((elem) => elem === element).length;
-      filtered.push([element, quant]);
-    });
-    setErros(filtered)
-    // console.log(filtered);
-  }, []);
+  const handleSetData = useCallback(
+    (erros) => {
+      let errorsArray = [];
+      let filtered = [];
+      erros.forEach((element) => {
+        let filtered = errorsArray.includes(element);
+
+        if (!filtered) {
+          errorsArray.push(element);
+        }
+      });
+      // console.table(erros, errorsArray);
+
+      errorsArray.forEach((element) => {
+        let quant = erros.filter((elem) => elem === element).length;
+        filtered.push([element, quant]);
+      });
+      setErros(filtered);
+      // console.log(filtered);
+    },
+    [data]
+  );
 
   useEffect(() => {
     handleSubmit();
@@ -139,8 +146,8 @@ export const ErrosModal = ({ open }): JSX.Element => {
             <Menu title="Conference" loading={loading} submit={handleSubmit} />
           </Content>
           <Row>
-            <PieGraph data={erros} />
-            <SimpleTable data={data} />
+            {data.length > 0 ? <ErrosGraph data={erros} /> : null}
+            <CustomPaginationActionsTable data={data} />
           </Row>
           <Spacing vertical="10px" />
         </ModalContainer>

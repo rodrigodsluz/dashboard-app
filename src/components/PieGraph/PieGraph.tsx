@@ -1,36 +1,38 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useCallback, useEffect, useState } from 'react';
 import Chart from 'react-google-charts';
 type Props = {
   data: Array<[][]>;
 };
 
-let data = [];
-data.push(['Task', 'Hours per Day']);
-export default class PieGraph extends PureComponent<Props> {
-  render() {
-    this.props.data.forEach((element, index) => {
-      console.log(element[0]);
+export const ErrosGraph = ({ data }): JSX.Element => {
+  const [dataGraph, setDataGraph] = useState([]);
+  const configureData = () => {
+    let array = [];
+    array.push(['Task', 'Hours per Day']);
+    data.forEach((element) => {
       let newItem = [element[0], element[1]];
-
-      data = [...data, newItem];
+      array = [...array, newItem];
     });
+    setDataGraph(array);
+  };
+  useEffect(() => {
+    console.log('teste');
+    configureData();
+  }, []);
 
-    console.log(data);
-
-    return (
-      <Chart
-        width={'700px'}
-        height={'700px'}
-        chartType="PieChart"
-        loader={<div>Loading Chart</div>}
-        data={data}
-        options={{
-          title: 'Erros',
-          // Just add this option
-          pieHole: 0.4,
-        }}
-        rootProps={{ 'data-testid': '3' }}
-      />
-    );
-  }
-}
+  return (
+    <Chart
+      width={'1200px'}
+      height={'1000px'}
+      chartType="PieChart"
+      loader={<div>Loading Chart</div>}
+      data={dataGraph}
+      options={{
+        title: 'Erros',
+        // Just add this option
+        pieHole: 0.4,
+      }}
+      rootProps={{ 'data-testid': '3' }}
+    />
+  );
+};
