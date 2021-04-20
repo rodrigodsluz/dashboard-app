@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Modal } from '@material-ui/core';
-import { Spacing } from '@d1.cx/components';
+import { Spacing, Typography } from '@d1.cx/components';
 import { ArrowLeft } from '@d1.cx/icons';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 import { ModalContainer, CenterModal, Row, BackButtuon } from './styled';
@@ -141,15 +141,16 @@ export const ErrosModal = ({ open }): JSX.Element => {
         <ModalContainer>
           <BackButtuon onClick={handleOpenErroModal}>
             <ArrowLeft width="45px" color="#000" />
+            <Typography fontSize="16px">Voltar</Typography>
           </BackButtuon>
           <Content>
-            <Menu title="Erros" loading={loading} submit={handleSubmit} />
+            <Menu title="" loading={loading} submit={handleSubmit} />
           </Content>
-          {/* <Row>
+          <Row>
             {data.length > 0 ? <ErrosGraph data={erros} /> : null}
             <CustomPaginationActionsTable data={data} />
           </Row>
-          <Spacing vertical="10px" /> */}
+          <Spacing vertical="10px" />
         </ModalContainer>
       </CenterModal>
     </Modal>

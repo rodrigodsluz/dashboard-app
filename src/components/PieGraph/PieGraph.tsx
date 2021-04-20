@@ -23,14 +23,13 @@ export const ErrosGraph = ({ data }): JSX.Element => {
 
   return (
     <Chart
-      width={'1200px'}
-      height={'1000px'}
+      width={'100%'}
+      height={'100%'}
       chartType="PieChart"
-      loader={<div>Loading Chart</div>}
+      loader={<div>Carregando...</div>}
       data={dataGraph}
       options={{
         title: 'Tipo de erros',
-        // Just add this option
         pieHole: 0.4,
       }}
       rootProps={{ 'data-testid': '3' }}
