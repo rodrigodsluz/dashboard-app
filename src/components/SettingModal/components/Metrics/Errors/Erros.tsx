@@ -15,15 +15,23 @@ export const ErrosModal = ({ open }): JSX.Element => {
     HomeDataContext
   );
   const [loading, setLoading] = useState(false);
-
+  const [data, setData] = useState([]);
   const handleOpenErroModal = () => {
     configureCloseErrorsModal();
   };
 
   const getData = useCallback(async (start: string, end: string) => {
-    console.log('aquix');
+    let array = [];
     let res = await services.error.getErros(start, end);
-    console.log(res);
+    if (res.data) {
+      res.data.forEach((element) => {
+        let client = handleFormatString(element[0]);
+        let quantity = handleFormatString(element[2]);
+        array.push([client, quantity, element[1]]);
+      });
+      setData(array);
+      handleConfigureGraph(array);
+    }
   }, []);
 
   /**
@@ -71,6 +79,43 @@ export const ErrosModal = ({ open }): JSX.Element => {
     return formatDate.toString();
   };
 
+  const handleFormatString = useCallback((value: string) => {
+    if (value) {
+      return value?.split(': ')[1];
+    }
+  }, []);
+
+  const handleConfigureGraph = useCallback((data) => {
+    let listErrors = [];
+    if (data) {
+      data.forEach((element) => {
+        element[2].forEach((errors) => {
+          listErrors.push(errors);
+        });
+      });
+    }
+    handleSetData(listErrors);
+  }, []);
+
+  const handleSetData = useCallback((erros) => {
+    let errorsArray = [];
+    erros.forEach((element) => {
+      let filtered = errorsArray.includes(element);
+
+      if (!filtered) {
+        errorsArray.push(element);
+      }
+    });
+    console.table(erros, errorsArray);
+
+    erros.forEach((element) => {
+      let quant = errorsArray.filter((elem) => elem === element).length;
+      console.log(quant);
+    });
+
+    // console.log(quant);
+  }, []);
+
   useEffect(() => {
     handleSubmit();
   }, [open]);
@@ -91,8 +136,8 @@ export const ErrosModal = ({ open }): JSX.Element => {
             <Menu title="Conference" loading={loading} submit={handleSubmit} />
           </Content>
           <Row>
-            <PieGraph />
-            <SimpleTable />
+            <PieGraph data={data} />
+            <SimpleTable data={data} />
           </Row>
           <Spacing vertical="10px" />
         </ModalContainer>

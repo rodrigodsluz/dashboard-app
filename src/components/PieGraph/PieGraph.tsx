@@ -1,11 +1,15 @@
 import React, { PureComponent } from 'react';
 import Chart from 'react-google-charts';
+type Props = {
+  data: Array<[][]>;
+};
 
-export default class PieGraph extends PureComponent {
-  static demoUrl =
-    'https://codesandbox.io/s/pie-chart-with-customized-label-dlhhj';
-
+let data = [];
+export default class PieGraph extends PureComponent<Props> {
   render() {
+    for (const x in this.props.data) {
+      data = [{ name: this.props.data[x][2][0], value: this.props.data[0] }];
+    }
     return (
       <Chart
         width={'700px'}
