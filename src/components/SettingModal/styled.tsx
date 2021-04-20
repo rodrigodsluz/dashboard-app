@@ -40,6 +40,6 @@ export const Icon = styled.button`
   outline: none;
   cursor: pointer;
   &:hover {
-    background-color: #9196ab;
+    border: 8px solid #9196ab;
   }
 `;
