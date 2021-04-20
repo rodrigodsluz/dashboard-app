@@ -16,6 +16,7 @@ export const ErrosModal = ({ open }): JSX.Element => {
   );
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [erros, setErros] = useState([]);
   const handleOpenErroModal = () => {
     configureCloseErrorsModal();
   };
@@ -108,14 +109,14 @@ export const ErrosModal = ({ open }): JSX.Element => {
         errorsArray.push(element);
       }
     });
-    console.table(erros, errorsArray);
+    // console.table(erros, errorsArray);
 
     errorsArray.forEach((element) => {
       let quant = erros.filter((elem) => elem === element).length;
       filtered.push([element, quant]);
     });
-
-    console.log(filtered);
+    setErros(filtered)
+    // console.log(filtered);
   }, []);
 
   useEffect(() => {
@@ -138,7 +139,7 @@ export const ErrosModal = ({ open }): JSX.Element => {
             <Menu title="Conference" loading={loading} submit={handleSubmit} />
           </Content>
           <Row>
-            <PieGraph data={data} />
+            <PieGraph data={erros} />
             <SimpleTable data={data} />
           </Row>
           <Spacing vertical="10px" />

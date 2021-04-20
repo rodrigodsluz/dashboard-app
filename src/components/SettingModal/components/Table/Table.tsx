@@ -19,7 +19,6 @@ function createData(client: string, quantity: number) {
 }
 
 export default function SimpleTable({ data }) {
-  console.log(data);
   const classes = useStyles();
 
   const createTableData = (data) => {

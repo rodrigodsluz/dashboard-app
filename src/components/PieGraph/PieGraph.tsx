@@ -5,34 +5,25 @@ type Props = {
 };
 
 let data = [];
+data.push(['Task', 'Hours per Day']);
 export default class PieGraph extends PureComponent<Props> {
   render() {
-    for (const x in this.props.data) {
-      data = [{ name: this.props.data[x][2][0], value: this.props.data[0] }];
-    }
+    this.props.data.forEach((element, index) => {
+      console.log(element[0]);
+      let newItem = [element[0], element[1]];
+
+      data = [...data, newItem];
+    });
+
+    console.log(data);
+
     return (
       <Chart
         width={'700px'}
         height={'700px'}
         chartType="PieChart"
         loader={<div>Loading Chart</div>}
-        data={[
-          ['Task', 'Hours per Day'],
-          ['Work', 11],
-          ['Eat', 2],
-          ['Commute', 2],
-          ['Watch TV', 2],
-          ['Sleep', 7],
-          ['Commute', 2],
-          ['Watch TV', 2],
-          ['Sleep', 7],
-          ['Commute', 2],
-          ['Watch TV', 2],
-          ['Sleep', 7],
-          ['Commute', 2],
-          ['Watch TV', 2],
-          ['Sleep', 7],
-        ]}
+        data={data}
         options={{
           title: 'Erros',
           // Just add this option
