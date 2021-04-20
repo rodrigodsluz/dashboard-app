@@ -64,6 +64,7 @@ export const ErrosModal = ({ open }): JSX.Element => {
     } else {
       getData(currentDate, currentDate);
     }
+    setLoading(false);
   }, [startDate, endDate]);
 
   /**
@@ -99,6 +100,7 @@ export const ErrosModal = ({ open }): JSX.Element => {
 
   const handleSetData = useCallback((erros) => {
     let errorsArray = [];
+    let filtered = [];
     erros.forEach((element) => {
       let filtered = errorsArray.includes(element);
 
@@ -108,12 +110,12 @@ export const ErrosModal = ({ open }): JSX.Element => {
     });
     console.table(erros, errorsArray);
 
-    erros.forEach((element) => {
-      let quant = errorsArray.filter((elem) => elem === element).length;
-      console.log(quant);
+    errorsArray.forEach((element) => {
+      let quant = erros.filter((elem) => elem === element).length;
+      filtered.push([element, quant]);
     });
 
-    // console.log(quant);
+    console.log(filtered);
   }, []);
 
   useEffect(() => {
