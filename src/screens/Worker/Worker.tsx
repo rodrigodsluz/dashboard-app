@@ -22,10 +22,12 @@ import {
   ContainerGraph,
   ContentContainerGraph,
   ContainerConfigurationCards,
+  ActionButton,
 } from './styled';
 import { Menu } from '@src/components/TopMenu/TopMenu';
 import { routes } from '@src/routes';
 import { redirect } from '@src/utils/redirect';
+import { SliderMachinesModal } from '@src/components/SilderMachineModal/Modal';
 
 /**
  * @export
@@ -37,7 +39,9 @@ import { redirect } from '@src/utils/redirect';
  */
 
 export const WorkerScreen = (): JSX.Element => {
-  const { startDate, endDate } = useContext(HomeDataContext);
+  const { startDate, endDate, configureOpenSliderMachinesModal } = useContext(
+    HomeDataContext
+  );
   const [loading, setLoading] = useState(false);
   const [workerData, setWorkerData] = useState({
     data: [],
@@ -191,7 +195,7 @@ export const WorkerScreen = (): JSX.Element => {
             )}
             <ContentContainerGraph>
               <JobsContainer>
-              <StatusCard>
+                <StatusCard>
                   <StatusCircle
                     color="#85de94"
                     status="Executando"
@@ -273,20 +277,24 @@ export const WorkerScreen = (): JSX.Element => {
                           : ''
                       }
                     />
-                    <ConfigurationCard
-                      status="Maquinas"
-                      number={
-                        workerData.machines && workerData.machines
-                          ? workerData.machines
-                          : ''
-                      }
-                    />
+                    <ActionButton onClick={configureOpenSliderMachinesModal}>
+                      <ConfigurationCard
+                        status="Maquinas"
+                        number={
+                          workerData.machines && workerData.machines
+                            ? workerData.machines
+                            : ''
+                        }
+                      />
+                    </ActionButton>
                   </ContainerConfigurationCards>
                 </ContainerGraph>
               ) : null}
             </ContentContainerGraph>
           </TableContent>
         </TableContainer>
+
+        <SliderMachinesModal />
       </Container>
     </>
   );

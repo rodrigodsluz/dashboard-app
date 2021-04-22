@@ -21,6 +21,9 @@ type Type = {
   configureCloseErrorsModal?: () => void;
   keyUser?: string;
   configureKeyUser?: (key: string) => void;
+  configureCloseSliderMachinesModal?: () => void;
+  configureOpenSliderMachinesModal?: () => void;
+  openSliderMachinesModal?: boolean;
 };
 
 type Props = {
@@ -40,10 +43,11 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
 
   const [openSettingModal, setOpenSettingModal] = useState(false);
   const [openErrorModal, setErrorModal] = useState(false);
-
+  const [openSliderMachinesModal, setSliderMachinesModal] = useState(false);
   /**
+   *
+   * @export
    * @function
-   * @component
    * @name configureUsername
    *
    * @description
@@ -55,8 +59,9 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   }
 
   /**
+   *
+   * @export
    * @function
-   * @component
    * @name configureURLImg
    *
    * @description
@@ -68,8 +73,9 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   };
 
   /**
+   *
+   * @export
    * @function
-   * @component
    * @name configureOcupation
    *
    * @description
@@ -81,8 +87,9 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   };
 
   /**
+   *
+   * @export
    * @function
-   * @component
    * @name openModal
    *
    * @description
@@ -94,8 +101,9 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   };
 
   /**
+   *
+   * @export
    * @function
-   * @component
    * @name closeModal
    *
    * @description
@@ -107,8 +115,9 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   };
 
   /**
+   *
+   * @export
    * @function
-   * @component
    * @name configureStartDate
    *
    * @description
@@ -120,8 +129,9 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   };
 
   /**
+   *
+   * @export
    * @function
-   * @component
    * @name configureEndDate
    *
    * @description
@@ -133,8 +143,9 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   };
 
   /**
+   *
+   * @export
    * @function
-   * @component
    * @name configureOpenSettingModal
    *
    * @description
@@ -146,8 +157,9 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   };
 
   /**
+   *
+   * @export
    * @function
-   * @component
    * @name configureCloseSettingModal
    *
    * @description
@@ -159,8 +171,9 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   };
 
   /**
+   *
+   * @export
    * @function
-   * @component
    * @name configureOpenErrorsModal
    *
    * @description
@@ -172,8 +185,9 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   };
 
   /**
+   *
+   * @export
    * @function
-   * @component
    * @name configureCloseErrorsModal
    *
    * @description
@@ -185,8 +199,9 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   };
 
   /**
+   *
+   * @export
    * @function
-   * @component
    * @name configureKeyUser
    *
    * @description
@@ -195,6 +210,32 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
 
   const configureKeyUser = (key: string) => {
     setKeyUser(key);
+  };
+
+  /**
+   * @export
+   * @function
+   * @name configureOpenSliderMachinesModal
+   *
+   * @description
+   *  Abre o modal de slider de configuração de maquinas
+   */
+
+  const configureOpenSliderMachinesModal = () => {
+    setSliderMachinesModal(true);
+  };
+
+  /**
+   * @export
+   * @function
+   * @name configureCloseSliderMachinesModal
+   *
+   * @description
+   *  Fecha o modal de slider de configuração de maquinas
+   */
+
+  const configureCloseSliderMachinesModal = () => {
+    setSliderMachinesModal(false);
   };
 
   return (
@@ -221,6 +262,9 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
         openErrorModal,
         configureKeyUser,
         keyUser,
+        configureCloseSliderMachinesModal,
+        configureOpenSliderMachinesModal,
+        openSliderMachinesModal,
       }}
     >
       {children}
