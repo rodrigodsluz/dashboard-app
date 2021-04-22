@@ -55,9 +55,12 @@ export const FormLogin = () => {
         error={errorLogin}
         handleChange={handleChangeLogin}
         autoFocus
+        type="text"
         value={inputLogin}
         width="100%"
+        autoCapitalize="none"
         autoComplete="off"
+        placeholder="Nome de usuário"
         setError={setErrorLogin}
         maxLength={50}
       />
@@ -67,6 +70,7 @@ export const FormLogin = () => {
       <Input
         type="password"
         name="password"
+        placeholder="Senha"
         error={errorPassword}
         handleChange={handleChangePassword}
         value={inputPassword}

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const ContentStyled = styled.div`
   margin: 15px 30px;
 
-  @media (max-width: 576px) {
-    width: 30vh;
+  @media (max-width: 599px) {
+    width: 100%;
     margin: 0px 0px;
   }
 
