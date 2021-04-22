@@ -2,6 +2,12 @@ import styled from 'styled-components';
 
 export const ContentStyled = styled.div`
   margin: 15px 30px;
+
+  @media (max-width: 576px) {
+    width: 30vh;
+    margin: 0px 0px;
+  }
+
   @media (min-width: 600px) {
     align-items: center;
     margin: 0;

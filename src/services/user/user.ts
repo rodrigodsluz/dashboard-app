@@ -43,7 +43,7 @@ export async function uploadUser(user: User) {
 export async function getUserPhoto(info) {
   const token = localStorage.getItem('token');
   const options = {
-    url: `${API}/User/${123}/image`,
+    url: `${API}/User/${info}/image`,
     headers: {
       authorization: `Bearer ${token}`,
     },
