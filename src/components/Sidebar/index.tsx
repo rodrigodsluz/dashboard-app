@@ -49,12 +49,14 @@ const Sidebar = () => {
       <Border position="top" />
       <SidebarContainer>
         <Link href="/home">
-          <ContainerLogo>
-            <Logo
-              alt="logo"
-              src="https://github.com/rodrigodsluz/d1-test/blob/master/src/assets/images/logotipo-branco.png?raw=true"
-            />
-          </ContainerLogo>
+          <TooltipArrow title="Home" placement="left" arrow>
+            <ContainerLogo>
+              <Logo
+                alt="logo"
+                src="https://github.com/rodrigodsluz/d1-test/blob/master/src/assets/images/logotipo-branco.png?raw=true"
+              />
+            </ContainerLogo>
+          </TooltipArrow>
         </Link>
 
         <ContainerIcons>
@@ -69,17 +71,7 @@ const Sidebar = () => {
               </TooltipArrow>
             </ExpandIconClick>
           </Link>
-          <Link href="/sending">
-            <ExpandIconClick>
-              <TooltipArrow title="Sending Events" placement="left" arrow>
-                <IconWrapper>
-                  <Rocket
-                    fill={router.pathname === '/sending' ? '#117eff' : 'white'}
-                  />
-                </IconWrapper>
-              </TooltipArrow>
-            </ExpandIconClick>
-          </Link>
+
           <ExpandIconClick onClick={openModal}>
             <TooltipArrow title="User" placement="left" arrow>
               <IconWrapper>

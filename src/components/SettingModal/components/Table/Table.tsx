@@ -121,7 +121,6 @@ const useStyles2 = makeStyles({
 });
 
 export default function CustomPaginationActionsTable({ data }) {
-  console.log(data);
   const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
