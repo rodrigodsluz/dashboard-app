@@ -55,6 +55,7 @@ export const FormLogin = () => {
         error={errorLogin}
         handleChange={handleChangeLogin}
         autoFocus
+        type="email"
         value={inputLogin}
         width="100%"
         autoComplete="off"

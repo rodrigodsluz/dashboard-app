@@ -2,6 +2,7 @@ import React from 'react';
 
 import Header from '@screens/Login/components/Header';
 import Body from '@screens/Login/components/Body';
+import { Card, Container } from './styled';
 
 /**
  * @export
@@ -13,7 +14,11 @@ import Body from '@screens/Login/components/Body';
  */
 export const LoginScreen = (): JSX.Element => (
   <>
-    <Header />
-    <Body />
+    <Container>
+      <Card>
+        <Header />
+        <Body />
+      </Card>
+    </Container>
   </>
 );
