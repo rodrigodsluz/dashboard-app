@@ -79,6 +79,7 @@ export const HomeScreen = (): JSX.Element => {
       let amount = await Services.home.getStoppedMovementsAmount(start, end);
       let movements = await Services.home.getStoppedMovements(start, end);
       let notifications = await Services.home.getBtnNotification(start, end);
+      console.log(processes);
       setHomeData({
         processes,
         graphic: graphic,
