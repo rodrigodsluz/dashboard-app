@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Modal } from '@material-ui/core';
-import { Typography } from '@d1.cx/components';
+import { FlexContent, Typography } from '@d1.cx/components';
 import { ArrowLeft } from '@d1.cx/icons';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 import { Menu } from '@src/components/TopMenu/TopMenu';
@@ -21,6 +21,7 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [erros, setErros] = useState([]);
+  const [totalErros, setTotalErros] = useState(0);
   const handleOpenErroModal = () => {
     configureCloseErrorsModal();
   };
@@ -33,11 +34,13 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
    */
   const getData = useCallback(async (start: string, end: string) => {
     let array = [];
+    let totalErros = 0;
     let res = await services.error.getErros(start, end);
     if (res.data) {
       res.data.forEach((element) => {
         let client = handleFormatString(element[0]);
         let quantity = handleFormatString(element[2]);
+        totalErros += parseInt(quantity, 10);
         array.push([client, quantity, element[1]]);
       });
 
@@ -46,6 +49,7 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
       });
       setData(sortArray);
       getAllErros(array);
+      setTotalErros(totalErros);
     }
   }, []);
 
@@ -155,7 +159,6 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
         filtered.push([element, quant]);
       });
 
-      
       setErros(filtered);
     },
     [data]
@@ -183,11 +186,17 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
           <Content>
             <Menu title="" loading={loading} submit={handleSubmit} />
           </Content>
+          <FlexContent>
+            <Typography fontSize="20px">Total de erros:</Typography>
+            <Typography bold fontSize="22px" horizontal="2px">
+              {totalErros}
+            </Typography>
+          </FlexContent>
           <Row>
             {data.length > 0 ? <ErrosGraph data={erros} /> : null}
+
             <CustomPaginationActionsTable data={data} />
           </Row>
-          <h2>Total de erros:</h2>
         </ModalContainer>
       </CenterModal>
     </Modal>
