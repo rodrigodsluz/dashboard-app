@@ -6,6 +6,7 @@ export const Container = styled.div`
   overflow-x: hidden;
   justify-content: center;
   align-items: center;
+  position: fixed;
   @media screen and (max-width: 500px) {
     flex-direction: column;
   }
@@ -84,6 +85,7 @@ export const Wrapper = styled.div`
   border-radius: 4px;
   margin: 0px;
   padding: 0px;
+  margin-top:60px;
   margin-left: 50px;
   @media screen and (max-width: 500px) {
     margin-left: 0px;
