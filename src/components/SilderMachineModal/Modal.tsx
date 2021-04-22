@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Modal } from '@material-ui/core';
-
+import { Typography, OutlineButton, Spacing } from '@d1.cx/components';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 import { ModalContainer, CenterModal } from './styled';
 
@@ -23,7 +23,12 @@ export const SliderMachinesModal = (): JSX.Element => {
     >
       <CenterModal>
         <ModalContainer>
-          <h2>teste</h2>
+          <Typography fontSize="16px" vertical="10px">
+            Selecione o número de máquinas que deseja ligar:
+          </Typography>
+          <input type="range" min="1" max="100" value="50" id="myRange" />
+          <Spacing vertical="5px" />
+          <OutlineButton>Ligar máquinas</OutlineButton>
         </ModalContainer>
       </CenterModal>
     </Modal>
