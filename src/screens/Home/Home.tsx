@@ -124,10 +124,7 @@ export const HomeScreen = (): JSX.Element => {
 
     if (endDate.length > 0) {
       if (startDate.length == 0) {
-        setNotification(true);
-        setTimeout(() => {
-          setNotification(false);
-        }, 2000);
+        alert('Ops! É necessário selecionar uma data de ínicio para filtrar');
         setLoading(false);
       } else {
         getData(startDate, endDate);
@@ -217,10 +214,7 @@ export const HomeScreen = (): JSX.Element => {
   return (
     <Container>
       <Sidebar />
-      <Notification
-        show={notification}
-        message="É necessário selecionar uma data de ínicio para filtar."
-      />
+
       <Wrapper>
         <Content>
           <Menu title="Conference" loading={loading} submit={handleSubmit} />
