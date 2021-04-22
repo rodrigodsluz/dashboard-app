@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { MenuFilterLoading } from '@d1.cx/components';
+import { MenuFilterLoading, Notification } from '@d1.cx/components';
 
 import StickyHeadTable from './components/WorkerTable';
 import Sidebar from '../../components/Sidebar';
@@ -42,6 +42,7 @@ export const WorkerScreen = (): JSX.Element => {
   const { startDate, endDate, configureOpenSliderMachinesModal } = useContext(
     HomeDataContext
   );
+  const [notification, setNotification] = useState(false);
   const [loading, setLoading] = useState(false);
   const [workerData, setWorkerData] = useState({
     data: [],
@@ -143,7 +144,10 @@ export const WorkerScreen = (): JSX.Element => {
     let currentDate = `${yyyy.toString()}-${month}-${day}`;
     if (endDate.length > 0) {
       if (startDate.length == 0) {
-        alert('Por favor, selecione uma data de inicio para continuar');
+        setNotification(true);
+        setTimeout(() => {
+          setNotification(false);
+        }, 2000);
         setLoading(false);
       } else {
         getData(startDate, endDate);
@@ -175,7 +179,10 @@ export const WorkerScreen = (): JSX.Element => {
     <>
       <Container>
         <Sidebar />
-
+        <Notification
+          show={notification}
+          message="É necessário selecionar uma data de ínicio para filtar."
+        />
         <TableContainer>
           <TableContent>
             <Content>

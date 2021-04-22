@@ -6,7 +6,12 @@ import React, {
   useState,
 } from 'react';
 
-import { Typography, Spacing, MenuFilterLoading } from '@d1.cx/components';
+import {
+  Typography,
+  Spacing,
+  MenuFilterLoading,
+  Notification,
+} from '@d1.cx/components';
 import { AlertContent } from './components/Alert/Alert';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 
@@ -41,6 +46,7 @@ import { routes } from '@src/routes';
 
 export const HomeScreen = (): JSX.Element => {
   const { startDate, endDate } = useContext(HomeDataContext);
+  const [notification, setNotification] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selectedCard, setSelectedCard] = useState({
     finished: false,
@@ -114,9 +120,13 @@ export const HomeScreen = (): JSX.Element => {
     let month = handleFormatDate(mm);
 
     let currentDate = `${yyyy.toString()}-${month}-${day}`;
+
     if (endDate.length > 0) {
       if (startDate.length == 0) {
-        alert('Por favor, selecione uma data de inicio para continuar');
+        setNotification(true);
+        setTimeout(() => {
+          setNotification(false);
+        }, 2000);
         setLoading(false);
       } else {
         getData(startDate, endDate);
@@ -206,6 +216,10 @@ export const HomeScreen = (): JSX.Element => {
   return (
     <Container>
       <Sidebar />
+      <Notification
+        show={notification}
+        message="É necessário selecionar uma data de ínicio para filtar."
+      />
       <Wrapper>
         <Content>
           <Menu title="Conference" loading={loading} submit={handleSubmit} />

@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Modal } from '@material-ui/core';
-import { FlexContent, Typography } from '@d1.cx/components';
+import { FlexContent, Typography, Notification } from '@d1.cx/components';
 import { ArrowLeft } from '@d1.cx/icons';
 import { HomeDataContext } from '@src/context/HomeDataContext';
 import { Menu } from '@src/components/TopMenu/TopMenu';
@@ -18,6 +18,7 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
   const { configureCloseErrorsModal, startDate, endDate } = useContext(
     HomeDataContext
   );
+  const [notification, setNotification] = useState(false);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [erros, setErros] = useState([]);
@@ -75,7 +76,10 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
     let currentDate = `${yyyy.toString()}-${month}-${day}`;
     if (endDate.length > 0) {
       if (startDate.length == 0) {
-        alert('Por favor, selecione uma data de inicio para continuar');
+        setNotification(true);
+        setTimeout(() => {
+          setNotification(false);
+        }, 2000);
         setLoading(false);
       } else {
         getData(startDate, endDate);
@@ -176,6 +180,10 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
       aria-describedby="simple-modal-description"
     >
       <CenterModal>
+        <Notification
+          show={notification}
+          message="É necessário selecionar uma data de ínicio para filtar."
+        />
         <ModalContainer>
           <BackButtuon onClick={handleOpenErroModal}>
             <ArrowLeft width="25px" color="#000" />

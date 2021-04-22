@@ -70,7 +70,7 @@ export const SearchBar = styled.input`
   outline: none;
   margin: 10px 0px 0px 5px;
   @media screen and (max-width: 500px) {
-    margin-left:0px;
+    margin-left: 0px;
   }
 `;
 
@@ -85,9 +85,9 @@ export const Wrapper = styled.div`
   border-radius: 4px;
   margin: 0px;
   padding: 0px;
-  margin-top:60px;
-  margin-left: 50px;
+  margin-left: 30px;
   @media screen and (max-width: 500px) {
     margin-left: 0px;
+    margin-top: 60px;
   }
 `;
