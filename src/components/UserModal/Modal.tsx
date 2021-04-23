@@ -19,17 +19,17 @@ export const UserModal = (): JSX.Element => {
   const [name, setName] = useState('');
   const [ocupation, setOcupation] = useState('');
   const [loading, setLoading] = useState(false);
+
   const preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
-
   const handleSubmit = useCallback(async () => {
     try {
       setLoading(true);
       let user = {
         name,
         ocupation,
-        image,
+        image: thumbnail,
       };
       let response = await Services.user.uploadUser(user);
       console.log(response);
@@ -37,7 +37,7 @@ export const UserModal = (): JSX.Element => {
       throw e;
     }
     setLoading(false);
-  }, [name, ocupation]);
+  }, [name, ocupation, thumbnail]);
 
   const handleClose = () => {
     closeModal();
@@ -47,13 +47,17 @@ export const UserModal = (): JSX.Element => {
     getData();
   }, [loading]);
 
+  useEffect(() => {
+    getPhoto();
+  }, [open]);
+
   const getData = useCallback(async () => {
     let { nome, ocupacao } = await Services.user.getUserData();
     setName(nome);
     setOcupation(ocupacao);
-    await getPhoto();
   }, [open]);
 
+  console.log(thumbnail);
   const getPhoto = useCallback(async () => {
     let resPhoto = await Services.user.getUserPhoto();
     setImagem(resPhoto);
