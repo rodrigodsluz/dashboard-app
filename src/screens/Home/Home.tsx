@@ -17,7 +17,6 @@ import { HomeDataContext } from '@src/context/HomeDataContext';
 
 import Sidebar from '../../components/Sidebar';
 import HomeTable from './components/HomeTable';
-import Graphic from './components/PieChart';
 import Services from '../../services';
 
 import {
@@ -33,6 +32,7 @@ import { Menu } from '@src/components/TopMenu/TopMenu';
 import { CardContent } from './components/Cards/Card';
 import { redirect } from '@src/utils/redirect';
 import { routes } from '@src/routes';
+import Graphic from './components/PieChart';
 
 /**
  * @export
@@ -46,7 +46,6 @@ import { routes } from '@src/routes';
 
 export const HomeScreen = (): JSX.Element => {
   const { startDate, endDate } = useContext(HomeDataContext);
-  const [notification, setNotification] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selectedCard, setSelectedCard] = useState({
     finished: false,
@@ -79,7 +78,6 @@ export const HomeScreen = (): JSX.Element => {
       let amount = await Services.home.getStoppedMovementsAmount(start, end);
       let movements = await Services.home.getStoppedMovements(start, end);
       let notifications = await Services.home.getBtnNotification(start, end);
-      console.log(processes);
       setHomeData({
         processes,
         graphic: graphic,
@@ -247,7 +245,9 @@ export const HomeScreen = (): JSX.Element => {
               {' '}
               SLA em atraso
             </Typography>
-            {homeData.graphic ? <Graphic data={homeData.graphic} /> : null}
+            {homeData.graphic.length > 0 ? (
+              <Graphic data={homeData.graphic} />
+            ) : null}
           </GraphicWrapper>
         </TableContainer>
       </Wrapper>

@@ -93,6 +93,7 @@ export const CreateUserModal = (): JSX.Element => {
             data={[
               { id: '0', name: 'Permissão' },
               { id: '1', name: 'admin' },
+              { id: '2', name: 'operador' },
             ]}
             onChange={({ target }) => {
               setRole(target.value);

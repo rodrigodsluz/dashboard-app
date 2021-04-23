@@ -171,19 +171,14 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
   return (
     <Modal
       open={open}
-      onClose={() => {}}
+      onClose={handleOpenErroModal}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
     >
       <CenterModal>
    
         <ModalContainer>
-          <BackButtuon onClick={handleOpenErroModal}>
-            <ArrowLeft width="25px" color="#000" />
-            <Typography fontSize="16px" horizontal="4px">
-              Voltar
-            </Typography>
-          </BackButtuon>
+      
           <Content>
             <Menu title="" loading={loading} submit={handleSubmit} />
           </Content>

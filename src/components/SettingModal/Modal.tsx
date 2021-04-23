@@ -55,7 +55,7 @@ export const SettingModal = (): JSX.Element => {
                 configureCloseSettingModal();
               }}
             >
-              Atualizar
+              Fechar
             </OutlineButton>
           </ModalContainer>
         </CenterModal>

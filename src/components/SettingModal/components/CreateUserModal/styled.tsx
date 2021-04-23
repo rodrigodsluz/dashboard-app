@@ -26,7 +26,7 @@ export const CenterModal = styled.div`
   margin-left: auto;
   margin-right: auto;
   left: 0;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   bottom: 0;
