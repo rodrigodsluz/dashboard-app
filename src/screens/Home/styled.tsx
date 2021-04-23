@@ -6,6 +6,7 @@ export const Container = styled.div`
   overflow-x: hidden;
   justify-content: center;
   align-items: center;
+  position: fixed;
   @media screen and (max-width: 500px) {
     flex-direction: column;
   }
@@ -14,7 +15,7 @@ export const Container = styled.div`
 export const TableContainer = styled.div`
   overflow: auto;
   width: 100%;
-  padding: 20px 40px;
+  padding: 20px 50px;
   padding-top: 0px;
   display: flex;
 
@@ -42,9 +43,10 @@ export const TableContent = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  width: 95%;
+  width: 100%;
   flex-direction: column;
-  padding-top: 20px;
+  padding: 20px 60px 0px 50px;
+ 
 `;
 
 export const GraphicWrapper = styled.div`
@@ -69,7 +71,7 @@ export const SearchBar = styled.input`
   outline: none;
   margin: 10px 0px 0px 5px;
   @media screen and (max-width: 500px) {
-    margin-left:0px;
+    margin-left: 0px;
   }
 `;
 
@@ -84,8 +86,10 @@ export const Wrapper = styled.div`
   border-radius: 4px;
   margin: 0px;
   padding: 0px;
-  margin-left: 50px;
+  margin-left: 30px;
+
   @media screen and (max-width: 500px) {
     margin-left: 0px;
+    margin-top: 60px;
   }
 `;

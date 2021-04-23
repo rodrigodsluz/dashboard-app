@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { MenuFilterLoading } from '@d1.cx/components';
+import { MenuFilterLoading, Notification } from '@d1.cx/components';
 
 import StickyHeadTable from './components/WorkerTable';
 import Sidebar from '../../components/Sidebar';
@@ -22,10 +22,12 @@ import {
   ContainerGraph,
   ContentContainerGraph,
   ContainerConfigurationCards,
+  ActionButton,
 } from './styled';
 import { Menu } from '@src/components/TopMenu/TopMenu';
 import { routes } from '@src/routes';
 import { redirect } from '@src/utils/redirect';
+import { SliderMachinesModal } from '@src/components/SilderMachineModal/Modal';
 
 /**
  * @export
@@ -37,7 +39,10 @@ import { redirect } from '@src/utils/redirect';
  */
 
 export const WorkerScreen = (): JSX.Element => {
-  const { startDate, endDate } = useContext(HomeDataContext);
+  const { startDate, endDate, configureOpenSliderMachinesModal } = useContext(
+    HomeDataContext
+  );
+  const [notification, setNotification] = useState(false);
   const [loading, setLoading] = useState(false);
   const [workerData, setWorkerData] = useState({
     data: [],
@@ -139,7 +144,7 @@ export const WorkerScreen = (): JSX.Element => {
     let currentDate = `${yyyy.toString()}-${month}-${day}`;
     if (endDate.length > 0) {
       if (startDate.length == 0) {
-        alert('Por favor, selecione uma data de inicio para continuar');
+        alert('Ops! É necessário selecionar uma data de ínicio para filtrar');
         setLoading(false);
       } else {
         getData(startDate, endDate);
@@ -191,7 +196,7 @@ export const WorkerScreen = (): JSX.Element => {
             )}
             <ContentContainerGraph>
               <JobsContainer>
-              <StatusCard>
+                <StatusCard>
                   <StatusCircle
                     color="#85de94"
                     status="Executando"
@@ -273,20 +278,24 @@ export const WorkerScreen = (): JSX.Element => {
                           : ''
                       }
                     />
-                    <ConfigurationCard
-                      status="Maquinas"
-                      number={
-                        workerData.machines && workerData.machines
-                          ? workerData.machines
-                          : ''
-                      }
-                    />
+                    <ActionButton onClick={configureOpenSliderMachinesModal}>
+                      <ConfigurationCard
+                        status="Maquinas"
+                        number={
+                          workerData.machines && workerData.machines
+                            ? workerData.machines
+                            : ''
+                        }
+                      />
+                    </ActionButton>
                   </ContainerConfigurationCards>
                 </ContainerGraph>
               ) : null}
             </ContentContainerGraph>
           </TableContent>
         </TableContainer>
+
+        <SliderMachinesModal />
       </Container>
     </>
   );

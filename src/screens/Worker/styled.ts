@@ -106,6 +106,11 @@ export const ContainerConfigurationCards = styled.div`
   margin-top: 22px;
   @media screen and (max-width: 930px) {
     align-items: center;
-    margin-bottom:10px;
+    margin-bottom: 10px;
   }
+`;
+
+export const ActionButton = styled.button`
+  background-color: #fff;
+  border: none;
 `;

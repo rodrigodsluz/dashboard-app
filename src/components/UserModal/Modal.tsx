@@ -60,9 +60,9 @@ export const UserModal = (): JSX.Element => {
     closeModal();
   };
 
-  useEffect(() => {
-    getPhoto();
-  }, [open]);
+  // useEffect(() => {
+  //   getPhoto();
+  // }, [open]);
 
   const getPhoto = useCallback(async () => {
     let resPhoto = await Services.user.getUserPhoto(keyUser);
