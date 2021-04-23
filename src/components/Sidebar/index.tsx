@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -11,7 +11,7 @@ import { ReactComponent as SignOut } from '../../../public/sidebarIcons/sign-out
 import { ReactComponent as User } from '../../../public/sidebarIcons/user-friends.svg';
 import { ReactComponent as Settings } from '../../../public/sidebarIcons/tools.svg';
 import { HomeDataContext } from '@src/context/HomeDataContext';
-
+import Services from '@services/user';
 import {
   Border,
   SidebarContainer,
@@ -44,22 +44,45 @@ const Sidebar = () => {
     openSettingModal,
     configureOpenSettingModal,
   } = useContext(HomeDataContext);
+  const [image, setImagem] = useState(null);
+
+  const getPhoto = useCallback(async () => {
+    let resPhoto = await Services.getUserPhoto();
+    setImagem(resPhoto);
+  }, []);
+
+  useEffect(() => {
+    getPhoto();
+  }, [open]);
+
+  
   return (
     <>
       <Border position="top" />
       <SidebarContainer>
-        <Link href="/home">
-          <TooltipArrow title="Home" placement="left" arrow>
-            <ContainerLogo>
-              <Logo
-                alt="logo"
-                src="https://github.com/rodrigodsluz/d1-test/blob/master/src/assets/images/logotipo-branco.png?raw=true"
-              />
-            </ContainerLogo>
-          </TooltipArrow>
-        </Link>
+        <ContainerLogo>
+          <Logo
+            alt="logo"
+            src={
+              !image
+                ? 'https://github.com/rodrigodsluz/d1-test/blob/master/src/assets/images/logotipo-branco.png?raw=true'
+                : `${`data:image/jpeg;base64,${image}`}`
+            }
+          />
+        </ContainerLogo>
 
         <ContainerIcons>
+          <Link href="/home">
+            <ExpandIconClick>
+              <TooltipArrow title="Home" placement="left" arrow>
+                <IconWrapper>
+                  <Rocket
+                    fill={router.pathname === '/home' ? '#117eff' : 'white'}
+                  />
+                </IconWrapper>
+              </TooltipArrow>
+            </ExpandIconClick>
+          </Link>
           <Link href="/worker">
             <ExpandIconClick>
               <TooltipArrow title="Worker" placement="left" arrow>

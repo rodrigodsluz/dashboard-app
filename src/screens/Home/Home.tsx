@@ -17,7 +17,6 @@ import { HomeDataContext } from '@src/context/HomeDataContext';
 
 import Sidebar from '../../components/Sidebar';
 import HomeTable from './components/HomeTable';
-import Graphic from './components/PieChart';
 import Services from '../../services';
 
 import {
@@ -33,6 +32,7 @@ import { Menu } from '@src/components/TopMenu/TopMenu';
 import { CardContent } from './components/Cards/Card';
 import { redirect } from '@src/utils/redirect';
 import { routes } from '@src/routes';
+import Graphic from './components/PieChart';
 
 /**
  * @export
@@ -245,7 +245,9 @@ export const HomeScreen = (): JSX.Element => {
               {' '}
               SLA em atraso
             </Typography>
-            {homeData.graphic ? <Graphic data={homeData.graphic} /> : null}
+            {homeData.graphic.length > 0 ? (
+              <Graphic data={homeData.graphic} />
+            ) : null}
           </GraphicWrapper>
         </TableContainer>
       </Wrapper>

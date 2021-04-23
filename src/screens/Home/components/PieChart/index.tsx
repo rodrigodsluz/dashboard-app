@@ -46,9 +46,8 @@ type Props = {
  * Responsavel por montar o grafico de pizza na home
  */
 export default class Graphic extends PureComponent<Props> {
-  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/c9pL8k61/';
-
   render() {
+    console.log(this.props.data);
     for (const x in this.props.data) {
       data = [
         { name: 'Group A', value: this.props.data[0] },
