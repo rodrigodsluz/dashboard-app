@@ -297,6 +297,7 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
         openSliderMachinesModal,
         configureOpenNewUserModal,
         configureCloseNewUserModal,
+        openNewUserModal
       }}
     >
       {children}

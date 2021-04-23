@@ -12,7 +12,9 @@ import { HomeDataContext } from '@src/context/HomeDataContext';
 import { ModalContainer, UploadFile, File, CenterModal } from './styled';
 
 export const CreateUserModal = (): JSX.Element => {
-  const { openModal, closeModal } = useContext(HomeDataContext);
+  const { openNewUserModal, configureCloseNewUserModal } = useContext(
+    HomeDataContext
+  );
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -40,12 +42,12 @@ export const CreateUserModal = (): JSX.Element => {
   }, [ocupation]);
 
   const handleClose = () => {
-    closeModal();
+    configureCloseNewUserModal();
   };
 
   return (
     <Modal
-      open={true}
+      open={openNewUserModal}
       onClose={handleClose}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
@@ -115,7 +117,6 @@ export const CreateUserModal = (): JSX.Element => {
             secondary
             handleClick={() => {}}
             onClick={() => {
-              openModal();
               setThumbnail(null);
             }}
           >

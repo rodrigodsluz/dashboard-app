@@ -13,6 +13,7 @@ export const SettingModal = (): JSX.Element => {
     openSettingModal,
     openErrorModal,
     configureOpenErrorsModal,
+    configureOpenNewUserModal,
   } = useContext(HomeDataContext);
 
   const handleClose = () => {
@@ -23,6 +24,9 @@ export const SettingModal = (): JSX.Element => {
     configureOpenErrorsModal();
   };
 
+  const handleOpenNewUserModal = () => {
+    configureOpenNewUserModal();
+  };
   return (
     <>
       <Modal
@@ -34,7 +38,7 @@ export const SettingModal = (): JSX.Element => {
         <CenterModal>
           <ModalContainer>
             <Wrapper>
-              <Icon onClick={handleOpenErroModal}>
+              <Icon onClick={handleOpenNewUserModal}>
                 <User color="#9196ab" width="30px" />
                 <Typography>Usuários</Typography>
               </Icon>
@@ -57,7 +61,7 @@ export const SettingModal = (): JSX.Element => {
         </CenterModal>
       </Modal>
       <ErrosModal open={openErrorModal} />
-      <CreateUserModal  />
+      <CreateUserModal />
     </>
   );
 };
