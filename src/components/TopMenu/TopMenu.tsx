@@ -37,14 +37,16 @@ export const Menu = ({ loading, submit, title }): JSX.Element => {
             configureEndDate(target.value);
           }}
         />
-        <OutlineButton
-          type="submit"
-          loading={loading}
-          disabled={loading}
-          onClick={() => submit()}
-        >
-          Atualizar
-        </OutlineButton>
+        {startDate && (
+          <OutlineButton
+            type="submit"
+            loading={loading}
+            disabled={loading}
+            onClick={() => submit()}
+          >
+            Atualizar
+          </OutlineButton>
+        )}
       </ContainerDate>
     </TopMenu>
   );

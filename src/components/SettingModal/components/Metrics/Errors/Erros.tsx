@@ -18,7 +18,6 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
   const { configureCloseErrorsModal, startDate, endDate } = useContext(
     HomeDataContext
   );
-  const [notification, setNotification] = useState(false);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [erros, setErros] = useState([]);
@@ -76,10 +75,7 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
     let currentDate = `${yyyy.toString()}-${month}-${day}`;
     if (endDate.length > 0) {
       if (startDate.length == 0) {
-        setNotification(true);
-        setTimeout(() => {
-          setNotification(false);
-        }, 2000);
+        alert('Ops! É necessário selecionar uma data de ínicio para filtrar');
         setLoading(false);
       } else {
         getData(startDate, endDate);
@@ -180,10 +176,7 @@ export const ErrosModal = ({ open }: OpenProps): JSX.Element => {
       aria-describedby="simple-modal-description"
     >
       <CenterModal>
-        <Notification
-          show={notification}
-          message="É necessário selecionar uma data de ínicio para filtar."
-        />
+   
         <ModalContainer>
           <BackButtuon onClick={handleOpenErroModal}>
             <ArrowLeft width="25px" color="#000" />
