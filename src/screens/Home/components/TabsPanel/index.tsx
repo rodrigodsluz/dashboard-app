@@ -78,7 +78,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export default function TabsPanel({ data }) {
-  // console.log(data);
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 

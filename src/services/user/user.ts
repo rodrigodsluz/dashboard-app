@@ -26,7 +26,6 @@ export async function uploadUser(user: User) {
   const token = localStorage.getItem('token');
   const key = localStorage.getItem('key');
   const formData = new FormData();
-  console.log(user);
   formData.append('Nome', user.name);
   formData.append('Ocupacao', user.ocupation);
   formData.append('Imagem', user.image);

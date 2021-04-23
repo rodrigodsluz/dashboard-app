@@ -32,7 +32,6 @@ export const UserModal = (): JSX.Element => {
         image: thumbnail,
       };
       let response = await Services.user.uploadUser(user);
-      console.log(response);
     } catch (e) {
       throw e;
     }
@@ -57,7 +56,6 @@ export const UserModal = (): JSX.Element => {
     setOcupation(ocupacao);
   }, [open]);
 
-  console.log(thumbnail);
   const getPhoto = useCallback(async () => {
     let resPhoto = await Services.user.getUserPhoto();
     setImagem(resPhoto);
