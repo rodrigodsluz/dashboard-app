@@ -24,6 +24,9 @@ type Type = {
   configureCloseSliderMachinesModal?: () => void;
   configureOpenSliderMachinesModal?: () => void;
   openSliderMachinesModal?: boolean;
+  openNewUserModal?: boolean;
+  configureOpenNewUserModal?: () => void;
+  configureCloseNewUserModal?: () => void;
 };
 
 type Props = {
@@ -44,6 +47,7 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
   const [openSettingModal, setOpenSettingModal] = useState(false);
   const [openErrorModal, setErrorModal] = useState(false);
   const [openSliderMachinesModal, setSliderMachinesModal] = useState(false);
+  const [openNewUserModal, setNewUserModal] = useState(false);
   /**
    *
    * @export
@@ -238,6 +242,32 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
     setSliderMachinesModal(false);
   };
 
+  /**
+   * @export
+   * @function
+   * @name configureOpenNewUserModal
+   *
+   * @description
+   *  Abre o modal de criação de usuario
+   */
+
+  const configureOpenNewUserModal = () => {
+    setNewUserModal(true);
+  };
+
+  /**
+   * @export
+   * @function
+   * @name configureCloseNewUserModal
+   *
+   * @description
+   *  Fecha o modal de criação de usuario
+   */
+
+  const configureCloseNewUserModal = () => {
+    setNewUserModal(false);
+  };
+
   return (
     <HomeDataContext.Provider
       value={{
@@ -265,6 +295,9 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
         configureCloseSliderMachinesModal,
         configureOpenSliderMachinesModal,
         openSliderMachinesModal,
+        configureOpenNewUserModal,
+        configureCloseNewUserModal,
+        openNewUserModal
       }}
     >
       {children}

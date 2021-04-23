@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { Modal } from '@material-ui/core';
-import { GripLines } from '@d1.cx/icons';
+import { GripLines, User } from '@d1.cx/icons';
 import { OutlineButton, Spacing, Typography } from '@d1.cx/components';
 import { HomeDataContext } from '@src/context/HomeDataContext';
-import { ModalContainer, CenterModal, Icon } from './styled';
+import { ModalContainer, CenterModal, Icon, Wrapper } from './styled';
 import { ErrosModal } from './components/Metrics/Errors/Erros';
+import { CreateUserModal } from './components/CreateUserModal/Modal';
 
 export const SettingModal = (): JSX.Element => {
   const {
@@ -12,6 +13,7 @@ export const SettingModal = (): JSX.Element => {
     openSettingModal,
     openErrorModal,
     configureOpenErrorsModal,
+    configureOpenNewUserModal,
   } = useContext(HomeDataContext);
 
   const handleClose = () => {
@@ -22,6 +24,9 @@ export const SettingModal = (): JSX.Element => {
     configureOpenErrorsModal();
   };
 
+  const handleOpenNewUserModal = () => {
+    configureOpenNewUserModal();
+  };
   return (
     <>
       <Modal
@@ -32,11 +37,16 @@ export const SettingModal = (): JSX.Element => {
       >
         <CenterModal>
           <ModalContainer>
-            <Icon onClick={handleOpenErroModal}>
-              <GripLines color="#9196ab" width="30px" />
-              <Typography>Erros</Typography>
-            </Icon>
-
+            <Wrapper>
+              <Icon onClick={handleOpenNewUserModal}>
+                <User color="#9196ab" width="30px" />
+                <Typography>Usuários</Typography>
+              </Icon>
+              <Icon onClick={handleOpenErroModal}>
+                <GripLines color="#9196ab" width="30px" />
+                <Typography>Erros</Typography>
+              </Icon>
+            </Wrapper>
             <Spacing vertical="10px" />
             <OutlineButton
               secondary
@@ -51,6 +61,7 @@ export const SettingModal = (): JSX.Element => {
         </CenterModal>
       </Modal>
       <ErrosModal open={openErrorModal} />
+      <CreateUserModal />
     </>
   );
 };

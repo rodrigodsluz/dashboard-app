@@ -33,6 +33,7 @@ export const Icon = styled.button`
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  margin:10px;
   align-self: center;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -42,4 +43,8 @@ export const Icon = styled.button`
   &:hover {
     border: 8px solid #9196ab;
   }
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
 `;
