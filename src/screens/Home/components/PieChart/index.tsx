@@ -47,7 +47,6 @@ type Props = {
  */
 export default class Graphic extends PureComponent<Props> {
   render() {
-    console.log(this.props.data);
     for (const x in this.props.data) {
       data = [
         { name: 'Group A', value: this.props.data[0] },
