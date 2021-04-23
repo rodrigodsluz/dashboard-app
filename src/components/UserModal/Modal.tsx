@@ -13,61 +13,51 @@ import Services from '../../services';
 import { ModalContainer, UploadFile, File, CenterModal } from './styled';
 
 export const UserModal = (): JSX.Element => {
-  const {
-    name,
-    open,
-    openModal,
-    configureUsername,
-    configureOcupation,
-    ocupation,
-    closeModal,
-    keyUser,
-  } = useContext(HomeDataContext);
+  const { open, openModal, closeModal } = useContext(HomeDataContext);
   const [thumbnail, setThumbnail] = useState(null);
   const [image, setImagem] = useState(null);
+  const [name, setName] = useState('');
+  const [ocupation, setOcupation] = useState('');
+  const [loading, setLoading] = useState(false);
   const preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
 
-  const switchOcupation = useCallback(() => {
-    switch (ocupation) {
-      case 'Visitante':
-        return '1';
-      case 'Suporte':
-        return '2';
-      case 'Processamento':
-        return '3';
-      case 'Implementação':
-        return '4';
-      default:
-        return '0';
-    }
-  }, [ocupation]);
-
   const handleSubmit = useCallback(async () => {
     try {
+      setLoading(true);
       let user = {
         name,
         ocupation,
+        image,
       };
       let response = await Services.user.uploadUser(user);
+      console.log(response);
     } catch (e) {
       throw e;
     }
+    setLoading(false);
   }, [name, ocupation]);
 
   const handleClose = () => {
     closeModal();
   };
 
-  // useEffect(() => {
-  //   getPhoto();
-  // }, [open]);
+  useEffect(() => {
+    getData();
+  }, [loading]);
+
+  const getData = useCallback(async () => {
+    let { nome, ocupacao } = await Services.user.getUserData();
+    setName(nome);
+    setOcupation(ocupacao);
+    await getPhoto();
+  }, [open]);
 
   const getPhoto = useCallback(async () => {
-    let resPhoto = await Services.user.getUserPhoto(keyUser);
+    let resPhoto = await Services.user.getUserPhoto();
     setImagem(resPhoto);
-  }, [open, image]);
+  }, [open]);
 
   return (
     <Modal
@@ -94,29 +84,30 @@ export const UserModal = (): JSX.Element => {
           <Input
             placeholder="Atualizar nome"
             handleChange={({ target }) => {
-              configureUsername(target.value);
+              setName(target.value);
             }}
             value={name}
           />
           <Select
-            value={switchOcupation()}
+            value={ocupation}
             data={[
-              { id: '0', name: 'Área de atuação' },
-              { id: '1', name: 'Visitante' },
-              { id: '2', name: 'Suporte' },
-              { id: '3', name: 'Processamento' },
-              { id: '4', name: 'Implementação' },
+              { id: 'Área de atuação', name: 'Área de atuação' },
+              { id: 'Visitante', name: 'Visitante' },
+              { id: 'Suporte', name: 'Suporte' },
+              { id: 'Processamento', name: 'Processamento' },
+              { id: 'Implementação', name: 'Implementação' },
             ]}
             onChange={({ target }) => {
-              configureOcupation(target.value);
+              setOcupation(target.value);
             }}
           />
           <Spacing vertical="10px" />
           <OutlineButton
             secondary
             handleClick={() => {}}
-            onClick={() => {
-              handleSubmit();
+            loading={loading}
+            onClick={async () => {
+              await handleSubmit();
               openModal();
               setThumbnail(null);
             }}

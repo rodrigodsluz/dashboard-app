@@ -268,6 +268,7 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
     setNewUserModal(false);
   };
 
+
   return (
     <HomeDataContext.Provider
       value={{
@@ -297,7 +298,7 @@ const HomeDataContextProvider = ({ children }: Props): JSX.Element => {
         openSliderMachinesModal,
         configureOpenNewUserModal,
         configureCloseNewUserModal,
-        openNewUserModal
+        openNewUserModal,
       }}
     >
       {children}

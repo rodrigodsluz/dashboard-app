@@ -107,12 +107,8 @@ const useFormLogin = (): UseFormLoginTypes => {
       }
       setCookie('token', response.data.access_token);
       localStorage.setItem('token', response.data.token);
-      const res = await Services.login.getInfoUser(response.data);
-      await configureKeyUser(res.chave);
+      localStorage.setItem('key', response.data.keyUser);
 
-      await configureOcupation(res.ocupacao);
-      await configureURLImg(res.imagem);
-      await configureUsername(res.nome);
       redirect(routes.home);
     },
     []
