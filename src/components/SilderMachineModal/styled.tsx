@@ -1,16 +1,4 @@
-import styled, { css } from 'styled-components';
-
-export const Image = styled.img`
-  margin-bottom: 20px;
-  border: 1px dashed #ddd;
-  background-size: cover;
-  cursor: pointer;
-  height: 160px;
-  width: 160px;
-  border-radius: 50%;
-  display: flex;
-  align-self: center;
-`;
+import styled from 'styled-components';
 
 export const ModalContainer = styled.div`
   padding: 20px;
@@ -18,7 +6,8 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   background-color: #fff;
   width: 330px;
-  outline:none;
+  outline: none;
+  border-radius:5px;
 `;
 
 export const CenterModal = styled.div`
@@ -34,7 +23,7 @@ export const CenterModal = styled.div`
   height: 330px;
   width: 330px;
   z-index: 10;
-  outline:none;
+  outline: none;
 `;
 
 export const UploadFile = styled.label`
